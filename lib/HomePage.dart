@@ -241,98 +241,73 @@ SizedBox(height: 20,),
 
           //  listview of morbinews
 
-              FutureBuilder(
-                  future: _fetchPosts(),
-                  builder: (BuildContext context,AsyncSnapshot<List<wp.Post>> snapshot){
-                    if(snapshot.connectionState == ConnectionState.none){
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * .5,
+                child: new ListView.builder(
+                    itemCount: 4,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      //wp.Post post = snapshot.data[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(height: 10,),
+                            GestureDetector(onTap: (){
+                              Navigator.of(context).pushNamed('Homenewspagemain');
+                            },
+                              child: Card(
 
-                      return Container();
-                    }
+                                child: Row(
+                                  children: <Widget>[
+                                    Column(
+                                      children: <Widget>[
+                                        Row(
+                                          children: <Widget>[
+                                            Center(
+                                                child:Container(
+                                                  height: MediaQuery.of(context).size.height*0.2,
+                                                  width: MediaQuery.of(context).size.height*0.18,
+                                                  decoration: BoxDecoration(borderRadius: BorderRadius.only(
+                                                    topRight: Radius.circular(0.0),
+                                                    /*bottomRight: Radius.circular(50.0)*/),
+                                                    image: DecorationImage(
+                                                      image: AssetImage('assets/images/bg.jpg'),
+                                                      fit: BoxFit.fill,
+                                                    ),
 
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return _wifiEnabled?
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * .5,
-                      child: new ListView.builder(
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            wp.Post post = snapshot.data[index];
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(height: 10,),
-                                  GestureDetector(onTap: (){
-                                    Navigator.of(context).pushNamed('Homenewspagemain');
-                                  },
-                                    child: Card(
-
-                                      child: Row(
-                                        children: <Widget>[
-                                          Column(
-                                            children: <Widget>[
-                                              Row(
-                                                children: <Widget>[
-                                                  Center(
-                                                      child:Container(
-                                                        height: MediaQuery.of(context).size.height*0.2,
-                                                        width: MediaQuery.of(context).size.height*0.18,
-                                                        decoration: BoxDecoration(borderRadius: BorderRadius.only(
-                                                          topRight: Radius.circular(0.0),
-                                                          /*bottomRight: Radius.circular(50.0)*/),
-                                                          image: DecorationImage(
-                                                            image: AssetImage('assets/images/bg.jpg'),
-                                                            fit: BoxFit.fill,
-                                                          ),
-
-                                                        ),
-                                                      )
                                                   ),
-                                                  SizedBox(width: 10,),
-                                                  Container(width: 200,
-                                                      child: Column(
-                                                        children: [
-                                                          Text(post.title.rendered.toString()),
-                                                          SizedBox(height: 10,),
-                                                          Row(
-                                                            children: [
-                                                              Text(post.date.toString()),
-                                                              Spacer(),
-                                                              Text("11:45 pm")
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ))
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
+                                                )
+                                            ),
+                                            SizedBox(width: 10,),
+                                            Container(width: 200,
+                                                child: Column(
+                                                  children: [
+                                                    Text("મોરબીમાં જુદા જુદા ચાર બનાવોમાં ચાર વ્યક્તિઓ સારવાર હેઠળ : બે ના અપમૃત્યુ"),
+                                                    SizedBox(height: 10,),
+                                                    Row(
+                                                      children: [
+                                                        Text("3rd sep"),
+                                                        Spacer(),
+                                                        Text("11:45 pm")
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ))
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                  ),
 
-                                ],
+                                  ],
+                                ),
                               ),
-                            );
-                          }),
-                    )
-                        :Center(child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(Icons.signal_wifi_off,size: 50,),
-                        SizedBox(height: 15,),
-                        Text("No Internet Connection",style: TextStyle(fontSize: 16),),
-                      ],
-                    ));
-                  }
+                            ),
 
+                          ],
+                        ),
+                      );
+                    }),
               ),
 
 
