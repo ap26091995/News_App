@@ -44,8 +44,14 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-ListTile(leading: Icon(Icons.home),
-  title: Text("Home"),
+GestureDetector(onTap: (){
+  Navigator.of(context).pushNamed('Homenewspagemain');
+},
+  child:   ListTile(leading: Icon(Icons.home),
+
+    title: Text("Home"),
+
+  ),
 ),
 
                     ExpansionTile(leading: Icon(Icons.line_weight),
@@ -169,6 +175,14 @@ ListTile(leading: Icon(Icons.home),
 
                     ListTile(leading: Icon(Icons.games),
                       title: Text("Sports"),
+                    ),
+
+                    ListTile(leading: Icon(Icons.outlined_flag),
+                      title: Text("About Us"),
+                    ),
+
+                    ListTile(leading: Icon(Icons.security),
+                      title: Text("Privacy Policy"),
                     ),
                   ],
                 ),

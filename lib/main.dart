@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:morbimirror/Screens/SearchPage.dart';
+import 'package:morbimirror/Screens/Splash_Screen.dart';
 
 import 'HomePage.dart';
+import 'Screens/Category_News.dart';
 import 'Screens/HomeNewsMainPage.dart';
 
 void main() {
@@ -20,7 +22,16 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: newsmainpage(),
+      home: splashscreen(),
+      routes: {
+
+      'home':(context)=>HomeScreen(),
+        'categorynews':(context)=>CategoryNews(),
+        'Homenewspagemain':(context)=>Newsmainpage(),
+        'search':(context)=>searching(),
+
+
+      },
     );
   }
 }

@@ -20,10 +20,7 @@ class _searchingState extends State<searching> {
             Container(
               height: 70,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: <Color>[staticBlue, staticWhite])),
+                  color: staticBlue),
             ),
             Stack(
               children: <Widget>[

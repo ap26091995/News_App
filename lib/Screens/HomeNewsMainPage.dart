@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:morbimirror/CustomFile/CustomAppBar.dart';
 import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
+import 'package:morbimirror/CustomFile/Customdrawer.dart';
 
-class newsmainpage extends StatefulWidget {
+class Newsmainpage extends StatefulWidget {
   @override
-  _newsmainpageState createState() => _newsmainpageState();
+  _NewsmainpageState createState() => _NewsmainpageState();
 }
 
-class _newsmainpageState extends State<newsmainpage> {
+class _NewsmainpageState extends State<Newsmainpage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold( key: _scaffoldKey,
+        drawer: CustomDrawer(),
         body:SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+            padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -102,6 +105,43 @@ class _newsmainpageState extends State<newsmainpage> {
                     ],
                   ),
                 ),
+
+
+                //shareicons
+
+                SizedBox(height: 30,),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                    Neumorphic(style: NeumorphicStyle(
+                        depth: 3,color: staticWhite
+                    ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.save_alt,color: staticBlue,),
+                        )),
+                    SizedBox(width: 30,),
+                    Neumorphic(style: NeumorphicStyle(
+                        depth: 3,color: staticWhite
+                    ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.share,color: staticBlue,),
+                        )),
+                    SizedBox(width: 30,),
+                    Neumorphic(style: NeumorphicStyle(
+                        depth: 3,color: staticWhite
+                    ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.favorite_border,color: staticBlue,),
+                        )),
+                  ],),
+                ),
+
+
                 customBottombar(
                   img: 'assets/images/logo.png',
                   title: "મોરબીવાસીઓ તમામ વિસ્તારોમની સચોટ અને તટસ્થ માહિતી હર પળ ઘરે બેઠા મળી રહે એ માટે મોરબીવાસીઓનું પોતાનું મોરબી મિરર શરૂ કરવાનો અમારો ધ્યેય છે જે ધ્યેય આપ સૌ મિત્રોના સાથ સહકારથી શ્રેષ્ઠતા સાથે કામયાબીના શિખરો સર કરશે જેના માટે મોરબી ગૌરવ અનુભવશે.",
