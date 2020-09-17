@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:morbimirror/CustomFile/Customdrawer.dart';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'CustomFile/Common.dart';
 import 'CustomFile/CustomAppBar.dart';
 import 'CustomFile/CustomBottomBar.dart';
@@ -22,48 +23,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
-  wp.WordPress wordPress = wp.WordPress(
-    baseUrl: 'https://morbimirror.com/',
-  );
-  var _wifiEnabled;
-  test()async{
-    try {
-      final result = await InternetAddress.lookup('google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected');
-        _wifiEnabled = true;
-      }
-    } on SocketException catch (_) {
-      print('not connected');
-      _wifiEnabled = false;
-      Show_toast_Now("No Internet Connection", Colors.red);
-    }
+  final String apiUrl = "https://morbimirror.com/wp-json/wp/v2/";
+  // Empty list for our posts
+  List posts;
+  // Function to fetch list of posts
+  Future<String> getPosts() async {
+    var res = await http.get(Uri.encodeFull(apiUrl + "posts?_embed"), headers: {"Accept": "application/json"});
+    // fill our posts list with results and update state
+    setState(() {
+      var resBody = json.decode(res.body);
+      posts = resBody;
+    });
+    return "Success!";
   }
-
-  _fetchPosts() {
-    Future<List<wp.Post>> posts = wordPress.fetchPosts(
-        postParams: wp.ParamsPostList(
-          context: wp.WordPressContext.view,
-          pageNum: 1,
-          perPage: 10,
-        ),
-        fetchAuthor: true,
-        fetchFeaturedMedia: true,
-        fetchComments: true
-    );
-
-    return posts;
+  @override
+  void initState() {
+    super.initState();
+    this.getPosts();
   }
-
-  _getPostImage(wp.Post post) {
-    if (post.featuredMedia == null) {
-      return  Image.asset('assets/images/logo.png');
-    }
-    return Image.network(post.featuredMedia.sourceUrl);
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -335,7 +312,7 @@ SizedBox(height: 20,),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * .5,
                 child: new ListView.builder(
-                    itemCount: 5,
+                    itemCount:  posts == null ? 0 : posts.length,
                     itemBuilder: (BuildContext ctxt, int index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -343,7 +320,7 @@ SizedBox(height: 20,),
                           children: <Widget>[
                             SizedBox(height: 10,),
                             GestureDetector(onTap: (){
-                               Navigator.of(context).pushNamed('Homenewspagemain');
+                              Navigator.of(context).pushNamed('Homenewspagemain');
                             },
                               child: Card(
                                 child: Row(
@@ -360,8 +337,7 @@ SizedBox(height: 20,),
                                                     topRight: Radius.circular(0.0),
                                                     /*bottomRight: Radius.circular(50.0)*/),
                                                     image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'assets/images/bg2.jpg'),
+                                                      image:NetworkImage(posts[index]["_embedded"]["wp:featuredmedia"][0]["source_url"]),
                                                       fit: BoxFit.fill,
                                                     ),
 
@@ -372,14 +348,17 @@ SizedBox(height: 20,),
                                             Container(width: 200,
                                                 child: Column(
                                                   children: [
-                                                    Text("મોરબી એસીબીએ એક હજારની લાંચમાં પકડાયેલા સર્કલ ઓફિસરને કોર્ટમાં રજૂ કરતા કોર્ટે ત્રણ દિવસના રીમાન્ડ મંજુર કર્યા."),
+                                                    Text(posts[index]["title"]["rendered"],maxLines: 4,),
                                                     SizedBox(height: 10,),
                                                     Row(
                                                       children: [
                                                         Customtextheader(bgcolor: staticBlack,
-                                                        titleclr: staticWhite,title: "Wakaner",),
+                                                          titleclr: staticWhite,title: posts[index]["categories"].toString()),
                                                         Spacer(),
-                                                        Text("7 sept,2 pm")
+                                                        Text(posts[index]["date"].toString().split(' ')[0],
+                                                          style: TextStyle(
+                                                            fontSize: 12
+                                                          ),)
                                                       ],
                                                     ),
                                                   ],
@@ -409,10 +388,4 @@ SizedBox(height: 20,),
         ),
       ),
     );
-  }@override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    test();
-  }
-}
+  }}

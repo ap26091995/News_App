@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: BlogScreen(),
+      home: demopage(),
       routes: {
 
       'home':(context)=>HomeScreen(),
