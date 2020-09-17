@@ -64,10 +64,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Customtextheader(title: "Latest News",titleclr: staticBlue,bgcolor: staticYellow,),
+                        Customtextheader(title: "Latest News",titleclr: staticBlue,bgcolor: staticDarkblue,),
                       ],
                     ),
-                    Divider(height: 1,color: staticYellow,thickness: 2,)
+                    Divider(height: 1,color: staticDarkblue,thickness: 2,)
                   ],
                 ),
               ),
@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-SizedBox(height: 20,),
+                SizedBox(height: 20,),
               //slider
               CarouselSlider(items: [
                 Padding(
@@ -208,10 +208,10 @@ SizedBox(height: 20,),
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Customtextheader(title: "Morbi News",titleclr: staticBlue,bgcolor: staticYellow,),
+                        Customtextheader(title: "Morbi News",titleclr: staticBlue,bgcolor: staticDarkblue,),
                          ],
                     ),
-                    Divider(height: 1,color: staticYellow,thickness: 2,)
+                    Divider(height: 1,color: staticDarkblue,thickness: 2,)
                   ],
                 ),
               ),
@@ -297,10 +297,10 @@ SizedBox(height: 20,),
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Customtextheader(title: "Popular News",titleclr: staticBlue,bgcolor: staticYellow,),
+                        Customtextheader(title: "Popular News",titleclr: staticBlue,bgcolor: staticDarkblue,),
                       ],
                     ),
-                    Divider(height: 1,color: staticYellow,thickness: 2,)
+                    Divider(height: 1,color: staticDarkblue,thickness: 2,)
                   ],
                 ),
               ),

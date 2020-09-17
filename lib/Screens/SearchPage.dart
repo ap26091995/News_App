@@ -33,18 +33,33 @@ class _searchingState extends State<searching> {
                     ),
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.search, color: staticBlack),
-                            SizedBox(
-                              width: 10,
+                        child: Expanded(
+                          child: Container(
+                            height: 30,
+                            child: Center(
+                              child: TextField(
+                                textAlign: TextAlign.start,
+
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  hintText: 'Search News',
+                                  hintStyle: TextStyle(fontSize: 13,),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide(
+                                      width: 0,
+                                      style: BorderStyle.none,
+
+                                    ),
+                                  ),
+
+                                  contentPadding: EdgeInsets.all(16),
+
+                                ),
+                              ),
                             ),
-                            Text(
-                              "Search “ News”",
-                              style: TextStyle(color: staticBlack),
-                            ),
-                          ],
-                        ),
+                          ),
+                        )
 
                       ),
                     ),

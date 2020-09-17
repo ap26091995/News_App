@@ -13,16 +13,14 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.55,
+      width: MediaQuery.of(context).size.width * 0.65,
       child: SafeArea(
         child: Drawer(
           child: ListView(
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: <Widget>[
-              SizedBox(
-                height: 20,
-              ),
+
               ListTile(onTap: (){
 
                 Global.currentPageIndex = 1;
@@ -34,7 +32,7 @@ class CustomDrawer extends StatelessWidget {
                 title: Column(
                   children: [
                     Container(
-                        height: MediaQuery.of(context).size.height * 0.2,
+                        height: MediaQuery.of(context).size.height * 0.1,
                         width: MediaQuery.of(context).size.width * 0.3,
                         decoration: new BoxDecoration(
                             image: new DecorationImage(
@@ -54,127 +52,10 @@ GestureDetector(onTap: (){
   ),
 ),
 
-                    ExpansionTile(leading: Icon(Icons.line_weight),
-                      title: Text("News"),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment:MainAxisAlignment.start,
-                            children: [
-                              Text("Avsannondh & Besnu"),
-                              SizedBox(height: 15),
-                              Text("Birthday"),
+                    ListTile(leading: Icon(Icons.bookmark),
 
-                              SizedBox(height: 15),
-                              Text("Halvad"),
+                      title: Text("Bookmark"),
 
-                              SizedBox(height: 15),
-                              Text("Maliya Miyana"),
-
-                              SizedBox(height: 15),
-                              Text("Morbi"),
-
-                              SizedBox(height: 15),
-                              Text("Promotional Article"),
-
-                              SizedBox(height: 15),
-                              Text("Tankara"),
-
-                              SizedBox(height: 15),
-                              Text("Wakaner"),
-                              SizedBox(height: 15),
-                            ],
-                          ),
-                        )
-
-                      ],
-                    ),
-                    ExpansionTile(leading: Icon(Icons.line_weight),
-                      title: Text("Gujarat"),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment:MainAxisAlignment.start,
-                            children: [
-                              Text("Ahmedabad"),
-                              SizedBox(height: 15),
-                              Text("Amreli"),
-
-                              SizedBox(height: 15),
-                              Text("Anand"),
-
-                              SizedBox(height: 15),
-                              Text("Aravalli"),
-
-                              SizedBox(height: 15),
-                              Text("Bharuch"),
-
-                              SizedBox(height: 15),
-                              Text("Bhavnagar"),
-
-                              SizedBox(height: 15),
-                              Text("Botad"),
-
-                              SizedBox(height: 15),
-                              Text("Chhita Udaipur"),
-                              SizedBox(height: 15),
-
-                              Text("Chhita Udaipur"),
-                              SizedBox(height: 15),
-
-                              Text("Chhita Udaipur"),
-                              SizedBox(height: 15),
-
-                              Text("Chhita Udaipur"),
-                              SizedBox(height: 15),
-
-                              Text("dahod"),
-                              SizedBox(height: 15),
-
-                              Text("Dang"),
-                              SizedBox(height: 15),
-
-                              Text("Dwarka"),
-                              SizedBox(height: 15),
-
-                              Text("Gir Somnath"),
-                              SizedBox(height: 15),
-
-                            ],
-                          ),
-                        )
-
-                      ],
-                    ),
-
-                    ListTile(leading: Icon(Icons.line_weight),
-                      title: Text("India"),
-                    ),
-
-                    ListTile(leading: Icon(Icons.line_weight),
-                      title: Text("World"),
-                    ),
-
-                    ListTile(leading: Icon(Icons.line_weight),
-                      title: Text("Astrology"),
-                    ),
-
-                    ListTile(leading: Icon(Icons.line_weight),
-                      title: Text("Bollywood"),
-                    ),
-
-                    ListTile(leading: Icon(Icons.line_weight),
-                      title: Text("Featured"),
-                    ),
-
-                    ListTile(leading: Icon(Icons.style),
-                      title: Text("Lifestyle"),
-                    ),
-
-                    ListTile(leading: Icon(Icons.games),
-                      title: Text("Sports"),
                     ),
 
                     ListTile(leading: Icon(Icons.outlined_flag),
@@ -184,6 +65,17 @@ GestureDetector(onTap: (){
                     ListTile(leading: Icon(Icons.security),
                       title: Text("Privacy Policy"),
                     ),
+
+                    ListTile(leading: Icon(Icons.announcement),
+                      title: Text("Faq"),
+                    ),
+
+                    ListTile(leading: Icon(Icons.share),
+                      title: Text("Share This App"),
+                    ),
+
+
+
                   ],
                 ),
               ),

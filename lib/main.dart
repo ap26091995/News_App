@@ -5,7 +5,8 @@ import 'package:morbimirror/Screens/Splash_Screen.dart';
 import 'HomePage.dart';
 import 'Screens/Category_News.dart';
 import 'Screens/HomeNewsMainPage.dart';
-import 'demo.dart';
+import 'Screens/Homepage_New.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -23,10 +24,10 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: demopage(),
+      home: splashscreen(),
       routes: {
 
-      'home':(context)=>HomeScreen(),
+      'home':(context)=>homepage(),
         'categorynews':(context)=>CategoryNews(),
         'Homenewspagemain':(context)=>Newsmainpage(),
         'search':(context)=>searching(),

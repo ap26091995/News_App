@@ -23,14 +23,14 @@ class CustomAppBar extends StatelessWidget {
         children: <Widget>[
           Container(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+              padding: const EdgeInsets.fromLTRB(5, 20, 5, 10),
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   GestureDetector(onTap: (){
                clickonmenuicon();
 
                   },
-                      child: Icon(Icons.menu)),
+                      child: Icon(Icons.menu,color: staticBlack,)),
                   Spacer(),
                   Image.asset(logoimg, height: MediaQuery.of(context).size.height * 0.1,
                     width: MediaQuery.of(context).size.width * 0.3,
@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget {
                       onTap: (){
 
                         Navigator.of(context).pushNamed('search');
-                      },child: Icon(Icons.search))
+                      },child: Icon(Icons.search,color: staticBlack,))
 
                 ],
               ),

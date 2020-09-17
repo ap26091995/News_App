@@ -92,10 +92,10 @@ class _CategoryNewsState extends State<CategoryNews> {
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Customtextheader(title: "Most Read",titleclr: staticBlue,bgcolor: staticYellow,),
+                        Customtextheader(title: "Most Read",titleclr: staticBlue,bgcolor: staticDarkblue,),
                       ],
                     ),
-                    Divider(height: 1,color: staticYellow,thickness: 2,)
+                    Divider(height: 1,color: staticDarkblue,thickness: 2,)
                   ],
                 ),
               ),
