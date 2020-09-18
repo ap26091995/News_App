@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:morbimirror/Screens/SearchPage.dart';
 import 'package:morbimirror/Screens/Splash_Screen.dart';
 import 'package:morbimirror/test.dart';
-
-import 'HomePage.dart';
 import 'Screens/Category_News.dart';
 import 'Screens/Drawer_Category.dart';
 import 'Screens/HomeNewsMainPage.dart';
