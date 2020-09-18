@@ -34,7 +34,7 @@ class customBottombar extends StatelessWidget {
               children: [
                 Row(mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Customtextheader(title: "Stay Connected",titleclr: staticBlue,bgcolor: staticDarkblue,),
+                    Customtextheader(title: "Stay Connected",titleclr: staticWhite,bgcolor: staticDarkblue,),
                   ],
                 ),
                 Divider(height: 1,color: staticDarkblue,thickness: 2,)
