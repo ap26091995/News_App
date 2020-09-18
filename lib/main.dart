@@ -4,6 +4,7 @@ import 'package:morbimirror/Screens/Splash_Screen.dart';
 
 import 'HomePage.dart';
 import 'Screens/Category_News.dart';
+import 'Screens/Drawer_Category.dart';
 import 'Screens/HomeNewsMainPage.dart';
 import 'Screens/Homepage_New.dart';
 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         'categorynews':(context)=>CategoryNews(),
         'Homenewspagemain':(context)=>Newsmainpage(),
         'search':(context)=>searching(),
+        'drawer_category':(context)=>News_category_drawer()
 
 
       },

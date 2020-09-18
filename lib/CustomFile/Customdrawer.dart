@@ -58,6 +58,15 @@ GestureDetector(onTap: (){
 
                     ),
 
+                    ListTile(leading: Icon(Icons.category),
+
+                      title: Text("Category"),onTap: (){
+
+                      Navigator.of(context).pushNamed('drawer_category');
+                      },
+
+                    ),
+
                     ListTile(leading: Icon(Icons.outlined_flag),
                       title: Text("About Us"),
                     ),
