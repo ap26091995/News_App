@@ -18,7 +18,7 @@ Getnewsdata(){
 
     var Storedataoflist = jsonDecode(res.body);
     print(Storedataoflist);
-    Listofdata = (Storedataoflist["data"] as List).map((data)=>Category.fromJson(data)).toList();
+    Listofdata = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
     print(Listofdata.length);
     print(jsonEncode(Listofdata).toString());
   });
