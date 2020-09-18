@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'ApiCall/Category_api.dart';
+import 'ApiCall/Post_api.dart';
 
 class testing extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _testingState extends State<testing> {
       body: Center(
         child: RaisedButton(child: Text("ok"),
           onPressed: (){
-            Getnewsdata();
+            Getpost();
           }
           ,
         ),
