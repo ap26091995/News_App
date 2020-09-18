@@ -7,12 +7,10 @@ import 'package:http/http.dart' as http;
 List<Category> Listofdata = new List();
 
 Getnewsdata(){
-//print calling api
+//calling api
 
   http.get('https://morbimirror.com/wp-json/wp/v2/categories',
-    /*  body: {
-
-  }*/).then((res){
+    ).then((res){
 
     print(res.body);
 
