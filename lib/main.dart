@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:morbimirror/Screens/SearchPage.dart';
 import 'package:morbimirror/Screens/Splash_Screen.dart';
+import 'package:morbimirror/test.dart';
 
 import 'HomePage.dart';
 import 'Screens/Category_News.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: splashscreen(),
+      home: testing(),
       routes: {
 
       'home':(context)=>homepage(),
