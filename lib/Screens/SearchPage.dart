@@ -7,10 +7,6 @@ class searching extends StatefulWidget {
 }
 
 class _searchingState extends State<searching> {
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

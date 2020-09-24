@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:morbimirror/ApiCall/Post_api.dart';
 import 'package:morbimirror/CustomFile/CustomAppBar.dart';
 import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
@@ -302,7 +301,8 @@ class _homepageState extends State<homepage> {
                                                             children: [
                                                               Text("3rd sep"),
                                                               Spacer(),
-                                                              Text("11:45 pm")
+                                                              Text("11:45 pm"),
+                                                              SizedBox(width: 10,)
                                                             ],
                                                           ),
                                                         ],
@@ -942,7 +942,7 @@ class _homepageState extends State<homepage> {
                                                   Container(width: 200,
                                                       child: Column(
                                                         children: [
-                                                          Text(Listofpost[index].title.toString()),
+                                                          Text("મોરબીમાં જુદા જુદા ચાર બનાવોમાં ચાર વ્યક્તિઓ સારવાર હેઠળ : બે ના અપમૃત્યુ"),
                                                           SizedBox(height: 10,),
                                                           Row(
                                                             children: [
