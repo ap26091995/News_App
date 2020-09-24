@@ -43,7 +43,7 @@ class CustomDrawer extends StatelessWidget {
                       height: 5,
                     ),
 GestureDetector(onTap: (){
-  Navigator.of(context).pushNamed('Homenewspagemain');
+  Navigator.of(context).pushNamed('home');
 },
   child:   ListTile(leading: Icon(Icons.home),
 

@@ -301,7 +301,8 @@ class _homepageState extends State<homepage> {
                                                             children: [
                                                               Text("3rd sep"),
                                                               Spacer(),
-                                                              Text("11:45 pm")
+                                                              Text("11:45 pm"),
+                                                              SizedBox(width: 10,)
                                                             ],
                                                           ),
                                                         ],
