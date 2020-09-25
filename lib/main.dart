@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_wordpress/constants.dart';
 import 'package:morbimirror/Screens/SearchPage.dart';
 import 'package:morbimirror/Screens/Splash_Screen.dart';
 import 'package:morbimirror/test.dart';
@@ -6,7 +8,6 @@ import 'Screens/Category_News.dart';
 import 'Screens/Drawer_Category.dart';
 import 'Screens/HomeNewsMainPage.dart';
 import 'Screens/Homepage_New.dart';
-import 'Screens/temp.dart';
 
 
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: tempfile(),
+      home:splashscreen(),
       routes: {
 
       'home':(context)=>homepage(),
