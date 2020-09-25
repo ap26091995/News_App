@@ -6,6 +6,7 @@ import 'Screens/Category_News.dart';
 import 'Screens/Drawer_Category.dart';
 import 'Screens/HomeNewsMainPage.dart';
 import 'Screens/Homepage_New.dart';
+import 'Screens/temp.dart';
 
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: homepage(),
+      home: tempfile(),
       routes: {
 
       'home':(context)=>homepage(),
