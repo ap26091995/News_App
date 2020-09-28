@@ -18,36 +18,34 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(5, 20, 5, 10),
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  GestureDetector(onTap: (){
-               clickonmenuicon();
+    return SafeArea(
+      child: Container(
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            GestureDetector(onTap: (){
+         clickonmenuicon();
 
-                  },
-                      child: Icon(Icons.menu,color: staticBlack,)),
-                  Spacer(),
-                  Image.asset(logoimg, height: MediaQuery.of(context).size.height * 0.1,
-                    width: MediaQuery.of(context).size.width * 0.3,
-                  ),
-
-                  Spacer(),
-                  GestureDetector(
-                      onTap: (){
-
-                        Navigator.of(context).pushNamed('search');
-                      },child: Icon(Icons.search,color: staticBlack,))
-
-                ],
+            },
+                child: Icon(Icons.menu,color: staticBlack,)),
+            Spacer(),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushNamed('test');
+              },
+              child: Image.asset(logoimg, height: MediaQuery.of(context).size.width * 0.15,
+                width: MediaQuery.of(context).size.width * 0.3,
               ),
             ),
-          ),
-        ],
+
+            Spacer(),
+          /*  GestureDetector(
+                onTap: (){
+
+                  Navigator.of(context).pushNamed('search');
+                },child: Icon(Icons.search,color: staticBlack,))*/
+
+          ],
+        ),
       ),
     );
   }

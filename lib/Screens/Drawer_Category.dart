@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
+import 'package:morbimirror/Global/Global.dart';
 
 
 
@@ -48,7 +49,7 @@ class _News_category_drawerState extends State<News_category_drawer> {
 
         crossAxisCount: 2,
         // Generate 100 widgets that display their index in the List.
-        children: List.generate(clist.length,(index) {
+        children: List.generate(Global.CategoryList.length,(index) {
           return Card(elevation: 7.7,color: staticDarkblue,
             child: InkWell(splashColor: staticBlack,onTap: (){
 
@@ -62,7 +63,7 @@ class _News_category_drawerState extends State<News_category_drawer> {
                     children: <Widget>[
 
                       Text(
-                          clist[index],textAlign: TextAlign.center,
+                          Global.CategoryList[index].name??"",textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 20,color: staticWhite,fontWeight: FontWeight.w400)
                       ),
 

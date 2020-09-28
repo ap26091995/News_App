@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_wordpress/constants.dart';
 import 'package:morbimirror/Screens/SearchPage.dart';
 import 'package:morbimirror/Screens/Splash_Screen.dart';
 import 'package:morbimirror/test.dart';
@@ -33,7 +32,8 @@ class MyApp extends StatelessWidget {
         'categorynews':(context)=>CategoryNews(),
         'Homenewspagemain':(context)=>Newsmainpage(),
         'search':(context)=>searching(),
-        'drawer_category':(context)=>News_category_drawer()
+        'drawer_category':(context)=>News_category_drawer(),
+        'test':(context)=>testing()
 
 
       },

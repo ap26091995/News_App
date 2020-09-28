@@ -1,10 +1,16 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_wordpress/schemas/category.dart';
 import 'package:http/http.dart' as http;
+import 'package:morbimirror/ApiCall/All_URLS.dart';
+import 'package:morbimirror/ApiCall/Post_api.dart';
+import 'package:morbimirror/Global/Global.dart';
+import 'package:morbimirror/Models/Category.dart';
+import 'package:morbimirror/Models/Menu.dart';
+import 'package:morbimirror/Models/Posts.dart';
+import 'package:morbimirror/widgets/PageContent.dart';
 
-List<Category> Listofdata = new List();
+
+
 
 Getnewsdata(){
 //calling api
@@ -16,9 +22,98 @@ Getnewsdata(){
 
     var Storedataoflist = jsonDecode(res.body);
     print(Storedataoflist);
-    Listofdata = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
-    print(Listofdata.length);
-    print(jsonEncode(Listofdata).toString());
+    Global.CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
+    print(Global.CategoryList.length);
+    print(jsonEncode(Global.CategoryList).toString());
   });
 
+}
+
+getMenu() async {
+ await http.get(urlForMenu,
+  ).then((res){
+
+    print(res.body);
+    var Storedataoflist = jsonDecode(res.body);
+    Global.menu = (Storedataoflist as List).map((data)=>Menu.fromJson(data)).toList();
+
+  });
+
+
+  Global.myTabs.clear();
+  Global.categoryContent.clear();
+  Global.subCategoryPosts.clear();
+
+  for(int i=0;i<Global.menu.length;i++){
+    Global.myTabs.add(
+        Tab(
+          child: Text(Global.menu[i].title,style: TextStyle(
+              color: Colors.red
+          ),),
+        )
+    );
+
+    Global.subCategoryList.add(await getCategoriesFromURL(Url: urlForTopBarSubCategories+Global.menu[i].objectId));
+
+     if(Global.subCategoryList[i]!=null) {
+       for (int j = 0; j < Global.subCategoryList[i].length; j++) {
+         List<Category> MyList = Global.subCategoryList[i].toList();
+         List<List<Posts>> myPostsList = new List();
+         for (int k = 0; k < MyList.length; k++) {
+           myPostsList.add(await getPosts(
+               url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&per_page=4&page=1&categories=${Global
+                   .menu[i].objectId}"));
+         }
+         Global.subCategoryPosts.add(myPostsList);
+       }
+     }
+
+     if(Global.subCategoryList[i]==null || Global.subCategoryList[i].isEmpty){
+       Global.categoryPosts.add(await getPosts(url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&per_page=10&page=1&categories=${Global.menu[i].objectId}"));
+     }else{
+       Global.categoryPosts.add(null);
+     }
+
+
+    }
+
+  for(int i =0;i<Global.subCategoryList.length;i++){
+    if(Global.subCategoryList[i]!=null) {
+      print(" SubCategory ${i + 1} :::: ${Global.subCategoryList[i].length}");
+
+      print(" Category ${i + 1} :::: ${Global.categoryPosts[i]==null?0:Global.categoryPosts[i].length}");
+    }else{
+      print(" Length ${i + 1} :::: NUll");
+    }
+  }
+
+}
+
+
+getCategories() async {
+  await http.get(urlForTopBarCategories,
+  ).then((res){
+    //print(res.body);
+    var Storedataoflist = jsonDecode(res.body);
+   // print(Storedataoflist);
+    Global.CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
+    print(Global.CategoryList.length);
+   // print(jsonEncode(Listofdata).toString());
+  });
+}
+
+getCategoriesFromURL({String Url}) async {
+
+  List<Category> CategoryList = new List();
+
+
+  await http.get(Url,
+  ).then((res){
+    //print(res.body);
+    var Storedataoflist = jsonDecode(res.body);
+    // print(Storedataoflist);
+    CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
+
+  });
+  return CategoryList;
 }

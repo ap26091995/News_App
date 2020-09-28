@@ -23,13 +23,13 @@ class Category {
   });
 
   int id;
-  String count;
+  int count;
   Description description;
   String link;
   String name;
   String slug;
   Taxonomy taxonomy;
-  String parent;
+  int parent;
   List<dynamic> meta;
   Links links;
 

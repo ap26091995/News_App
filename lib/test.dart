@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:morbimirror/widgets/MajorPost.dart';
 
 import 'ApiCall/Category_api.dart';
 import 'ApiCall/Post_api.dart';
@@ -14,11 +15,18 @@ class _testingState extends State<testing> {
     return Scaffold(
 
       body: Center(
-        child: RaisedButton(child: Text("ok"),
-          onPressed: (){
-            Getpost();
-          }
-          ,
+        child: Column(
+
+          children: [
+            MajorPost(),
+            MinorPost(),
+            RaisedButton(child: Text("ok"),
+              onPressed: (){
+               getCategories();
+              }
+              ,
+            ),
+          ],
         ),
       )
     );

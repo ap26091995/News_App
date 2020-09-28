@@ -11,7 +11,7 @@ import 'CustomFile/CustomColorsFile.dart';
 import 'CustomFile/CustomTextHeadingOftheBanner.dart';
 import 'CustomFile/CustomtextTitle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_wordpress/flutter_wordpress.dart' as wp;
+
 import 'package:fluttertoast/fluttertoast.dart';
 
 

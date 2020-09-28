@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:morbimirror/Global/Global.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
 
 
@@ -14,8 +15,8 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.65,
-      child: SafeArea(
-        child: Drawer(
+      child: Drawer(
+        child: SafeArea(
           child: ListView(
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,

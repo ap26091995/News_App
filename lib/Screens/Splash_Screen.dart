@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'dart:async';
 
+import 'package:morbimirror/ApiCall/Category_api.dart';
+
 
 
 class splashscreen extends StatefulWidget {
@@ -11,8 +13,11 @@ class splashscreen extends StatefulWidget {
 
 class _splashscreenState extends State<splashscreen> {
   startTime() async {
-    var _duration = new Duration(seconds: 2);
-    return new Timer(_duration, navigationPage);
+    getCategories();
+    await getMenu();
+   /* var _duration = new Duration(seconds: 2);
+    return new Timer(_duration, navigationPage);*/
+   navigationPage();
   }
 
   void navigationPage() {
@@ -20,6 +25,7 @@ class _splashscreenState extends State<splashscreen> {
   }
 
   void initState() {
+
     super.initState();
     startTime();
   }
@@ -33,7 +39,6 @@ class _splashscreenState extends State<splashscreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
             Image.asset('assets/images/logo.png',height: 200,width: 200,)
           ],
         ),
