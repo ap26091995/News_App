@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:morbimirror/ApiCall/Category_api.dart';
+import 'package:morbimirror/ApiCall/staticPageContent.dart';
 
 
 
@@ -13,6 +14,9 @@ class splashscreen extends StatefulWidget {
 
 class _splashscreenState extends State<splashscreen> {
   startTime() async {
+    getPrivacyPage();
+    getAboutUs();
+    getFaq();
     getCategories();
     await getMenu();
    /* var _duration = new Duration(seconds: 2);

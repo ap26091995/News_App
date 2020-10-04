@@ -11,6 +11,7 @@ import 'package:morbimirror/CustomFile/Customdrawer.dart';
 import 'package:morbimirror/CustomFile/CustomtextTitle.dart';
 import 'package:http/http.dart' as http;
 import 'package:morbimirror/Global/Global.dart';
+import 'package:morbimirror/testing.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 
 class homepage extends StatefulWidget {
@@ -19,6 +20,8 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+
+  List<Widget> myTabBars = new List();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final String apiUrl = "https://morbimirror.com/wp-json/wp/v2/";
@@ -36,48 +39,51 @@ class _homepageState extends State<homepage> {
   }
   @override
   void initState() {
+    GetPageData();
     super.initState();
 //    this.getPosts();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      drawer: CustomDrawer(),
-      body: DefaultTabController(
+    return DefaultTabController(
         length: Global.myTabs.length,
         child: Scaffold(
-          appBar: AppBar(backgroundColor: staticWhite,
-            title:CustomAppBar(logoimg: 'assets/images/logo.png',
+          key: _scaffoldKey,
+          drawer: CustomDrawer(),
+          body: Column(
+            children: [
+              CustomAppBar(logoimg: 'assets/images/logo.png',
 
-            clickonmenuicon: (){
+                clickonmenuicon: (){
 
-              _scaffoldKey.currentState.openDrawer();
+                  _scaffoldKey.currentState.openDrawer();
 
-            },),
-
-
-
-            bottom: PreferredSize(
-                child: TabBar(
-                    isScrollable: true,
-                    unselectedLabelColor:  Colors.black,
-                    indicatorColor:staticBlue,
-                    labelColor: staticBlue,
-                    tabs: Global.myTabs),
-                preferredSize: Size.fromHeight(30.0)),
-
-          ),
-          body: TabBarView(
-            children: Global.categoryPosts.map((e) => CategoryContent(posts: e)).toList()
+                },),
+              TabBar(
+                  isScrollable: true,
+                  unselectedLabelColor:  Colors.black,
+                  indicatorColor:staticBlue,
+                  labelColor: staticBlue,
+                  tabs: Global.myTabs),
+              Expanded(
+                child: TabBarView(
+                  children:myTabBars
 ),
-
-
-
-        ),
+              ),
+            ],
+          ),
       ),
 
     );
   }
+
+
+  GetPageData(){
+    for(int i =0;i<Global.menu.length;i++){
+      myTabBars.add(Testing(id: int.parse(Global.menu[i].objectId),index: i,catId: Global.menu[i].objectId,));
+    }
+  }
+
+
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:morbimirror/Global/Global.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
+import 'package:share/share.dart';
 
 
 import 'Common.dart';
@@ -70,18 +71,33 @@ GestureDetector(onTap: (){
 
                     ListTile(leading: Icon(Icons.outlined_flag),
                       title: Text("About Us"),
+                      onTap: (){
+                      Global.activePage=Global.aboutUsPage;
+                      Navigator.of(context).pushNamed('staticPage');
+                      },
                     ),
 
                     ListTile(leading: Icon(Icons.security),
                       title: Text("Privacy Policy"),
+                      onTap: (){
+                        Global.activePage=Global.privacyPolicPage;
+                        Navigator.of(context).pushNamed('staticPage');
+                      },
                     ),
 
                     ListTile(leading: Icon(Icons.announcement),
                       title: Text("Faq"),
+                      onTap: (){
+                        Global.activePage=Global.faqPage;
+                        Navigator.of(context).pushNamed('staticPage');
+                      },
                     ),
 
                     ListTile(leading: Icon(Icons.share),
                       title: Text("Share This App"),
+                      onTap: (){
+                        Share.share('check out my App https://example.com');
+                      },
                     ),
 
 

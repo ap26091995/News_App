@@ -18,8 +18,6 @@ class _testingState extends State<testing> {
         child: Column(
 
           children: [
-            MajorPost(),
-            MinorPost(),
             RaisedButton(child: Text("ok"),
               onPressed: (){
                getCategories();

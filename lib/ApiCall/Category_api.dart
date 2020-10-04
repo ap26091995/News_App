@@ -7,6 +7,7 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Menu.dart';
 import 'package:morbimirror/Models/Posts.dart';
+import 'package:morbimirror/Models/appdata.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 
 
@@ -30,6 +31,7 @@ Getnewsdata(){
 }
 
 getMenu() async {
+
  await http.get(urlForMenu,
   ).then((res){
 
@@ -37,6 +39,7 @@ getMenu() async {
     var Storedataoflist = jsonDecode(res.body);
     Global.menu = (Storedataoflist as List).map((data)=>Menu.fromJson(data)).toList();
 
+    Global.menu.removeAt(0);
   });
 
 
@@ -53,40 +56,10 @@ getMenu() async {
         )
     );
 
-    Global.subCategoryList.add(await getCategoriesFromURL(Url: urlForTopBarSubCategories+Global.menu[i].objectId));
+    Global.allData.add(null);
 
-     if(Global.subCategoryList[i]!=null) {
-       for (int j = 0; j < Global.subCategoryList[i].length; j++) {
-         List<Category> MyList = Global.subCategoryList[i].toList();
-         List<List<Posts>> myPostsList = new List();
-         for (int k = 0; k < MyList.length; k++) {
-           myPostsList.add(await getPosts(
-               url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&per_page=4&page=1&categories=${Global
-                   .menu[i].objectId}"));
-         }
-         Global.subCategoryPosts.add(myPostsList);
-       }
-     }
-
-     if(Global.subCategoryList[i]==null || Global.subCategoryList[i].isEmpty){
-       Global.categoryPosts.add(await getPosts(url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&per_page=10&page=1&categories=${Global.menu[i].objectId}"));
-     }else{
-       Global.categoryPosts.add(null);
-     }
-
-
-    }
-
-  for(int i =0;i<Global.subCategoryList.length;i++){
-    if(Global.subCategoryList[i]!=null) {
-      print(" SubCategory ${i + 1} :::: ${Global.subCategoryList[i].length}");
-
-      print(" Category ${i + 1} :::: ${Global.categoryPosts[i]==null?0:Global.categoryPosts[i].length}");
-    }else{
-      print(" Length ${i + 1} :::: NUll");
-    }
+   // Global.categoryPosts.add(await getPosts(url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&per_page=20&page=1&categories=${Global.menu[i].objectId}"));
   }
-
 }
 
 

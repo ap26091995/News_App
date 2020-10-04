@@ -22,27 +22,29 @@ class CustomAppBar extends StatelessWidget {
       child: Container(
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            SizedBox(width: 20,),
             GestureDetector(onTap: (){
          clickonmenuicon();
 
             },
                 child: Icon(Icons.menu,color: staticBlack,)),
             Spacer(),
-            GestureDetector(
-              onTap: (){
-                Navigator.of(context).pushNamed('test');
-              },
+            Container(
               child: Image.asset(logoimg, height: MediaQuery.of(context).size.width * 0.15,
                 width: MediaQuery.of(context).size.width * 0.3,
               ),
             ),
 
             Spacer(),
-          /*  GestureDetector(
-                onTap: (){
+            Opacity(
+              opacity: 0,
+              child: GestureDetector(
+                  onTap: (){
 
-                  Navigator.of(context).pushNamed('search');
-                },child: Icon(Icons.search,color: staticBlack,))*/
+                    Navigator.of(context).pushNamed('search');
+                  },child: Icon(Icons.search,color: staticBlack,)),
+            ),
+            SizedBox(width: 20,),
 
           ],
         ),

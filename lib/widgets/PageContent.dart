@@ -20,9 +20,11 @@ class _CategoryContentState extends State<CategoryContent> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemCount: widget.posts.length
     ,itemBuilder: (context,index){
-      return index==0?MajorPost():MinorPost();
+      return index==0?MajorPost(posts: widget.posts[index],):MinorPost(widget.posts[index]);
     });
   }
 }

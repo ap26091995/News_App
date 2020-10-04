@@ -21,7 +21,7 @@ class customBottombar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
         child: Column(
           children: [
             Image.asset(img,width: 200,height: 150,),
@@ -43,15 +43,15 @@ class customBottombar extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
 
-                SocialMediaButton.linkedin(color: staticBlue,size: 30,),
-                SocialMediaButton.facebook(url: '',color: staticBlue,size: 30,),
-                SocialMediaButton.instagram(color: staticBlue,size: 30,),
-                SocialMediaButton.twitter(color: staticBlue,size: 30,),
+                SocialMediaButton.youtube(url: 'https://www.youtube.com/channel/UCSjQi-WHNOoW5XrPLAM30LQ',color: staticBlue,size: 30,),
+                SocialMediaButton.facebook(url: 'https://www.facebook.com/Morbi-Mirror-101701831652004',color: staticBlue,size: 30,),
+                SocialMediaButton.instagram(url: 'https://www.instagram.com/morbimirror/',color: staticBlue,size: 30,),
+                SocialMediaButton.twitter(url: 'https://twitter.com/MorbiMirror',color: staticBlue,size: 30,),
               ],
             ),
 
             SizedBox(height: 10,),
-            Text("© 2020 Morbi Mirror. All rights reserved.")
+            Text("© ${DateTime.now().year} Morbi Mirror. All rights reserved.")
 
           ],
         ),

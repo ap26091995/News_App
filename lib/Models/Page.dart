@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-List<Posts> postsFromJson(String str) => List<Posts>.from(json.decode(str).map((x) => Posts.fromJson(x)));
+PageData postsFromJson(String str) => PageData.fromJson(json.decode(str));
 
-String postsToJson(List<Posts> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String postsToJson(PageData data) => json.encode(data.toJson());
 
-class Posts {
-  Posts({
+class PageData {
+  PageData({
     this.id,
     this.date,
     this.dateGmt,
@@ -25,14 +25,12 @@ class Posts {
     this.excerpt,
     this.author,
     this.featuredMedia,
+    this.parent,
+    this.menuOrder,
     this.commentStatus,
     this.pingStatus,
-    this.sticky,
     this.template,
-    this.format,
     this.meta,
-    this.categories,
-    this.tags,
     this.links,
   });
 
@@ -49,19 +47,17 @@ class Posts {
   Guid title;
   Content content;
   Content excerpt;
-  String author;
-  FeaturedMedia featuredMedia;
+  int author;
+  int featuredMedia;
+  int parent;
+  int menuOrder;
   String commentStatus;
   String pingStatus;
-  bool sticky;
   String template;
-  String format;
   List<dynamic> meta;
-  List<int> categories;
-  List<dynamic> tags;
   Links links;
 
-  factory Posts.fromJson(Map<String, dynamic> json) => Posts(
+  factory PageData.fromJson(Map<String, dynamic> json) => PageData(
     id: json["id"],
     date: DateTime.parse(json["date"]),
     dateGmt: DateTime.parse(json["date_gmt"]),
@@ -76,15 +72,13 @@ class Posts {
     content: Content.fromJson(json["content"]),
     excerpt: Content.fromJson(json["excerpt"]),
     author: json["author"],
-    featuredMedia: FeaturedMedia.fromJson(json["featured_media"]),
+    featuredMedia: json["featured_media"],
+    parent: json["parent"],
+    menuOrder: json["menu_order"],
     commentStatus: json["comment_status"],
     pingStatus: json["ping_status"],
-    sticky: json["sticky"],
     template: json["template"],
-    format: json["format"],
     meta: List<dynamic>.from(json["meta"].map((x) => x)),
-    categories: List<int>.from(json["categories"].map((x) => x)),
-    tags: List<dynamic>.from(json["tags"].map((x) => x)),
     links: Links.fromJson(json["_links"]),
   );
 
@@ -103,15 +97,13 @@ class Posts {
     "content": content.toJson(),
     "excerpt": excerpt.toJson(),
     "author": author,
-    "featured_media": featuredMedia.toJson(),
+    "featured_media": featuredMedia,
+    "parent": parent,
+    "menu_order": menuOrder,
     "comment_status": commentStatus,
     "ping_status": pingStatus,
-    "sticky": sticky,
     "template": template,
-    "format": format,
     "meta": List<dynamic>.from(meta.map((x) => x)),
-    "categories": List<dynamic>.from(categories.map((x) => x)),
-    "tags": List<dynamic>.from(tags.map((x) => x)),
     "_links": links.toJson(),
   };
 }
@@ -133,26 +125,6 @@ class Content {
   Map<String, dynamic> toJson() => {
     "rendered": rendered,
     "protected": protected,
-  };
-}
-
-class FeaturedMedia {
-  FeaturedMedia({
-    this.medium,
-    this.large,
-  });
-
-  String medium;
-  String large;
-
-  factory FeaturedMedia.fromJson(Map<String, dynamic> json) => FeaturedMedia(
-    medium: json["medium"],
-    large: json["large"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "medium": medium,
-    "large": large,
   };
 }
 
@@ -181,9 +153,7 @@ class Links {
     this.replies,
     this.versionHistory,
     this.predecessorVersion,
-    this.wpFeaturedmedia,
     this.wpAttachment,
-    this.wpTerm,
     this.curies,
   });
 
@@ -194,9 +164,7 @@ class Links {
   List<Author> replies;
   List<VersionHistory> versionHistory;
   List<PredecessorVersion> predecessorVersion;
-  List<Author> wpFeaturedmedia;
   List<About> wpAttachment;
-  List<WpTerm> wpTerm;
   List<Cury> curies;
 
   factory Links.fromJson(Map<String, dynamic> json) => Links(
@@ -207,9 +175,7 @@ class Links {
     replies: List<Author>.from(json["replies"].map((x) => Author.fromJson(x))),
     versionHistory: List<VersionHistory>.from(json["version-history"].map((x) => VersionHistory.fromJson(x))),
     predecessorVersion: List<PredecessorVersion>.from(json["predecessor-version"].map((x) => PredecessorVersion.fromJson(x))),
-    wpFeaturedmedia: json["wp:featuredmedia"]!=null?List<Author>.from(json["wp:featuredmedia"].map((x) => Author.fromJson(x))):[],
     wpAttachment: List<About>.from(json["wp:attachment"].map((x) => About.fromJson(x))),
-    wpTerm: List<WpTerm>.from(json["wp:term"].map((x) => WpTerm.fromJson(x))),
     curies: List<Cury>.from(json["curies"].map((x) => Cury.fromJson(x))),
   );
 
@@ -221,9 +187,7 @@ class Links {
     "replies": List<dynamic>.from(replies.map((x) => x.toJson())),
     "version-history": List<dynamic>.from(versionHistory.map((x) => x.toJson())),
     "predecessor-version": List<dynamic>.from(predecessorVersion.map((x) => x.toJson())),
-    "wp:featuredmedia": List<dynamic>.from(wpFeaturedmedia.map((x) => x.toJson())),
     "wp:attachment": List<dynamic>.from(wpAttachment.map((x) => x.toJson())),
-    "wp:term": List<dynamic>.from(wpTerm.map((x) => x.toJson())),
     "curies": List<dynamic>.from(curies.map((x) => x.toJson())),
   };
 }
@@ -324,30 +288,6 @@ class VersionHistory {
 
   Map<String, dynamic> toJson() => {
     "count": count,
-    "href": href,
-  };
-}
-
-class WpTerm {
-  WpTerm({
-    this.taxonomy,
-    this.embeddable,
-    this.href,
-  });
-
-  String taxonomy;
-  bool embeddable;
-  String href;
-
-  factory WpTerm.fromJson(Map<String, dynamic> json) => WpTerm(
-    taxonomy: json["taxonomy"],
-    embeddable: json["embeddable"],
-    href: json["href"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "taxonomy": taxonomy,
-    "embeddable": embeddable,
     "href": href,
   };
 }
