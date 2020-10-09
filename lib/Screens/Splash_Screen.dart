@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:async';
@@ -13,6 +14,7 @@ class splashscreen extends StatefulWidget {
 }
 
 class _splashscreenState extends State<splashscreen> {
+
   startTime() async {
     getPrivacyPage();
     getAboutUs();
@@ -23,15 +25,24 @@ class _splashscreenState extends State<splashscreen> {
     return new Timer(_duration, navigationPage);*/
    navigationPage();
   }
-
   void navigationPage() {
     Navigator.of(context).pushReplacementNamed('home');
   }
-
   void initState() {
-
+    getToken();
     super.initState();
     startTime();
+  }
+
+
+  getToken() async {
+
+
+    FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
+    String token = await firebaseMessaging.getToken();
+    firebaseMessaging.subscribeToTopic('News');
+    print(token);
+
   }
 
   @override

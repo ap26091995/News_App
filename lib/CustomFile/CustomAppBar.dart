@@ -37,12 +37,11 @@ class CustomAppBar extends StatelessWidget {
 
             Spacer(),
             Opacity(
-              opacity: 0,
+              opacity:clickonsearchicon==null?0:1,
               child: GestureDetector(
-                  onTap: (){
+                  onTap: clickonsearchicon??(){
 
-                    Navigator.of(context).pushNamed('search');
-                  },child: Icon(Icons.search,color: staticBlack,)),
+                  },child: Icon(Icons.share,color: staticBlack,)),
             ),
             SizedBox(width: 20,),
 
