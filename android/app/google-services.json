@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "704823609023",
+    "firebase_url": "https://morbimirror-44b0a.firebaseio.com",
+    "project_id": "morbimirror-44b0a",
+    "storage_bucket": "morbimirror-44b0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704823609023:android:1a86778fd17d841ff8e80a",
+        "android_client_info": {
+          "package_name": "com.morbimirror"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704823609023-0iv6rh3mlseg55trdeqk6oqvq805ullj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFbw_Zfh-I2qC1tcFayJVR3SppctyZ2Pc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704823609023-0iv6rh3mlseg55trdeqk6oqvq805ullj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -111,7 +111,7 @@ class _TestingState extends State<Testing> {
               physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,itemCount: myPostsList.length,itemBuilder: (context,index){
             return
-              PostForCategory(postsList: myPostsList[index],categoryTitle: myCategories[index].name,catId: Global.menu[index].objectId,);
+              PostForCategory(postsList: myPostsList[index],categoryTitle: myCategories[index].name,catId: myCategories[index].id.toString(),);
                 }),
           ],
         ),

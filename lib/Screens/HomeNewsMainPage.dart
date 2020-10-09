@@ -7,6 +7,7 @@ import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'package:morbimirror/CustomFile/Customdrawer.dart';
 import 'package:morbimirror/Global/Global.dart';
+import 'package:share/share.dart';
 
 class Newsmainpage extends StatefulWidget {
   @override
@@ -27,9 +28,14 @@ class _NewsmainpageState extends State<Newsmainpage> {
             child: Column(crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CustomAppBar(logoimg: 'assets/images/logo.png',
+
+                CustomAppBar(
+                  logoimg: 'assets/images/logo.png',
                   clickonmenuicon: (){
                   _scaffoldKey.currentState.openDrawer();
+                },clickonsearchicon: (){
+
+                    Share.share("${Global.activePost.excerpt.rendered}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror");
 
                 },),
                 Padding(
