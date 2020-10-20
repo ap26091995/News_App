@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:morbimirror/Screens/BookMarkPage.dart';
 import 'package:morbimirror/Screens/SearchPage.dart';
 import 'package:morbimirror/Screens/Splash_Screen.dart';
 import 'package:morbimirror/Screens/StaticPageDisplay.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         'search':(context)=>searching(),
         'drawer_category':(context)=>News_category_drawer(),
         'test':(context)=>testing(),
-        'staticPage':(context)=>StaticPageDisplay()
+        'staticPage':(context)=>StaticPageDisplay(),
+        'bookmark':(context)=>BookmarkPage()
 
 
       },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:morbimirror/BookMark/bookMark.dart';
 import 'package:morbimirror/CustomFile/CustomAppBar.dart';
 import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
@@ -29,14 +30,23 @@ class _NewsmainpageState extends State<Newsmainpage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
 
-                CustomAppBar(
+                CustomAppBarWithHeart(onFav: (){
+                  if(Global.bookMarkPosts.contains(Global.activePost))
+                    {
+                      removeBookMark(Global.activePost);
+                    }else{
+                    SaveBookMark(Global.activePost);
+                  }
+
+                setState(() {
+
+                });
+                },
                   logoimg: 'assets/images/logo.png',
                   clickonmenuicon: (){
                   _scaffoldKey.currentState.openDrawer();
                 },clickonsearchicon: (){
-
-                    Share.share("${Global.activePost.excerpt.rendered}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror");
-
+                    Share.share("${Global.activePost.excerpt.rendered}\n${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror");
                 },),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

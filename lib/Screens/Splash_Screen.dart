@@ -5,6 +5,7 @@ import 'dart:async';
 
 import 'package:morbimirror/ApiCall/Category_api.dart';
 import 'package:morbimirror/ApiCall/staticPageContent.dart';
+import 'package:morbimirror/BookMark/bookMark.dart';
 
 
 
@@ -16,6 +17,7 @@ class splashscreen extends StatefulWidget {
 class _splashscreenState extends State<splashscreen> {
 
   startTime() async {
+    readBookMark();
     getPrivacyPage();
     getAboutUs();
     getFaq();

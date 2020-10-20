@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:morbimirror/BookMark/bookMark.dart';
 import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Menu.dart';
 import 'package:morbimirror/Models/Page.dart';
@@ -29,8 +30,10 @@ class Global{
   static PageData privacyPolicPage;
   static PageData faqPage;
   static PageData aboutUsPage;
-
   static PageData activePage;
+
+  static List<Posts> bookMarkPosts=new List();
+  
 
 }
 

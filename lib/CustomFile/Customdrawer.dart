@@ -57,7 +57,9 @@ GestureDetector(onTap: (){
                     ListTile(leading: Icon(Icons.bookmark),
 
                       title: Text("Bookmark"),
-
+onTap: (){
+  Navigator.of(context).pushNamed('bookmark');
+},
                     ),
 
                     ListTile(leading: Icon(Icons.category),
