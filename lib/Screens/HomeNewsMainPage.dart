@@ -77,10 +77,10 @@ class _NewsmainpageState extends State<Newsmainpage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(Global.activePost.title.rendered,
+                      Text(Global.activePost.title.rendered.replaceAll("&#8211", ""),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 18,color: staticBlue,
+                            fontSize: 18,color: staticBlack,
                             fontFamily: 'Montserrat-Black'
                         ),),
                       SizedBox(height: 3,),

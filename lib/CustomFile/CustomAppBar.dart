@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:morbimirror/CustomFile/Common.dart';
 import 'package:morbimirror/Global/Global.dart';
 
+import '../testing.dart';
 import 'CustomColorsFile.dart';
-
+import 'package:morbimirror/Screens/Homepage_New.dart';
 class CustomAppBar extends StatelessWidget {
   final String logoimg;
   final VoidCallback clickonmenuicon;
@@ -19,6 +21,13 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> myTabBars = new List();
+
+    GetPageData(){
+      for(int i =0;i<Global.menu.length;i++){
+        myTabBars.add(Testing(id: int.parse(Global.menu[i].objectId),index: i,catId: Global.menu[i].objectId,));
+      }
+    }
     return SafeArea(
       child: Container(
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -35,6 +44,30 @@ class CustomAppBar extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.3,
               ),
             ),
+
+
+            Spacer(),
+            GestureDetector(
+              onTap: (){
+                GetPageData();
+                Show_toast_Now("Data Refreshing", Colors.green);
+                print("refresh data");
+              },
+              child: Container(
+                  child: Icon(Icons.refresh,color: staticBlack,)
+              ),
+            ),
+
+            /*Spacer(),
+            GestureDetector(
+              onTap: (){
+                Navigator.pushNamed(context, 'search');
+                print("search");
+              },
+              child: Container(
+                  child: Icon(Icons.search,color: staticBlack,)
+              ),
+            ),*/
 
             Spacer(),
             Opacity(
