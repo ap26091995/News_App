@@ -33,11 +33,19 @@ class CustomAppBar extends StatelessWidget {
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             SizedBox(width: 20,),
+
             GestureDetector(onTap: (){
          clickonmenuicon();
 
             },
                 child: Icon(Icons.menu,color: staticBlack,)),
+            SizedBox(width: 10,),
+            Opacity(
+              opacity: 0,
+              child: Container(
+                  child: Icon(Icons.refresh,color: staticBlack,)
+              ),
+            ),
             Spacer(),
             Container(
               child: Image.asset(logoimg, height: MediaQuery.of(context).size.width * 0.15,
@@ -46,17 +54,7 @@ class CustomAppBar extends StatelessWidget {
             ),
 
 
-            Spacer(),
-            GestureDetector(
-              onTap: (){
-                GetPageData();
-                Show_toast_Now("Data Refreshing", Colors.green);
-                print("refresh data");
-              },
-              child: Container(
-                  child: Icon(Icons.refresh,color: staticBlack,)
-              ),
-            ),
+
 
             /*Spacer(),
             GestureDetector(
@@ -76,6 +74,17 @@ class CustomAppBar extends StatelessWidget {
                   onTap: clickonsearchicon??(){
 
                   },child: Icon(Icons.share,color: staticBlack,)),
+            ),
+            SizedBox(width: 10,),
+            GestureDetector(
+              onTap: (){
+                GetPageData();
+                Show_toast_Now("Data Refreshing", Colors.green);
+                print("refresh data");
+              },
+              child: Container(
+                  child: Icon(Icons.refresh,color: staticBlack,)
+              ),
             ),
             SizedBox(width: 20,),
 
