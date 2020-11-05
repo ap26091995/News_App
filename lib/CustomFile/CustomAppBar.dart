@@ -58,7 +58,7 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
 
-            /*Spacer(),
+            Spacer(),
             GestureDetector(
               onTap: (){
                 Navigator.pushNamed(context, 'search');
@@ -67,7 +67,7 @@ class CustomAppBar extends StatelessWidget {
               child: Container(
                   child: Icon(Icons.search,color: staticBlack,)
               ),
-            ),*/
+            ),
 
             Spacer(),
             Opacity(
