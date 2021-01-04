@@ -20,6 +20,7 @@ class _CategoryContentState extends State<CategoryContent> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemCount: widget.posts.length

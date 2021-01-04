@@ -12,3 +12,8 @@ https://morbimirror.com/wp-json/wp/v2/categories?per_page=4&parent=1*/
 
 
 //https://morbimirror.com/wp-json/wp/v2/categories/?parent=17&order=desc&hide_empty=true&per_page=100
+
+
+//   https://morbimirror.com/wp-json/wp/v2/menu
+
+// https://morbimirror.com/wp-json/wp/v2/categories?per_page=100&order=desc&hide_empty=true&parent=

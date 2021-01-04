@@ -39,6 +39,12 @@ class CustomAppBar extends StatelessWidget {
 
             },
                 child: Icon(Icons.menu,color: staticBlack,)),
+            Opacity(
+              opacity: 0,
+              child: Container(
+                  child: Icon(Icons.search,color: staticBlack,)
+              ),
+            ),
             SizedBox(width: 10,),
             Opacity(
               opacity: 0,
@@ -57,6 +63,13 @@ class CustomAppBar extends StatelessWidget {
 
 
             Spacer(),
+            Opacity(
+              opacity:clickonsearchicon==null?0:1,
+              child: GestureDetector(
+                  onTap: clickonsearchicon??(){
+
+                  },child: Icon(Icons.share,color: staticBlack,)),
+            ),
             GestureDetector(
               onTap: (){
                 Navigator.pushNamed(context, 'search');
@@ -67,14 +80,8 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
 
-            Spacer(),
-            Opacity(
-              opacity:clickonsearchicon==null?0:1,
-              child: GestureDetector(
-                  onTap: clickonsearchicon??(){
 
-                  },child: Icon(Icons.share,color: staticBlack,)),
-            ),
+
             SizedBox(width: 10,),
             GestureDetector(
               onTap: (){

@@ -7,6 +7,7 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/Models/appdata.dart';
+import 'package:morbimirror/Screens/onlyPosts.dart';
 import 'package:morbimirror/widgets/MajorPost.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 
@@ -42,6 +43,8 @@ class _TestingState extends State<Testing> {
 
   getCat() async {
 
+    print("Pulling Categories for id ${widget.id}");
+
     if( Global.allData[widget.index]==null) {
       myCategories.clear();
       myPostsList.clear();
@@ -49,31 +52,37 @@ class _TestingState extends State<Testing> {
           Url: urlForTopBarSubCategories + widget.id.toString());
 
       if (myCategories.isEmpty) {
-        myPosts = await getPosts(
-            url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=1&categories=${widget
-                .id}");
-
-        print("---- GOING FOR POSTS ------");
-        print(myPosts.length);
-      } else {
-        for (int i = 0; i < myCategories.length; i++) {
-          myPostsList.add(await getPosts(
-              url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=1&categories=${myCategories[i]
-                  .id}"));
-        }
-
+        print("Pulling Posts for id ${widget.id}");
         myPosts = await getPosts(
             url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${widget
                 .id}");
 
-        print(myCategories.length);
-        print(myPostsList.length);
-        setState(() {
+        print("---- GOING FOR POSTS ------");
+        print(myPosts.length);
+      }
+      else {
 
-        });
+        for (int i = 0; i < myCategories.length; i++) {
+          print("Pulling Categories for id ${widget.id} subcat id ${myCategories[i].id}");
+
+          myPostsList.add(await getPosts(
+              url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${myCategories[i]
+                  .id}"));
+        }
+        print("Pulling Posts for id ${widget.id}");
+        myPosts = await getPosts(
+            url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${widget
+                .id}");
+
+
+
       }
 
       isLoading = false;
+
+      print("Category List Length : "+myCategories.length.toString());
+      print("PostList List Length : "+myPostsList.length.toString());
+      print("Post Length : "+myPosts.length.toString());
 
       Global.allData[widget.index] = AllData(myCategories: myCategories,
           myPosts: myPosts,
@@ -82,7 +91,8 @@ class _TestingState extends State<Testing> {
       setState(() {
 
       });
-    }else{
+    }
+    else{
       myPostsList=Global.allData[widget.index].myPostsList;
       myPosts=Global.allData[widget.index].myPosts;
       myCategories=Global.allData[widget.index].myCategories;
@@ -100,7 +110,7 @@ class _TestingState extends State<Testing> {
       body:isLoading?
       Center(child: SizedBox(width: 100,height: 100,child: CircularProgressIndicator(),)):
       myCategories.isEmpty?
-      myPosts.isEmpty || myPostsList.isEmpty?Center(child: Text("No News Available..."),):CategoryContent(posts: myPosts):
+      myPosts.isEmpty && myPostsList.isEmpty?Center(child: Text("No News Available..."),):OnlyPosts(posts: myPosts):
 
 
       SingleChildScrollView(
