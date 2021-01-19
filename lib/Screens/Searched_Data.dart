@@ -56,7 +56,7 @@ class _DatasearchedState extends State<Datasearched> {
                   clickonmenuicon: (){
                     _scaffoldKey.currentState.openDrawer();
                   },clickonsearchicon: (){
-                    Share.share("${Global.activePost.excerpt.rendered}\n${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror");
+                    Share.share("${Global.activePost.excerpt.rendered}\n${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
                   },),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -96,7 +96,7 @@ class _DatasearchedState extends State<Datasearched> {
                       SizedBox(height: 3,),
                       Row(
                         children: [
-                          Text("Morbi Mirror",style: TextStyle(
+                          Text("Morbi Update ",style: TextStyle(
                               fontWeight: FontWeight.w600,color: staticBlue
                           ),),
                           Spacer(),

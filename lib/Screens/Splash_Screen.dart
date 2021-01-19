@@ -19,8 +19,8 @@ class _splashscreenState extends State<splashscreen> {
   startTime() async {
     readBookMark();
     getPrivacyPage();
-    getAboutUs();
-    getFaq();
+    /*getAboutUs();
+    getFaq();*/
     getCategories();
     await getMenu();
    /* var _duration = new Duration(seconds: 2);

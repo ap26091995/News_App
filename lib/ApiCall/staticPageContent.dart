@@ -16,7 +16,7 @@ getPrivacyPage(){
   });
 }
 
-getAboutUs(){
+/*getAboutUs(){
   http.get('$aboutUs',
   ).then((res){
     print(res.body);
@@ -24,9 +24,10 @@ getAboutUs(){
     print(Storedataoflist);
     Global.aboutUsPage =PageData.fromJson(Storedataoflist);
   });
-}
+}*/
 
 
+/*
 getFaq(){
   http.get('$faq',
   ).then((res){
@@ -35,4 +36,4 @@ getFaq(){
     print(Storedataoflist);
     Global.faqPage =PageData.fromJson(Storedataoflist);
   });
-}
+}*/

@@ -24,7 +24,7 @@ class _homepageState extends State<homepage> {
   List<Widget> myTabBars = new List();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final String apiUrl = "https://morbimirror.com/wp-json/wp/v2/";
+  final String apiUrl = "https://thepressofindia.com/wp-json/wp/v2/";
   // Empty list for our posts
   List posts;
   // Function to fetch list of posts

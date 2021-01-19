@@ -94,7 +94,7 @@ titleclr: staticWhite,),
 SizedBox(height: 5,),
 
 
-Text("Morbi Mirror - Sepetember 7,2020 8:09 pm",
+Text("Morbi Update  - Sepetember 7,2020 8:09 pm",
 style: TextStyle(
 color: staticWhite,fontSize: 10
 ),),

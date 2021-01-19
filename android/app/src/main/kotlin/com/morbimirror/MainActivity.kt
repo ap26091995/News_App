@@ -1,4 +1,4 @@
-package com.morbimirror
+package com.morbiupdate
 
 import io.flutter.embedding.android.FlutterActivity
 

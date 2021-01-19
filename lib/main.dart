@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:morbimirror/Screens/BookMarkPage.dart';
+//import 'package:morbiupdate /Screens/BookMarkPage.dart';
 import 'package:morbimirror/Screens/SearchPage.dart';
 import 'package:morbimirror/Screens/Splash_Screen.dart';
 import 'package:morbimirror/Screens/StaticPageDisplay.dart';
 import 'package:morbimirror/test.dart';
 import 'package:morbimirror/testing.dart';
+import 'Screens/BookMarkPage.dart';
 import 'Screens/Category_News.dart';
 import 'Screens/Drawer_Category.dart';
 import 'Screens/HomeNewsMainPage.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
-      title: 'Morbi Mirror',
+      title: 'Morbi Update ',
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
