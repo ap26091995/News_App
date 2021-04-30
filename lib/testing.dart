@@ -54,7 +54,7 @@ class _TestingState extends State<Testing> {
       if (myCategories.isEmpty) {
         print("Pulling Posts for id ${widget.id}");
         myPosts = await getPosts(
-            url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${widget
+            url: "https://${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${widget
                 .id}");
 
         print("---- GOING FOR POSTS ------");
@@ -66,12 +66,12 @@ class _TestingState extends State<Testing> {
           print("Pulling Categories for id ${widget.id} subcat id ${myCategories[i].id}");
 
           myPostsList.add(await getPosts(
-              url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${myCategories[i]
+              url: "https://${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${myCategories[i]
                   .id}"));
         }
         print("Pulling Posts for id ${widget.id}");
         myPosts = await getPosts(
-            url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${widget
+            url: "https://${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${widget
                 .id}");
 
 

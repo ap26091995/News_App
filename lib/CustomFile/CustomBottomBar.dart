@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
-import 'package:social_media_buttons/social_media_buttons.dart';
+
 
 import 'CustomTextHeadingOftheBanner.dart';
 
@@ -42,11 +42,11 @@ class customBottombar extends StatelessWidget {
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
+/*
                 SocialMediaButton.youtube(url: 'https://www.youtube.com/channel/UCSjQi-WHNOoW5XrPLAM30LQ',color: staticBlue,size: 30,),
                 SocialMediaButton.facebook(url: 'https://www.facebook.com/Morbi-Mirror-101701831652004',color: staticBlue,size: 30,),
                 SocialMediaButton.instagram(url: 'https://www.instagram.com/morbimirror/',color: staticBlue,size: 30,),
-                SocialMediaButton.twitter(url: 'https://twitter.com/MorbiMirror',color: staticBlue,size: 30,),
+                SocialMediaButton.twitter(url: 'https://twitter.com/MorbiMirror',color: staticBlue,size: 30,),*/
               ],
             ),
 

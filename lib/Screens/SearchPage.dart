@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:morbimirror/ApiCall/All_URLS.dart';
 import 'package:morbimirror/CustomFile/Common.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'dart:convert';
@@ -15,8 +16,8 @@ class searching extends StatefulWidget {
 class _searchingState extends State<searching> {
   final TextEditingController _controller = new TextEditingController();
 
-  final String apiUrl = "https://morbimirror.com/wp-json/wp/v2/";
-  final String searchurl ="https://morbimirror.com/wp-json/wp/v2/posts?search=";
+  final String apiUrl = "https://${BaseURL}wp-json/wp/v2/";
+  final String searchurl ="https://${BaseURL}wp-json/wp/v2/posts?search=";
   Posts post;
 
   bool isLoaded = false;
@@ -25,7 +26,7 @@ class _searchingState extends State<searching> {
   List<Posts> searchResults = [];
 
  getPosts() async {
-    var res = await http.get(Uri.encodeFull(apiUrl + "posts?_embed"), headers: {"Accept": "application/json"});
+    var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")), headers: {"Accept": "application/json"});
     // fill our posts list with results and update state
     setState(() {
       var resBody = json.decode(res.body);
@@ -43,7 +44,7 @@ class _searchingState extends State<searching> {
         isSearched = true;
         isLoaded = false;
       });
-      var res = await http.get(Uri.encodeFull(searchurl + _controller.text.trim()), headers: {"Accept": "application/json"});
+      var res = await http.get(Uri.parse(Uri.encodeFull(searchurl + _controller.text.trim())), headers: {"Accept": "application/json"});
       // fill our posts list with results and update state
 
       setState(() {

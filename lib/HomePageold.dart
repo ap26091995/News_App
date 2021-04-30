@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:morbimirror/CustomFile/Customdrawer.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'ApiCall/All_URLS.dart';
 import 'CustomFile/Common.dart';
 import 'CustomFile/CustomAppBar.dart';
 import 'CustomFile/CustomBottomBar.dart';
@@ -23,12 +24,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final String apiUrl = "https://morbimirror.com/wp-json/wp/v2/";
+  final String apiUrl = "https://${BaseURL}wp-json/wp/v2/";
   // Empty list for our posts
   List posts;
   // Function to fetch list of posts
   Future<String> getPosts() async {
-    var res = await http.get(Uri.encodeFull(apiUrl + "posts?_embed"), headers: {"Accept": "application/json"});
+    var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")), headers: {"Accept": "application/json"});
     // fill our posts list with results and update state
     setState(() {
       var resBody = json.decode(res.body);

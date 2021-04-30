@@ -29,7 +29,7 @@ class _homepageState extends State<homepage> {
   List posts;
   // Function to fetch list of posts
   Future<String> getPosts() async {
-    var res = await http.get(Uri.encodeFull(apiUrl + "posts?_embed"), headers: {"Accept": "application/json"});
+    var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")), headers: {"Accept": "application/json"});
     // fill our posts list with results and update state
     setState(() {
       var resBody = json.decode(res.body);

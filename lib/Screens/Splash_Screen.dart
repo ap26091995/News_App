@@ -40,9 +40,9 @@ class _splashscreenState extends State<splashscreen> {
   getToken() async {
 
 
-    FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
-    String token = await firebaseMessaging.getToken();
-    firebaseMessaging.subscribeToTopic('News');
+
+    String token = await FirebaseMessaging.instance.getToken();
+    FirebaseMessaging.instance.subscribeToTopic('News');
     print(token);
 
   }

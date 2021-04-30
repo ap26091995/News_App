@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:morbimirror/ApiCall/All_URLS.dart';
 import 'package:morbimirror/ApiCall/Post_api.dart';
 import 'package:morbimirror/CustomFile/CustomAppBar.dart';
 import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
@@ -28,7 +29,7 @@ class _CategoryNewsState extends State<CategoryNews> {
     print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
 
     myPostsListAdd = await getPosts(
-        url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=$CurrentPage&categories=${Global.selectedCategoryId}");
+        url: "https://${BaseURL}/wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=$CurrentPage&categories=${Global.selectedCategoryId}");
 
     if(myPostsListAdd!=null) {
       myPostsList = myPostsList + myPostsListAdd;

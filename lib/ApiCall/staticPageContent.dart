@@ -7,7 +7,7 @@ import 'package:morbimirror/Models/Page.dart';
 
 
 getPrivacyPage(){
-  http.get('$privacyPolicy',
+  http.get(Uri.parse('$privacyPolicy'),
   ).then((res){
     print(res.body);
     var Storedataoflist = jsonDecode(res.body);

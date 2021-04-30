@@ -8,7 +8,7 @@ import 'package:morbimirror/Models/Posts.dart';
 Future<List<Posts>> getPosts({String url }) async {
 //calling api
   List<Posts> Listofpost = new List();
-    await  http.get(url).then((res){
+    await  http.get(Uri.parse(url)).then((res){
     print(res.body);
     var Storedataofpost = jsonDecode(res.body);
     print(Storedataofpost);

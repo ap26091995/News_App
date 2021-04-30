@@ -16,7 +16,7 @@ import 'package:morbimirror/widgets/PageContent.dart';
 Getnewsdata(){
 //calling api
 
-  http.get('https://morbimirror.com/wp-json/wp/v2/categories',
+  http.get(Uri.parse('https://${BaseURL}wp-json/wp/v2/categories'),
     ).then((res){
 
     print(res.body);
@@ -32,7 +32,7 @@ Getnewsdata(){
 
 getMenu() async {
 
- await http.get(urlForMenu,
+ await http.get(Uri.parse(urlForMenu),
   ).then((res){
 
     print(res.body);
@@ -64,7 +64,7 @@ getMenu() async {
 
 
 getCategories() async {
-  await http.get(urlForTopBarCategories,
+  await http.get(Uri.parse(urlForTopBarCategories),
   ).then((res){
     //print(res.body);
     var Storedataoflist = jsonDecode(res.body);
@@ -80,7 +80,7 @@ getCategoriesFromURL({String Url}) async {
   List<Category> CategoryList = new List();
 
 
-  await http.get(Url,
+  await http.get(Uri.parse(Url),
   ).then((res){
     //print(res.body);
     var Storedataoflist = jsonDecode(res.body);
