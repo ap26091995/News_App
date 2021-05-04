@@ -24,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final String apiUrl = "https://${BaseURL}wp-json/wp/v2/";
+  final String apiUrl = "${BaseURL}wp-json/wp/v2/";
   // Empty list for our posts
   List posts;
   // Function to fetch list of posts

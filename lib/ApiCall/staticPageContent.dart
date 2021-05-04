@@ -16,24 +16,23 @@ getPrivacyPage(){
   });
 }
 
-/*getAboutUs(){
-  http.get('$aboutUs',
+getAboutUs(){
+  http.get(Uri.parse('$aboutUs'),
   ).then((res){
     print(res.body);
     var Storedataoflist = jsonDecode(res.body);
     print(Storedataoflist);
     Global.aboutUsPage =PageData.fromJson(Storedataoflist);
   });
-}*/
+}
 
 
-/*
 getFaq(){
-  http.get('$faq',
+  http.get(Uri.parse('$faq'),
   ).then((res){
     print(res.body);
     var Storedataoflist = jsonDecode(res.body);
     print(Storedataoflist);
     Global.faqPage =PageData.fromJson(Storedataoflist);
   });
-}*/
+}

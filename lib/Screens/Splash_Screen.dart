@@ -19,21 +19,22 @@ class _splashscreenState extends State<splashscreen> {
   startTime() async {
     readBookMark();
     getPrivacyPage();
-    /*getAboutUs();
-    getFaq();*/
+    getAboutUs();
+    getFaq();
     getCategories();
     await getMenu();
-   /* var _duration = new Duration(seconds: 2);
-    return new Timer(_duration, navigationPage);*/
-   navigationPage();
+   var _duration = new Duration(seconds: 2);
+    return new Timer(_duration, navigationPage);
+
   }
   void navigationPage() {
     Navigator.of(context).pushReplacementNamed('home');
   }
   void initState() {
     getToken();
-    super.initState();
     startTime();
+    super.initState();
+
   }
 
 

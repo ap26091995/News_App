@@ -16,7 +16,7 @@ import 'package:morbimirror/widgets/PageContent.dart';
 Getnewsdata(){
 //calling api
 
-  http.get(Uri.parse('https://${BaseURL}wp-json/wp/v2/categories'),
+  http.get(Uri.parse('${BaseURL}wp-json/wp/v2/categories'),
     ).then((res){
 
     print(res.body);

@@ -75,7 +75,7 @@ class Posts {
     title: Guid.fromJson(json["title"]),
     content: Content.fromJson(json["content"]),
     excerpt: Content.fromJson(json["excerpt"]),
-    author: json["author"],
+    author: json["author"].toString(),
     featuredMedia: FeaturedMedia.fromJson(json["featured_media"]),
     commentStatus: json["comment_status"],
     pingStatus: json["ping_status"],

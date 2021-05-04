@@ -16,8 +16,8 @@ class searching extends StatefulWidget {
 class _searchingState extends State<searching> {
   final TextEditingController _controller = new TextEditingController();
 
-  final String apiUrl = "https://${BaseURL}wp-json/wp/v2/";
-  final String searchurl ="https://${BaseURL}wp-json/wp/v2/posts?search=";
+  final String apiUrl = "${BaseURL}wp-json/wp/v2/";
+  final String searchurl ="${BaseURL}wp-json/wp/v2/posts?search=";
   Posts post;
 
   bool isLoaded = false;

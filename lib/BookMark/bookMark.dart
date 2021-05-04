@@ -31,7 +31,11 @@ readBookMark()  async {
 
   String posts = sharedPreferences.get('posts');
 
-  if(posts!=null||posts!=""){
+
+  print("____________---------__________------____---_-_----_-_-_-_--__--");
+  print("$posts");
+
+  if(posts!=null && posts!=""){
     var parsedText = jsonDecode(posts);
     Global.bookMarkPosts = (parsedText as List).map((e) => Posts.fromJson(e)).toList();
   }
