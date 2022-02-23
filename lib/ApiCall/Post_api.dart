@@ -12,7 +12,7 @@ Future<List<Posts>> getPosts({String url }) async {
     print(res.body);
     var Storedataofpost = jsonDecode(res.body);
     print(Storedataofpost);
-    Listofpost = (Storedataofpost as List).map((data)=>Posts.fromJson(data)).toList();
+    Listofpost = (Storedataofpost["posts"] as List).map((data)=>Posts.fromJson(data)).toList();
     print(Listofpost.length);
     print(jsonEncode(Listofpost).toString());
   });

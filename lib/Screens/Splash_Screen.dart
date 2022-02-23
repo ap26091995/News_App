@@ -22,7 +22,7 @@ class _splashscreenState extends State<splashscreen> {
     getAboutUs();
     getFaq();
     getCategories();
-    await getMenu();
+   // await getMenu();
    var _duration = new Duration(seconds: 2);
     return new Timer(_duration, navigationPage);
 

@@ -28,7 +28,7 @@ class _TestingState extends State<Testing> {
 
 
 
-  bool isLoading =true;
+  bool isLoading =false;
   List<CategoryForMenu> myCategories = new List();
   List<List<Posts>> myPostsList = new List();
   List<Posts> myPosts = new List();
@@ -38,7 +38,7 @@ class _TestingState extends State<Testing> {
   void initState() {
     // TODO: implement initState
    super.initState();
-   getCat();
+  // getCat();
   }
 
   getCat() async {
@@ -107,21 +107,26 @@ class _TestingState extends State<Testing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:isLoading?
+      body:
+    /*  isLoading?
       Center(child: SizedBox(width: 100,height: 100,child: CircularProgressIndicator(),)):
       myCategories.isEmpty?
-      myPosts.isEmpty && myPostsList.isEmpty?Center(child: Text("No News Available..."),):OnlyPosts(posts: myPosts):
+      myPosts.isEmpty && myPostsList.isEmpty?Center(child: Text("No News Available..."),):*/
 
 
+
+      Global.mainDataList[widget.index].category.isEmpty? OnlyPosts(catId:Global.mainDataList[widget.index].parentCatId.toString() ,posts: Global.mainDataList[widget.index].posts):
       SingleChildScrollView(
         child: Column(
           children: [
             CategoryContent(posts: myPosts),
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,itemCount: myPostsList.length,itemBuilder: (context,index){
+                shrinkWrap: true,itemCount: Global.mainDataList[widget.index].category.length,
+                itemBuilder: (context,index){
             return
-              PostForCategory(postsList: myPostsList[index],categoryTitle: myCategories[index].name,catId: myCategories[index].id.toString(),);
+              PostForCategory(postsList: Global.mainDataList[widget.index].category[index].posts,
+                categoryTitle: Global.mainDataList[widget.index].category[index].catName,catId: Global.mainDataList[widget.index].parentCatId.toString(),);
                 }),
           ],
         ),

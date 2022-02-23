@@ -22,6 +22,7 @@ class _CategoryNewsState extends State<CategoryNews> {
   bool isLoading = true;
   int CurrentPage=1;
 
+
   List<Posts> myPostsList = new List();
 
   getPost() async {
@@ -29,7 +30,7 @@ class _CategoryNewsState extends State<CategoryNews> {
     print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
 
     myPostsListAdd = await getPosts(
-        url: "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=$CurrentPage&categories=${Global.selectedCategoryId}");
+        url: "${BaseURL}wp-json/wp/v2/get_cat_posts/?category=${Global.selectedCategoryId}&page=$CurrentPage");
 
     if(myPostsListAdd!=null) {
       myPostsList = myPostsList + myPostsListAdd;
@@ -60,7 +61,9 @@ class _CategoryNewsState extends State<CategoryNews> {
             clickonmenuicon: (){
               _scaffoldKey.currentState.openDrawer();
             },),
-          Expanded(child: NotificationListener<ScrollEndNotification>(
+          Expanded(child:
+
+          NotificationListener<ScrollEndNotification>(
               onNotification: (notification) {
 
                 getPost();

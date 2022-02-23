@@ -2,6 +2,7 @@
 //
 //     final posts = postsFromJson(jsonString);
 
+/*
 import 'dart:convert';
 
 List<Posts> postsFromJson(String str) => List<Posts>.from(json.decode(str).map((x) => Posts.fromJson(x)));
@@ -350,4 +351,99 @@ class WpTerm {
     "embeddable": embeddable,
     "href": href,
   };
+}
+*/
+
+class Posts {
+  Posts({
+    this.id,
+    this.postAuthor,
+    this.postDate,
+    this.postContent,
+    this.postTitle,
+    this.postName,
+    this.featuredMedia,
+    this.author,
+    this.link,
+  });
+
+  int id;
+  String postAuthor;
+  DateTime postDate;
+  String postContent;
+  String postTitle;
+  String postName;
+  FeaturedMedia featuredMedia;
+  Author author;
+  String link;
+
+  factory Posts.fromJson(Map<String, dynamic> json) => Posts(
+    id: json["ID"],
+    postAuthor: json["post_author"],
+    postDate: DateTime.parse(json["post_date"]),
+    postContent: json["post_content"],
+    postTitle: json["post_title"],
+    postName: json["post_name"],
+    featuredMedia: FeaturedMedia.fromJson(json["featured_media"]),
+    author: authorValues.map[json["author"]],
+    link: json["link"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "ID": id,
+    "post_author": postAuthor,
+    "post_date": postDate.toIso8601String(),
+    "post_content": postContent,
+    "post_title": postTitle,
+    "post_name": postName,
+    "featured_media": featuredMedia.toJson(),
+    "author": authorValues.reverse[author],
+    "link": link,
+  };
+}
+
+enum Author { MORBI_MIRROR, JAYESH_BHATASHNA_TANKARA, BHASKAR_M_JOSHI, MAUYR_RAVAL_HALVAD, BALDEV_BHARWAD_HALVAD, ATUL_JOSHI, GEETA_MEHTA }
+
+final authorValues = EnumValues({
+  "ATUL JOSHI": Author.ATUL_JOSHI,
+  "Baldev Bharwad halvad": Author.BALDEV_BHARWAD_HALVAD,
+  "BHASKAR M JOSHI": Author.BHASKAR_M_JOSHI,
+  "Geeta Mehta": Author.GEETA_MEHTA,
+  "Jayesh Bhatashna Tankara": Author.JAYESH_BHATASHNA_TANKARA,
+  "Mauyr Raval Halvad": Author.MAUYR_RAVAL_HALVAD,
+  "Morbi Mirror": Author.MORBI_MIRROR
+});
+
+class FeaturedMedia {
+  FeaturedMedia({
+    this.medium,
+    this.large,
+  });
+
+  String medium;
+  String large;
+
+  factory FeaturedMedia.fromJson(Map<String, dynamic> json) => FeaturedMedia(
+    medium: json["medium"],
+    large: json["large"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "medium": medium,
+    "large": large,
+  };
+}
+
+class EnumValues<T> {
+  Map<String, T> map;
+  Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    if (reverseMap == null) {
+      reverseMap = map.map((k, v) => new MapEntry(v, k));
+    }
+    return reverseMap;
+  }
 }

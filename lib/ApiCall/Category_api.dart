@@ -47,10 +47,10 @@ getMenu() async {
   Global.categoryContent.clear();
   Global.subCategoryPosts.clear();
 
-  for(int i=0;i<Global.menu.length;i++){
+  for(int i=0;i<Global.mainDataList.length;i++){
     Global.myTabs.add(
         Tab(
-          child: Text(Global.menu[i].title,style: TextStyle(
+          child: Text(Global.mainDataList[i].parentCatName,style: TextStyle(
               color: Colors.red
           ),),
         )

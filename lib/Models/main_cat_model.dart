@@ -26,7 +26,7 @@ class MainCatModel {
   factory MainCatModel.fromJson(Map<String, dynamic> json) => MainCatModel(
     parentCatName: json["parent_cat_name"],
     parentCatId: json["parent_cat_id"],
-    category: List<Category>.from(json["category"].map((x) => Category.fromJson(x))),
+    category:json["category"].toString()!=[]? List<Category>.from(json["category"].map((x) => Category.fromJson(x))):[],
     posts: json["posts"] == null ? null : List<Posts>.from(json["posts"].map((x) => Posts.fromJson(x))),
   );
 

@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-List<Category> categoryFromJson(String str) => List<Category>.from(json.decode(str).map((x) => Category.fromJson(x)));
+List<CategoryForMenu> categoryFromJson(String str) => List<CategoryForMenu>.from(json.decode(str).map((x) => CategoryForMenu.fromJson(x)));
 
-String categoryToJson(List<Category> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String categoryToJson(List<CategoryForMenu> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Category {
-  Category({
+class CategoryForMenu {
+  CategoryForMenu({
     this.id,
     this.count,
     this.description,
@@ -33,7 +33,7 @@ class Category {
   List<dynamic> meta;
   Links links;
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
+  factory CategoryForMenu.fromJson(Map<String, dynamic> json) => CategoryForMenu(
     id: json["id"],
     count: json["count"],
     description: descriptionValues.map[json["description"]],

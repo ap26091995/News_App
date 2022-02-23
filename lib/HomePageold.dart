@@ -11,7 +11,7 @@ import 'CustomFile/CustomBottomBar.dart';
 import 'CustomFile/CustomColorsFile.dart';
 import 'CustomFile/CustomTextHeadingOftheBanner.dart';
 import 'CustomFile/CustomtextTitle.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+//import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 SizedBox(height: 20,),
               //slider
-              CarouselSlider(items: [
+            /*  CarouselSlider(items: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(onTap: (){
@@ -198,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //height: MediaQuery.of(context).size.height*0.2,
 
                 ),
-              ),
+              ),*/
 
               //morbi news
 
