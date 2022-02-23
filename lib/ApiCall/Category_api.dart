@@ -23,7 +23,7 @@ Getnewsdata(){
 
     var Storedataoflist = jsonDecode(res.body);
     print(Storedataoflist);
-    Global.CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
+    Global.CategoryList = (Storedataoflist as List).map((data)=>CategoryForMenu.fromJson(data)).toList();
     print(Global.CategoryList.length);
     print(jsonEncode(Global.CategoryList).toString());
   });
@@ -69,7 +69,7 @@ getCategories() async {
     //print(res.body);
     var Storedataoflist = jsonDecode(res.body);
    // print(Storedataoflist);
-    Global.CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
+    Global.CategoryList = (Storedataoflist as List).map((data)=>CategoryForMenu.fromJson(data)).toList();
     print(Global.CategoryList.length);
    // print(jsonEncode(Listofdata).toString());
   });
@@ -77,7 +77,7 @@ getCategories() async {
 
 getCategoriesFromURL({String Url}) async {
 
-  List<Category> CategoryList = new List();
+  List<CategoryForMenu> CategoryList = new List();
 
 
   await http.get(Uri.parse(Url),
@@ -85,7 +85,7 @@ getCategoriesFromURL({String Url}) async {
     //print(res.body);
     var Storedataoflist = jsonDecode(res.body);
     // print(Storedataoflist);
-    CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
+    CategoryList = (Storedataoflist as List).map((data)=>CategoryForMenu.fromJson(data)).toList();
 
   });
   return CategoryList;

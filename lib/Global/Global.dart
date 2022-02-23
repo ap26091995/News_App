@@ -6,6 +6,7 @@ import 'package:morbimirror/Models/Menu.dart';
 import 'package:morbimirror/Models/Page.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/Models/appdata.dart';
+import 'package:morbimirror/Models/main_cat_model.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 
 
@@ -31,6 +32,8 @@ class Global{
   static PageData faqPage;
   static PageData aboutUsPage;
   static PageData activePage;
+
+  static List<MainCatModel> mainDataList = new List();
 
   static List<Posts> bookMarkPosts=new List();
   

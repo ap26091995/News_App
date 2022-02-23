@@ -29,7 +29,7 @@ class _TestingState extends State<Testing> {
 
 
   bool isLoading =true;
-  List<Category> myCategories = new List();
+  List<CategoryForMenu> myCategories = new List();
   List<List<Posts>> myPostsList = new List();
   List<Posts> myPosts = new List();
 

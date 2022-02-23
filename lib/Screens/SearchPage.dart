@@ -173,11 +173,11 @@ class _searchingState extends State<searching> {
                                           Container(width: 200,
                                               child: Column(
                                                 children: [
-                                                  Text(searchResults[index].title.rendered),
+                                                  Text(searchResults[index].postTitle),
                                                   SizedBox(height: 10,),
                                                   Row(
                                                     children: [
-                                                      Text(MyDate(searchResults[index].date),),
+                                                      Text(MyDate(searchResults[index].postDate),),
 
                                                     ],
                                                   ),

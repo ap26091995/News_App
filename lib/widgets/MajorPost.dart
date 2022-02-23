@@ -47,11 +47,11 @@ class MinorPost extends StatelessWidget {
                       Container(width: 200,
                           child: Column(
                             children: [
-                              Text(posts.title.rendered),
+                              Text(posts.postTitle),
                               SizedBox(height: 10,),
                               Row(
                                 children: [
-                                  Text(MyDate(posts.date),),
+                                  Text(MyDate(posts.postDate),),
 
                                 ],
                               ),
@@ -122,10 +122,10 @@ class MajorPost extends StatelessWidget {
                               titleclr: staticWhite,
                               bgcolor: Colors.black,),
                             SizedBox(height: 5,),*/
-                            customtext(title: posts.title.rendered,
+                            customtext(title: posts.postTitle,
                               titleclr: staticWhite,),
                             SizedBox(height: 5,),
-                            Text(MyDate(posts.date),
+                            Text(MyDate(posts.postDate),
                               style: TextStyle(
                                   color: staticWhite,fontSize: 10
                               ),),
@@ -233,7 +233,7 @@ class MajorPostType2 extends StatelessWidget {
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(posts.title.rendered,textAlign: TextAlign.justify,),
+                    Text(posts.postTitle,textAlign: TextAlign.justify,),
                   ],
                 ),
               ),
@@ -291,7 +291,7 @@ class MinorPostType2 extends StatelessWidget {
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(child: Text(posts.title.rendered,textAlign: TextAlign.justify,overflow: TextOverflow.clip,)),
+                            Expanded(child: Text(posts.postTitle,textAlign: TextAlign.justify,overflow: TextOverflow.clip,)),
                           ],
                         ),
                       ),

@@ -26,11 +26,12 @@ class MyHttpOverrides extends HttpOverrides{
 
 
  main() async {
-   HttpOverrides.global = new MyHttpOverrides();
-  WidgetsFlutterBinding.ensureInitialized();
 
+  HttpOverrides.global = new MyHttpOverrides();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
