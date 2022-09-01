@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:morbimirror/widgets/MajorPost.dart';
 import 'package:video_player/video_player.dart';
@@ -50,3 +51,4 @@ class _testingState extends State<testing> {
     );
   }
 }
+*/
