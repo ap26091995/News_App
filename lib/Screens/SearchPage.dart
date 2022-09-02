@@ -1,12 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:morbimirror/ApiCall/All_URLS.dart';
 import 'package:morbimirror/CustomFile/Common.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/Screens/Searched_Data.dart';
+
+import '../Models/search_posts.dart';
 
 class searching extends StatefulWidget {
   @override
@@ -17,16 +20,17 @@ class _searchingState extends State<searching> {
   final TextEditingController _controller = new TextEditingController();
 
   final String apiUrl = "${BaseURL}wp-json/wp/v2/";
-  final String searchurl ="${BaseURL}wp-json/wp/v2/posts?search=";
+  final String searchurl = "${BaseURL}wp-json/wp/v2/posts?search=";
   Posts post;
 
   bool isLoaded = false;
   bool isSearched = false;
 
-  List<Posts> searchResults = [];
+  List<SearchPosts> searchResults = [];
 
- getPosts() async {
-    var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")), headers: {"Accept": "application/json"});
+  getPosts() async {
+    var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")),
+        headers: {"Accept": "application/json"});
     // fill our posts list with results and update state
     setState(() {
       var resBody = json.decode(res.body);
@@ -36,33 +40,32 @@ class _searchingState extends State<searching> {
     return "Success!";
   }
 
-
-  void searchposts()async{
-
+  void searchposts() async {
     if (_controller.text.isNotEmpty) {
       setState(() {
         isSearched = true;
         isLoaded = false;
       });
-      var res = await http.get(Uri.parse(Uri.encodeFull(searchurl + _controller.text.trim())), headers: {"Accept": "application/json"});
+      var res = await http.get(
+          Uri.parse(Uri.encodeFull(searchurl + _controller.text.trim())),
+          headers: {"Accept": "application/json"});
       // fill our posts list with results and update state
 
+      print(res.body);
       setState(() {
         var resBody = json.decode(res.body);
 
-        resBody.forEach((element){
-          searchResults.add(Posts.fromJson(element));
+        resBody.forEach((element) {
+          searchResults.add(SearchPosts.fromJson(element));
         });
 
         isLoaded = true;
       });
-
-
-
     } else {
       Show_toast_Now("Enter search term", Colors.red);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,117 +96,130 @@ class _searchingState extends State<searching> {
               ),
             ),
             GestureDetector(
-              child: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-
-              onTap: (){
-                print("searchposts");
-                searchposts();
-              }
-            ),
+                child: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                onTap: () {
+                  print("searchposts");
+                  searchposts();
+                }),
           ],
         ),
         backgroundColor: staticBlue,
       ),
       body: Container(
-        child: isLoaded?
-        Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, top: 20, bottom: 20),
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    "Search Results",
-                    style: TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: searchResults.length > 0
-                  ? ListView.builder(
-                  itemCount: searchResults.length,
-                  itemBuilder:
-                      (BuildContext context, int index) {
+          child: isLoaded
+              ? Column(
+                  children: <Widget>[
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            "Search Results",
+                            style: TextStyle(
+                                fontSize: 19, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: searchResults.length > 0
+                          ? ListView.builder(
+                              itemCount: searchResults.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Global.searchPost = searchResults[index];
+                                    //print(Global.activePost.id);
 
-                        return GestureDetector(onTap: (){
-
-                          Global.activePost = searchResults[index];
-                          print(Global.activePost.id);
-
-                          Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (_) =>
-                                      Datasearched(
-                                          searchResults[
-                                          index]
-                                              .id)));
-                        },
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(8.0,8,8,0),
-                            child: Card(
-                              child: Row(
-                                children: <Widget>[
-                                  Column(
-                                    children: <Widget>[
-                                      Row(
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) => Datasearched(
+                                                searchResults[index].id)));
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
+                                    child: Card(
+                                      child: Row(
                                         children: <Widget>[
-                                          Center(
-                                              child:Container(
-                                                height: MediaQuery.of(context).size.width*0.25,
-                                                width: MediaQuery.of(context).size.width*0.35,
-                                                decoration: BoxDecoration(borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(0.0),
-                                                  /*bottomRight: Radius.circular(50.0)*/),
-                                                  image: DecorationImage(
-                                                    image: NetworkImage(searchResults[index].featuredMedia.medium),
-                                                    fit: BoxFit.fill,
+                                          Column(
+                                            children: <Widget>[
+                                              Row(
+                                                children: <Widget>[
+                                                  Center(
+                                                      child: Container(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.25,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.35,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        topRight: Radius.circular(
+                                                            0.0), /*bottomRight: Radius.circular(50.0)*/
+                                                      ),
+                                                      image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            searchResults[index]
+                                                                .featuredMedia
+                                                                .medium),
+                                                        fit: BoxFit.fill,
+                                                      ),
+                                                    ),
+                                                  )),
+                                                  SizedBox(
+                                                    width: 10,
                                                   ),
-
-                                                ),
-                                              )
-                                          ),
-                                          SizedBox(width: 10,),
-                                          Container(width: 200,
-                                              child: Column(
-                                                children: [
-                                                  Text(searchResults[index].postTitle),
-                                                  SizedBox(height: 10,),
-                                                  Row(
-                                                    children: [
-                                                      Text(MyDate(searchResults[index].postDate),),
-
-                                                    ],
-                                                  ),
+                                                  Container(
+                                                      width: 200,
+                                                      child: Column(
+                                                        children: [
+                                                          Text(searchResults[
+                                                                  index]
+                                                              .title
+                                                              .rendered),
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                MyDate(
+                                                                    searchResults[
+                                                                            index]
+                                                                        .date),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ))
                                                 ],
-                                              ))
+                                              ),
+                                            ],
+                                          ),
                                         ],
                                       ),
-                                    ],
+                                    ),
                                   ),
-
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                  })
-                  : Center(child: Text("No News found")),
-            )
-          ],
-        )
-            : Center(
-          child: isSearched
-              ? CircularProgressIndicator()
-              : Container(),
-        )
-      ),
+                                );
+                              })
+                          : Center(child: Text("No News found")),
+                    )
+                  ],
+                )
+              : Center(
+                  child: isSearched ? CircularProgressIndicator() : Container(),
+                )),
     );
   }
 }

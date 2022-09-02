@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:morbimirror/BookMark/bookMark.dart';
 import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Menu.dart';
 import 'package:morbimirror/Models/Page.dart';
@@ -9,11 +8,9 @@ import 'package:morbimirror/Models/appdata.dart';
 import 'package:morbimirror/Models/main_cat_model.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 
+import '../Models/search_posts.dart';
 
-
-
-class Global{
-
+class Global {
   static int currentPageIndex = 0;
   static double iconSize = 0.07;
   static List<Tab> myTabs = new List();
@@ -31,16 +28,13 @@ class Global{
   static PageData faqPage;
   static PageData aboutUsPage;
   static PageData activePage;
+  static SearchPosts searchPost;
 
   static List<MainCatModel> mainDataList = new List();
 
-  static List<Posts> bookMarkPosts=new List();
-  
-
+  static List<Posts> bookMarkPosts = new List();
 }
 
-MyDate(DateTime dateTime){
-
+MyDate(DateTime dateTime) {
   return DateFormat('KK:mm a , dd-MM-yyyy ').format(dateTime);
-
 }

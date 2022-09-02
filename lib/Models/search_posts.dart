@@ -4,12 +4,14 @@
 
 import 'dart:convert';
 
-PageData postsFromJson(String str) => PageData.fromJson(json.decode(str));
+List<SearchPosts> welcomeFromJson(String str) => List<SearchPosts>.from(
+    json.decode(str).map((x) => SearchPosts.fromJson(x)));
 
-String postsToJson(PageData data) => json.encode(data.toJson());
+String welcomeToJson(List<SearchPosts> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class PageData {
-  PageData({
+class SearchPosts {
+  SearchPosts({
     this.id,
     this.date,
     this.dateGmt,
@@ -25,12 +27,14 @@ class PageData {
     this.excerpt,
     this.author,
     this.featuredMedia,
-    this.parent,
-    this.menuOrder,
     this.commentStatus,
     this.pingStatus,
+    this.sticky,
     this.template,
+    this.format,
     this.meta,
+    this.categories,
+    this.tags,
     this.links,
   });
 
@@ -47,17 +51,19 @@ class PageData {
   Guid title;
   Content content;
   Content excerpt;
-  int author;
-  int featuredMedia;
-  int parent;
-  int menuOrder;
+  String author;
+  FeaturedMedia featuredMedia;
   String commentStatus;
   String pingStatus;
+  bool sticky;
   String template;
+  String format;
   List<dynamic> meta;
+  List<int> categories;
+  List<dynamic> tags;
   Links links;
 
-  factory PageData.fromJson(Map<String, dynamic> json) => PageData(
+  factory SearchPosts.fromJson(Map<String, dynamic> json) => SearchPosts(
         id: json["id"] == null ? null : json["id"],
         date: json["date"] == null ? null : DateTime.parse(json["date"]),
         dateGmt:
@@ -78,17 +84,24 @@ class PageData {
         excerpt:
             json["excerpt"] == null ? null : Content.fromJson(json["excerpt"]),
         author: json["author"] == null ? null : json["author"],
-        featuredMedia:
-            json["featured_media"] == null ? null : json["featured_media"],
-        parent: json["parent"] == null ? null : json["parent"],
-        menuOrder: json["menu_order"] == null ? null : json["menu_order"],
+        featuredMedia: json["featured_media"] == null
+            ? null
+            : FeaturedMedia.fromJson(json["featured_media"]),
         commentStatus:
             json["comment_status"] == null ? null : json["comment_status"],
         pingStatus: json["ping_status"] == null ? null : json["ping_status"],
+        sticky: json["sticky"] == null ? null : json["sticky"],
         template: json["template"] == null ? null : json["template"],
+        format: json["format"] == null ? null : json["format"],
         meta: json["meta"] == null
             ? null
             : List<dynamic>.from(json["meta"].map((x) => x)),
+        categories: json["categories"] == null
+            ? null
+            : List<int>.from(json["categories"].map((x) => x)),
+        tags: json["tags"] == null
+            ? null
+            : List<dynamic>.from(json["tags"].map((x) => x)),
         links: json["_links"] == null ? null : Links.fromJson(json["_links"]),
       );
 
@@ -108,13 +121,17 @@ class PageData {
         "content": content == null ? null : content.toJson(),
         "excerpt": excerpt == null ? null : excerpt.toJson(),
         "author": author == null ? null : author,
-        "featured_media": featuredMedia == null ? null : featuredMedia,
-        "parent": parent == null ? null : parent,
-        "menu_order": menuOrder == null ? null : menuOrder,
+        "featured_media": featuredMedia == null ? null : featuredMedia.toJson(),
         "comment_status": commentStatus == null ? null : commentStatus,
         "ping_status": pingStatus == null ? null : pingStatus,
+        "sticky": sticky == null ? null : sticky,
         "template": template == null ? null : template,
+        "format": format == null ? null : format,
         "meta": meta == null ? null : List<dynamic>.from(meta.map((x) => x)),
+        "categories": categories == null
+            ? null
+            : List<dynamic>.from(categories.map((x) => x)),
+        "tags": tags == null ? null : List<dynamic>.from(tags.map((x) => x)),
         "_links": links == null ? null : links.toJson(),
       };
 }
@@ -136,6 +153,26 @@ class Content {
   Map<String, dynamic> toJson() => {
         "rendered": rendered == null ? null : rendered,
         "protected": protected == null ? null : protected,
+      };
+}
+
+class FeaturedMedia {
+  FeaturedMedia({
+    this.medium,
+    this.large,
+  });
+
+  String medium;
+  String large;
+
+  factory FeaturedMedia.fromJson(Map<String, dynamic> json) => FeaturedMedia(
+        medium: json["medium"] == null ? null : json["medium"],
+        large: json["large"] == null ? null : json["large"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "medium": medium == null ? null : medium,
+        "large": large == null ? null : large,
       };
 }
 
@@ -163,7 +200,9 @@ class Links {
     this.author,
     this.replies,
     this.versionHistory,
+    this.wpFeaturedmedia,
     this.wpAttachment,
+    this.wpTerm,
     this.curies,
   });
 
@@ -173,7 +212,9 @@ class Links {
   List<Author> author;
   List<Author> replies;
   List<VersionHistory> versionHistory;
+  List<Author> wpFeaturedmedia;
   List<About> wpAttachment;
+  List<WpTerm> wpTerm;
   List<Cury> curies;
 
   factory Links.fromJson(Map<String, dynamic> json) => Links(
@@ -197,10 +238,17 @@ class Links {
             ? null
             : List<VersionHistory>.from(
                 json["version-history"].map((x) => VersionHistory.fromJson(x))),
+        wpFeaturedmedia: json["wp:featuredmedia"] == null
+            ? null
+            : List<Author>.from(
+                json["wp:featuredmedia"].map((x) => Author.fromJson(x))),
         wpAttachment: json["wp:attachment"] == null
             ? null
             : List<About>.from(
                 json["wp:attachment"].map((x) => About.fromJson(x))),
+        wpTerm: json["wp:term"] == null
+            ? null
+            : List<WpTerm>.from(json["wp:term"].map((x) => WpTerm.fromJson(x))),
         curies: json["curies"] == null
             ? null
             : List<Cury>.from(json["curies"].map((x) => Cury.fromJson(x))),
@@ -225,9 +273,15 @@ class Links {
         "version-history": versionHistory == null
             ? null
             : List<dynamic>.from(versionHistory.map((x) => x.toJson())),
+        "wp:featuredmedia": wpFeaturedmedia == null
+            ? null
+            : List<dynamic>.from(wpFeaturedmedia.map((x) => x.toJson())),
         "wp:attachment": wpAttachment == null
             ? null
             : List<dynamic>.from(wpAttachment.map((x) => x.toJson())),
+        "wp:term": wpTerm == null
+            ? null
+            : List<dynamic>.from(wpTerm.map((x) => x.toJson())),
         "curies": curies == null
             ? null
             : List<dynamic>.from(curies.map((x) => x.toJson())),
@@ -312,4 +366,49 @@ class VersionHistory {
         "count": count == null ? null : count,
         "href": href == null ? null : href,
       };
+}
+
+class WpTerm {
+  WpTerm({
+    this.taxonomy,
+    this.embeddable,
+    this.href,
+  });
+
+  Taxonomy taxonomy;
+  bool embeddable;
+  String href;
+
+  factory WpTerm.fromJson(Map<String, dynamic> json) => WpTerm(
+        taxonomy: json["taxonomy"] == null
+            ? null
+            : taxonomyValues.map[json["taxonomy"]],
+        embeddable: json["embeddable"] == null ? null : json["embeddable"],
+        href: json["href"] == null ? null : json["href"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "taxonomy": taxonomy == null ? null : taxonomyValues.reverse[taxonomy],
+        "embeddable": embeddable == null ? null : embeddable,
+        "href": href == null ? null : href,
+      };
+}
+
+enum Taxonomy { CATEGORY, POST_TAG }
+
+final taxonomyValues =
+    EnumValues({"category": Taxonomy.CATEGORY, "post_tag": Taxonomy.POST_TAG});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    if (reverseMap == null) {
+      reverseMap = map.map((k, v) => new MapEntry(v, k));
+    }
+    return reverseMap;
+  }
 }
