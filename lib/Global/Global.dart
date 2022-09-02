@@ -33,6 +33,7 @@ class Global {
   static List<MainCatModel> mainDataList = new List();
 
   static List<Posts> bookMarkPosts = new List();
+  static List<SearchPosts> bookMarkSearchPosts = new List();
 }
 
 MyDate(DateTime dateTime) {

@@ -4,41 +4,47 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-SaveBookMark( Posts post ) async {
+import '../Models/search_posts.dart';
 
+SaveBookMark(Posts post) async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   Global.bookMarkPosts.add(post);
   //print(jsonEncode(Global.bookMarkPosts));
-  sharedPreferences.setString('posts',jsonEncode(Global.bookMarkPosts) );
+  sharedPreferences.setString('posts', jsonEncode(Global.bookMarkPosts));
+}
 
+removeBookMark(Posts post) async {
+  Global.bookMarkPosts.remove(post);
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  sharedPreferences.setString('posts', jsonEncode(Global.bookMarkPosts));
+}
 
-
- }
-
-
- removeBookMark(Posts post)  async {
-
-   Global.bookMarkPosts.remove(post);
-   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-   sharedPreferences.setString('posts',jsonEncode(Global.bookMarkPosts) );
-
- }
-
-
-readBookMark()  async {
-
+readBookMark() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
   String posts = sharedPreferences.get('posts');
 
+  print("____________---------__________------____---_-_----_-_-_-_--__--");
+  print("$posts");
+
+  if (posts != null && posts != "") {
+    var parsedText = jsonDecode(posts);
+    Global.bookMarkPosts =
+        (parsedText as List).map((e) => Posts.fromJson(e)).toList();
+  }
+}
+
+readBookMarkSearch() async {
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+  String posts = sharedPreferences.get('postsSearch');
 
   print("____________---------__________------____---_-_----_-_-_-_--__--");
   print("$posts");
 
-  if(posts!=null && posts!=""){
+  if (posts != null && posts != "") {
     var parsedText = jsonDecode(posts);
-    Global.bookMarkPosts = (parsedText as List).map((e) => Posts.fromJson(e)).toList();
+    Global.bookMarkSearchPosts =
+        (parsedText as List).map((e) => SearchPosts.fromJson(e)).toList();
   }
-
 }
-

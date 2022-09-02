@@ -1,13 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
-import 'package:morbimirror/BookMark/bookMark.dart';
 import 'package:morbimirror/CustomFile/CustomAppBar.dart';
 import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'package:morbimirror/CustomFile/Customdrawer.dart';
 import 'package:morbimirror/Global/Global.dart';
+import 'package:morbimirror/Models/search_posts.dart';
 import 'package:share/share.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Datasearched extends StatefulWidget {
   var id;
@@ -27,6 +30,21 @@ class _DatasearchedState extends State<Datasearched> {
     super.initState();
   }
 
+  saveBookMarkSearch(SearchPosts post) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Global.bookMarkSearchPosts.add(post);
+    //print(jsonEncode(Global.bookMarkPosts));
+    sharedPreferences.setString(
+        'postsSearch', jsonEncode(Global.bookMarkSearchPosts));
+  }
+
+  removeBookMarkSearch(SearchPosts post) async {
+    Global.bookMarkSearchPosts.remove(post);
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString(
+        'postsSearch', jsonEncode(Global.bookMarkSearchPosts));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,12 +58,13 @@ class _DatasearchedState extends State<Datasearched> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CustomAppBarWithHeart(
+                CustomAppBarWithHeartSearchPage(
                   onFav: () {
-                    if (Global.bookMarkPosts.contains(Global.activePost)) {
-                      removeBookMark(Global.activePost);
+                    if (Global.bookMarkSearchPosts
+                        .contains(Global.searchPost)) {
+                      removeBookMarkSearch(Global.searchPost);
                     } else {
-                      SaveBookMark(Global.activePost);
+                      saveBookMarkSearch(Global.searchPost);
                     }
 
                     setState(() {});
@@ -56,7 +75,7 @@ class _DatasearchedState extends State<Datasearched> {
                   },
                   clickonsearchicon: () {
                     Share.share(
-                        "${Global.activePost.postContent.toString().substring(0, 50)}\n${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
+                        "${Global.searchPost.content.rendered.substring(0, 50)}\n${Global.searchPost.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
                   },
                 ),
                 Padding(
