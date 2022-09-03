@@ -9,8 +9,6 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/Screens/Searched_Data.dart';
 
-import '../Models/search_posts.dart';
-
 class searching extends StatefulWidget {
   @override
   _searchingState createState() => _searchingState();
@@ -20,13 +18,13 @@ class _searchingState extends State<searching> {
   final TextEditingController _controller = new TextEditingController();
 
   final String apiUrl = "${BaseURL}wp-json/wp/v2/";
-  final String searchurl = "${BaseURL}wp-json/wp/v2/posts?search=";
+  final String searchurl = "${BaseURL}wp-json/wp/v2/search_posts/?search=";
   Posts post;
 
   bool isLoaded = false;
   bool isSearched = false;
 
-  List<SearchPosts> searchResults = [];
+  List<Posts> searchResults = [];
 
   getPosts() async {
     var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")),
@@ -53,11 +51,15 @@ class _searchingState extends State<searching> {
 
       print(res.body);
       setState(() {
+        print("Searched Data");
         var resBody = json.decode(res.body);
 
-        resBody.forEach((element) {
-          searchResults.add(SearchPosts.fromJson(element));
-        });
+        searchResults = (resBody["posts"] as List)
+            .map((data) => Posts.fromJson(data))
+            .toList();
+        /* resBody.forEach((element) {
+          searchResults.add(Posts.fromJson(element));
+        });*/
 
         isLoaded = true;
       });
@@ -126,94 +128,100 @@ class _searchingState extends State<searching> {
                       ),
                     ),
                     Expanded(
-                      child: searchResults.length > 0
-                          ? ListView.builder(
-                              itemCount: searchResults.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    Global.searchPost = searchResults[index];
-                                    //print(Global.activePost.id);
+                      child: searchResults.isEmpty
+                          ? Text("No Result Found")
+                          : searchResults.length > 0
+                              ? ListView.builder(
+                                  itemCount: searchResults.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Global.activePost =
+                                            searchResults[index];
+                                        //print(Global.activePost.id);
 
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (_) => Datasearched(
-                                                searchResults[index].id)));
-                                  },
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
-                                    child: Card(
-                                      child: Row(
-                                        children: <Widget>[
-                                          Column(
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (_) => Datasearched(
+                                                    searchResults[index].id)));
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            8.0, 8, 8, 0),
+                                        child: Card(
+                                          child: Row(
                                             children: <Widget>[
-                                              Row(
+                                              Column(
                                                 children: <Widget>[
-                                                  Center(
-                                                      child: Container(
-                                                    height:
-                                                        MediaQuery.of(context)
+                                                  Row(
+                                                    children: <Widget>[
+                                                      Center(
+                                                          child: Container(
+                                                        height: MediaQuery.of(
+                                                                    context)
                                                                 .size
                                                                 .width *
                                                             0.25,
-                                                    width:
-                                                        MediaQuery.of(context)
+                                                        width: MediaQuery.of(
+                                                                    context)
                                                                 .size
                                                                 .width *
                                                             0.35,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                        topRight: Radius.circular(
-                                                            0.0), /*bottomRight: Radius.circular(50.0)*/
-                                                      ),
-                                                      image: DecorationImage(
-                                                        image: NetworkImage(
-                                                            searchResults[index]
-                                                                .featuredMedia
-                                                                .medium),
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                    ),
-                                                  )),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Container(
-                                                      width: 200,
-                                                      child: Column(
-                                                        children: [
-                                                          Text(searchResults[
-                                                                  index]
-                                                              .title
-                                                              .rendered),
-                                                          SizedBox(
-                                                            height: 10,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    0.0), /*bottomRight: Radius.circular(50.0)*/
                                                           ),
-                                                          Row(
+                                                          image:
+                                                              DecorationImage(
+                                                            image: NetworkImage(
+                                                                searchResults[
+                                                                        index]
+                                                                    .featuredMedia
+                                                                    .medium),
+                                                            fit: BoxFit.fill,
+                                                          ),
+                                                        ),
+                                                      )),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Container(
+                                                          width: 200,
+                                                          child: Column(
                                                             children: [
-                                                              Text(
-                                                                MyDate(
-                                                                    searchResults[
+                                                              Text(searchResults[
+                                                                      index]
+                                                                  .postTitle),
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    MyDate(searchResults[
                                                                             index]
-                                                                        .date),
+                                                                        .postDate),
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ],
-                                                          ),
-                                                        ],
-                                                      ))
+                                                          ))
+                                                    ],
+                                                  ),
                                                 ],
                                               ),
                                             ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                );
-                              })
-                          : Center(child: Text("No News found")),
+                                    );
+                                  })
+                              : Center(child: Text("No News found")),
                     )
                   ],
                 )

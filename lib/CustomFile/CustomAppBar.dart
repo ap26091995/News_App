@@ -191,6 +191,7 @@ class CustomAppBarWithHeart extends StatelessWidget {
   }
 }
 
+/*
 class CustomAppBarWithHeartSearchPage extends StatelessWidget {
   final String logoimg;
   final VoidCallback clickonmenuicon;
@@ -262,3 +263,4 @@ class CustomAppBarWithHeartSearchPage extends StatelessWidget {
     );
   }
 }
+*/

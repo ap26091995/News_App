@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
@@ -8,9 +6,9 @@ import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'package:morbimirror/CustomFile/Customdrawer.dart';
 import 'package:morbimirror/Global/Global.dart';
-import 'package:morbimirror/Models/search_posts.dart';
 import 'package:share/share.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../BookMark/bookMark.dart';
 
 class Datasearched extends StatefulWidget {
   var id;
@@ -26,23 +24,8 @@ class _DatasearchedState extends State<Datasearched> {
   @override
   void initState() {
     // TODO: implement initState
-    Global.searchPost.id;
+    Global.activePost.id;
     super.initState();
-  }
-
-  saveBookMarkSearch(SearchPosts post) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    Global.bookMarkSearchPosts.add(post);
-    //print(jsonEncode(Global.bookMarkPosts));
-    sharedPreferences.setString(
-        'postsSearch', jsonEncode(Global.bookMarkSearchPosts));
-  }
-
-  removeBookMarkSearch(SearchPosts post) async {
-    Global.bookMarkSearchPosts.remove(post);
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString(
-        'postsSearch', jsonEncode(Global.bookMarkSearchPosts));
   }
 
   @override
@@ -58,13 +41,12 @@ class _DatasearchedState extends State<Datasearched> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CustomAppBarWithHeartSearchPage(
+                CustomAppBarWithHeart(
                   onFav: () {
-                    if (Global.bookMarkSearchPosts
-                        .contains(Global.searchPost)) {
-                      removeBookMarkSearch(Global.searchPost);
+                    if (Global.bookMarkPosts.contains(Global.activePost)) {
+                      removeBookMark(Global.activePost);
                     } else {
-                      saveBookMarkSearch(Global.searchPost);
+                      SaveBookMark(Global.activePost);
                     }
 
                     setState(() {});
@@ -75,7 +57,7 @@ class _DatasearchedState extends State<Datasearched> {
                   },
                   clickonsearchicon: () {
                     Share.share(
-                        "${Global.searchPost.content.rendered.substring(0, 50)}\n${Global.searchPost.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
+                        "${Global.activePost.postContent.substring(0, 50)}\n${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
                   },
                 ),
                 Padding(
@@ -88,7 +70,7 @@ class _DatasearchedState extends State<Datasearched> {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         image: new DecorationImage(
                           image: NetworkImage(
-                              Global.searchPost.featuredMedia.medium),
+                              Global.activePost.featuredMedia.medium),
                           fit: BoxFit.cover,
                         )),
                     child: Column(
@@ -111,7 +93,7 @@ class _DatasearchedState extends State<Datasearched> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        Global.searchPost.title.rendered,
+                        Global.activePost.postTitle.replaceAll("&#8211", ""),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -130,7 +112,7 @@ class _DatasearchedState extends State<Datasearched> {
                           ),
                           Spacer(),
                           Text(
-                            MyDate(Global.searchPost.date),
+                            MyDate(Global.activePost.postDate),
                             style: TextStyle(
                               fontSize: 12,
                             ),
@@ -147,7 +129,7 @@ class _DatasearchedState extends State<Datasearched> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             new Html(
-                              data: Global.searchPost.content.rendered ??
+                              data: Global.activePost.postContent ??
                                   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n \n and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                               style: {
                                 "p": Style(

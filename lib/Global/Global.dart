@@ -8,8 +8,6 @@ import 'package:morbimirror/Models/appdata.dart';
 import 'package:morbimirror/Models/main_cat_model.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 
-import '../Models/search_posts.dart';
-
 class Global {
   static int currentPageIndex = 0;
   static double iconSize = 0.07;
@@ -28,12 +26,12 @@ class Global {
   static PageData faqPage;
   static PageData aboutUsPage;
   static PageData activePage;
-  static SearchPosts searchPost;
+  //static SearchPosts searchPost;
 
   static List<MainCatModel> mainDataList = new List();
 
   static List<Posts> bookMarkPosts = new List();
-  static List<SearchPosts> bookMarkSearchPosts = new List();
+  //static List<SearchPosts> bookMarkSearchPosts = new List();
 }
 
 MyDate(DateTime dateTime) {

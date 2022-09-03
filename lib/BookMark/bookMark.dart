@@ -4,8 +4,6 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Models/search_posts.dart';
-
 SaveBookMark(Posts post) async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   Global.bookMarkPosts.add(post);
@@ -34,6 +32,7 @@ readBookMark() async {
   }
 }
 
+/*
 readBookMarkSearch() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
@@ -48,3 +47,4 @@ readBookMarkSearch() async {
         (parsedText as List).map((e) => SearchPosts.fromJson(e)).toList();
   }
 }
+*/
