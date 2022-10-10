@@ -69,8 +69,7 @@ class _DatasearchedState extends State<Datasearched> {
                         shape: BoxShape.rectangle,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         image: new DecorationImage(
-                          image: NetworkImage(
-                              Global.activePost.featuredMedia.medium),
+                          image: NetworkImage(Global.activePost.featuredMedia.medium),
                           fit: BoxFit.cover,
                         )),
                     child: Column(
@@ -94,11 +93,7 @@ class _DatasearchedState extends State<Datasearched> {
                     children: [
                       Text(
                         Global.activePost.postTitle.replaceAll("&#8211", ""),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: staticBlack,
-                            fontFamily: 'Montserrat-Black'),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: staticBlack, fontFamily: 'Montserrat-Black'),
                       ),
                       SizedBox(
                         height: 3,
@@ -106,9 +101,8 @@ class _DatasearchedState extends State<Datasearched> {
                       Row(
                         children: [
                           Text(
-                            "Morbi Update ",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, color: staticBlue),
+                            "Morbi Mirror ",
+                            style: TextStyle(fontWeight: FontWeight.w600, color: staticBlue),
                           ),
                           Spacer(),
                           Text(
@@ -132,9 +126,7 @@ class _DatasearchedState extends State<Datasearched> {
                               data: Global.activePost.postContent ??
                                   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n \n and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                               style: {
-                                "p": Style(
-                                    textAlign: TextAlign.justify,
-                                    fontSize: FontSize.large),
+                                "p": Style(textAlign: TextAlign.justify, fontSize: FontSize.large),
                               },
                             ),
                           ],
