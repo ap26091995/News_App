@@ -38,30 +38,30 @@ class SearchPosts {
     this.links,
   });
 
-  int id;
-  DateTime date;
-  DateTime dateGmt;
-  Guid guid;
-  DateTime modified;
-  DateTime modifiedGmt;
-  String slug;
-  String status;
-  String type;
-  String link;
-  Guid title;
-  Content content;
-  Content excerpt;
-  String author;
-  FeaturedMedia featuredMedia;
-  String commentStatus;
-  String pingStatus;
-  bool sticky;
-  String template;
-  String format;
-  List<dynamic> meta;
-  List<int> categories;
-  List<dynamic> tags;
-  Links links;
+  int? id;
+  DateTime? date;
+  DateTime? dateGmt;
+  Guid? guid;
+  DateTime? modified;
+  DateTime? modifiedGmt;
+  String? slug;
+  String? status;
+  String? type;
+  String? link;
+  Guid? title;
+  Content? content;
+  Content? excerpt;
+  String? author;
+  FeaturedMedia? featuredMedia;
+  String? commentStatus;
+  String? pingStatus;
+  bool? sticky;
+  String? template;
+  String? format;
+  List<dynamic>? meta;
+  List<int>? categories;
+  List<dynamic>? tags;
+  Links? links;
 
   factory SearchPosts.fromJson(Map<String, dynamic> json) => SearchPosts(
         id: json["id"] == null ? null : json["id"],
@@ -107,32 +107,32 @@ class SearchPosts {
 
   Map<String, dynamic> toJson() => {
         "id": id == null ? null : id,
-        "date": date == null ? null : date.toIso8601String(),
-        "date_gmt": dateGmt == null ? null : dateGmt.toIso8601String(),
-        "guid": guid == null ? null : guid.toJson(),
-        "modified": modified == null ? null : modified.toIso8601String(),
+        "date": date == null ? null : date!.toIso8601String(),
+        "date_gmt": dateGmt == null ? null : dateGmt!.toIso8601String(),
+        "guid": guid == null ? null : guid!.toJson(),
+        "modified": modified == null ? null : modified!.toIso8601String(),
         "modified_gmt":
-            modifiedGmt == null ? null : modifiedGmt.toIso8601String(),
+            modifiedGmt == null ? null : modifiedGmt!.toIso8601String(),
         "slug": slug == null ? null : slug,
         "status": status == null ? null : status,
         "type": type == null ? null : type,
         "link": link == null ? null : link,
-        "title": title == null ? null : title.toJson(),
-        "content": content == null ? null : content.toJson(),
-        "excerpt": excerpt == null ? null : excerpt.toJson(),
+        "title": title == null ? null : title!.toJson(),
+        "content": content == null ? null : content!.toJson(),
+        "excerpt": excerpt == null ? null : excerpt!.toJson(),
         "author": author == null ? null : author,
-        "featured_media": featuredMedia == null ? null : featuredMedia.toJson(),
+        "featured_media": featuredMedia == null ? null : featuredMedia!.toJson(),
         "comment_status": commentStatus == null ? null : commentStatus,
         "ping_status": pingStatus == null ? null : pingStatus,
         "sticky": sticky == null ? null : sticky,
         "template": template == null ? null : template,
         "format": format == null ? null : format,
-        "meta": meta == null ? null : List<dynamic>.from(meta.map((x) => x)),
+        "meta": meta == null ? null : List<dynamic>.from(meta!.map((x) => x)),
         "categories": categories == null
             ? null
-            : List<dynamic>.from(categories.map((x) => x)),
-        "tags": tags == null ? null : List<dynamic>.from(tags.map((x) => x)),
-        "_links": links == null ? null : links.toJson(),
+            : List<dynamic>.from(categories!.map((x) => x)),
+        "tags": tags == null ? null : List<dynamic>.from(tags!.map((x) => x)),
+        "_links": links == null ? null : links!.toJson(),
       };
 }
 
@@ -142,8 +142,8 @@ class Content {
     this.protected,
   });
 
-  String rendered;
-  bool protected;
+  String? rendered;
+  bool? protected;
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
         rendered: json["rendered"] == null ? null : json["rendered"],
@@ -162,8 +162,8 @@ class FeaturedMedia {
     this.large,
   });
 
-  String medium;
-  String large;
+  String? medium;
+  String? large;
 
   factory FeaturedMedia.fromJson(Map<String, dynamic> json) => FeaturedMedia(
         medium: json["medium"] == null ? null : json["medium"],
@@ -181,7 +181,7 @@ class Guid {
     this.rendered,
   });
 
-  String rendered;
+  String? rendered;
 
   factory Guid.fromJson(Map<String, dynamic> json) => Guid(
         rendered: json["rendered"] == null ? null : json["rendered"],
@@ -206,16 +206,16 @@ class Links {
     this.curies,
   });
 
-  List<About> self;
-  List<About> collection;
-  List<About> about;
-  List<Author> author;
-  List<Author> replies;
-  List<VersionHistory> versionHistory;
-  List<Author> wpFeaturedmedia;
-  List<About> wpAttachment;
-  List<WpTerm> wpTerm;
-  List<Cury> curies;
+  List<About>? self;
+  List<About>? collection;
+  List<About>? about;
+  List<Author>? author;
+  List<Author>? replies;
+  List<VersionHistory>? versionHistory;
+  List<Author>? wpFeaturedmedia;
+  List<About>? wpAttachment;
+  List<WpTerm>? wpTerm;
+  List<Cury>? curies;
 
   factory Links.fromJson(Map<String, dynamic> json) => Links(
         self: json["self"] == null
@@ -257,34 +257,34 @@ class Links {
   Map<String, dynamic> toJson() => {
         "self": self == null
             ? null
-            : List<dynamic>.from(self.map((x) => x.toJson())),
+            : List<dynamic>.from(self!.map((x) => x.toJson())),
         "collection": collection == null
             ? null
-            : List<dynamic>.from(collection.map((x) => x.toJson())),
+            : List<dynamic>.from(collection!.map((x) => x.toJson())),
         "about": about == null
             ? null
-            : List<dynamic>.from(about.map((x) => x.toJson())),
+            : List<dynamic>.from(about!.map((x) => x.toJson())),
         "author": author == null
             ? null
-            : List<dynamic>.from(author.map((x) => x.toJson())),
+            : List<dynamic>.from(author!.map((x) => x.toJson())),
         "replies": replies == null
             ? null
-            : List<dynamic>.from(replies.map((x) => x.toJson())),
+            : List<dynamic>.from(replies!.map((x) => x.toJson())),
         "version-history": versionHistory == null
             ? null
-            : List<dynamic>.from(versionHistory.map((x) => x.toJson())),
+            : List<dynamic>.from(versionHistory!.map((x) => x.toJson())),
         "wp:featuredmedia": wpFeaturedmedia == null
             ? null
-            : List<dynamic>.from(wpFeaturedmedia.map((x) => x.toJson())),
+            : List<dynamic>.from(wpFeaturedmedia!.map((x) => x.toJson())),
         "wp:attachment": wpAttachment == null
             ? null
-            : List<dynamic>.from(wpAttachment.map((x) => x.toJson())),
+            : List<dynamic>.from(wpAttachment!.map((x) => x.toJson())),
         "wp:term": wpTerm == null
             ? null
-            : List<dynamic>.from(wpTerm.map((x) => x.toJson())),
+            : List<dynamic>.from(wpTerm!.map((x) => x.toJson())),
         "curies": curies == null
             ? null
-            : List<dynamic>.from(curies.map((x) => x.toJson())),
+            : List<dynamic>.from(curies!.map((x) => x.toJson())),
       };
 }
 
@@ -293,7 +293,7 @@ class About {
     this.href,
   });
 
-  String href;
+  String? href;
 
   factory About.fromJson(Map<String, dynamic> json) => About(
         href: json["href"] == null ? null : json["href"],
@@ -310,8 +310,8 @@ class Author {
     this.href,
   });
 
-  bool embeddable;
-  String href;
+  bool? embeddable;
+  String? href;
 
   factory Author.fromJson(Map<String, dynamic> json) => Author(
         embeddable: json["embeddable"] == null ? null : json["embeddable"],
@@ -331,9 +331,9 @@ class Cury {
     this.templated,
   });
 
-  String name;
-  String href;
-  bool templated;
+  String? name;
+  String? href;
+  bool? templated;
 
   factory Cury.fromJson(Map<String, dynamic> json) => Cury(
         name: json["name"] == null ? null : json["name"],
@@ -354,8 +354,8 @@ class VersionHistory {
     this.href,
   });
 
-  int count;
-  String href;
+  int? count;
+  String? href;
 
   factory VersionHistory.fromJson(Map<String, dynamic> json) => VersionHistory(
         count: json["count"] == null ? null : json["count"],
@@ -375,20 +375,20 @@ class WpTerm {
     this.href,
   });
 
-  Taxonomy taxonomy;
-  bool embeddable;
-  String href;
+  Taxonomy? taxonomy;
+  bool? embeddable;
+  String? href;
 
   factory WpTerm.fromJson(Map<String, dynamic> json) => WpTerm(
         taxonomy: json["taxonomy"] == null
             ? null
-            : taxonomyValues.map[json["taxonomy"]],
+            : taxonomyValues.map![json["taxonomy"]],
         embeddable: json["embeddable"] == null ? null : json["embeddable"],
         href: json["href"] == null ? null : json["href"],
       );
 
   Map<String, dynamic> toJson() => {
-        "taxonomy": taxonomy == null ? null : taxonomyValues.reverse[taxonomy],
+        "taxonomy": taxonomy == null ? null : taxonomyValues.reverse![taxonomy],
         "embeddable": embeddable == null ? null : embeddable,
         "href": href == null ? null : href,
       };
@@ -400,14 +400,14 @@ final taxonomyValues =
     EnumValues({"category": Taxonomy.CATEGORY, "post_tag": Taxonomy.POST_TAG});
 
 class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<String, T>? map;
+  Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
-  Map<T, String> get reverse {
+  Map<T, String>? get reverse {
     if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
+      reverseMap = map!.map((k, v) => new MapEntry(v, k));
     }
     return reverseMap;
   }

@@ -3,9 +3,9 @@ import 'package:morbimirror/Models/Posts.dart';
 
 class AllData{
 
-  List<CategoryForMenu> myCategories = new List();
-  List<List<Posts>> myPostsList = new List();
-  List<Posts> myPosts = new List();
+  List<CategoryForMenu>? myCategories = [];
+  List<List<Posts>?>? myPostsList = [];
+  List<Posts>? myPosts = [];
 
   AllData({this.myCategories, this.myPostsList, this.myPosts});
 }

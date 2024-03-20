@@ -5,9 +5,9 @@ import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'CustomTextHeadingOftheBanner.dart';
 
 class customBottombar extends StatelessWidget {
-  final String img;
-  final String title;
-  final Color titleclr;
+  final String? img;
+  final String? title;
+  final Color? titleclr;
 
   customBottombar({this.img, this.title, this.titleclr});
 
@@ -19,12 +19,12 @@ class customBottombar extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              img,
+              img!,
               width: 200,
               height: 150,
             ),
             Text(
-              title,
+              title!,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 color: titleclr,

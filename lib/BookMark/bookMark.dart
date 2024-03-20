@@ -20,7 +20,7 @@ removeBookMark(Posts post) async {
 readBookMark() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-  String posts = sharedPreferences.get('posts');
+  String? posts = sharedPreferences.getString('posts');
 
   print("____________---------__________------____---_-_----_-_-_-_--__--");
   print("$posts");

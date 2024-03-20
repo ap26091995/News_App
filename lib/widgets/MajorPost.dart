@@ -36,7 +36,7 @@ class MinorPost extends StatelessWidget {
                               topRight: Radius.circular(0.0),
                               /*bottomRight: Radius.circular(50.0)*/),
                               image: DecorationImage(
-                                image: NetworkImage(posts.featuredMedia.medium),
+                                image: NetworkImage(posts.featuredMedia!.medium!),
                                 fit: BoxFit.fill,
                               ),
 
@@ -47,11 +47,11 @@ class MinorPost extends StatelessWidget {
                       Container(width: 200,
                           child: Column(
                             children: [
-                              Text(posts.postTitle),
+                              Text(posts.postTitle!),
                               SizedBox(height: 10,),
                               Row(
                                 children: [
-                                  Text(MyDate(posts.postDate),),
+                                  Text(MyDate(posts.postDate!),),
 
                                 ],
                               ),
@@ -72,7 +72,7 @@ class MinorPost extends StatelessWidget {
 
 class MajorPost extends StatelessWidget {
 
-  Posts posts;
+  Posts? posts;
 
 
   MajorPost({this.posts});
@@ -93,7 +93,7 @@ class MajorPost extends StatelessWidget {
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.all(Radius.circular(10)),
               image: new DecorationImage(
-                image: NetworkImage(posts.featuredMedia.medium),
+                image: NetworkImage(posts!.featuredMedia!.medium!),
                 fit: BoxFit.cover,
               )),
           child: Column(
@@ -122,10 +122,10 @@ class MajorPost extends StatelessWidget {
                               titleclr: staticWhite,
                               bgcolor: Colors.black,),
                             SizedBox(height: 5,),*/
-                            customtext(title: posts.postTitle,
+                            customtext(title: posts!.postTitle,
                               titleclr: staticWhite,),
                             SizedBox(height: 5,),
-                            Text(MyDate(posts.postDate),
+                            Text(MyDate(posts!.postDate!),
                               style: TextStyle(
                                   color: staticWhite,fontSize: 10
                               ),),
@@ -146,23 +146,23 @@ class MajorPost extends StatelessWidget {
 
 class PostForCategory extends StatelessWidget {
 
-  List<Posts> postsList ;
-  String categoryTitle;
-  String catId;
+  List<Posts>? postsList ;
+  String? categoryTitle;
+  String? catId;
 
   PostForCategory({this.postsList,this.categoryTitle,this.catId});
 
   @override
   Widget build(BuildContext context) {
-    return postsList.isEmpty?SizedBox():SafeArea(
+    return postsList!.isEmpty?SizedBox():SafeArea(
       child: Column(
         children: [
-          HeaderTitle(title:categoryTitle??"title",posts:postsList,catId: catId,),
-          MajorPostType2(posts: postsList[0],),
-          postsList.length>1?
+          HeaderTitle(title:categoryTitle??"title",posts:postsList!,catId: catId!,),
+          MajorPostType2(posts: postsList![0],),
+          postsList!.length>1?
           Container(height: MediaQuery.of(context).size.width*0.8,child: Row(
             children: [
-              HorizontalListofPost(postsList: postsList,),
+              HorizontalListofPost(postsList: postsList!,),
             ],
           )):SizedBox()
 
@@ -175,7 +175,7 @@ class PostForCategory extends StatelessWidget {
 
 class HorizontalListofPost extends StatelessWidget {
 
-  List<Posts> postsList ;
+  List<Posts>? postsList ;
 
 
   HorizontalListofPost({this.postsList});
@@ -185,9 +185,9 @@ class HorizontalListofPost extends StatelessWidget {
     return Expanded(
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: postsList.length-1
+        itemCount: postsList!.length-1
       ,itemBuilder: (c,i){
-        return MinorPostType2(posts: postsList[i+1],);
+        return MinorPostType2(posts: postsList![i+1],);
       }),
     );
   }
@@ -195,7 +195,7 @@ class HorizontalListofPost extends StatelessWidget {
 
 class MajorPostType2 extends StatelessWidget {
 
-  Posts posts;
+  Posts? posts;
   MajorPostType2({this.posts});
 
   @override
@@ -223,7 +223,7 @@ class MajorPostType2 extends StatelessWidget {
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(20),
                       image: new DecorationImage(
-                        image: NetworkImage(posts.featuredMedia.medium),
+                        image: NetworkImage(posts!.featuredMedia!.medium!),
                         fit: BoxFit.cover,
                       ))
               ),
@@ -233,7 +233,7 @@ class MajorPostType2 extends StatelessWidget {
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(posts.postTitle,textAlign: TextAlign.justify,),
+                    Text(posts!.postTitle!,textAlign: TextAlign.justify,),
                   ],
                 ),
               ),
@@ -247,7 +247,7 @@ class MajorPostType2 extends StatelessWidget {
 
 class MinorPostType2 extends StatelessWidget {
 
-  Posts posts;
+  Posts? posts;
   MinorPostType2({this.posts});
 
   @override
@@ -279,7 +279,7 @@ class MinorPostType2 extends StatelessWidget {
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(20),
                             image: new DecorationImage(
-                              image: NetworkImage(posts.featuredMedia.medium??""),
+                              image: NetworkImage(posts!.featuredMedia!.medium??""),
                               fit: BoxFit.cover,
                             ))
                     ),
@@ -291,7 +291,7 @@ class MinorPostType2 extends StatelessWidget {
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(child: Text(posts.postTitle,textAlign: TextAlign.justify,overflow: TextOverflow.clip,)),
+                            Expanded(child: Text(posts!.postTitle!,textAlign: TextAlign.justify,overflow: TextOverflow.clip,)),
                           ],
                         ),
                       ),
@@ -309,9 +309,9 @@ class MinorPostType2 extends StatelessWidget {
 
 class HeaderTitle extends StatelessWidget {
 
-  String title;
-  List<Posts> posts ;
-  String catId;
+  String? title;
+  List<Posts>? posts ;
+  String? catId;
 
   HeaderTitle({this.title,this.posts,this.catId});
 

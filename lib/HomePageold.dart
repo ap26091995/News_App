@@ -20,10 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final String apiUrl = "${BaseURL}wp-json/wp/v2/";
   // Empty list for our posts
-  List posts;
+  List? posts;
   // Function to fetch list of posts
   Future<String> getPosts() async {
-    var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")), headers: {"Accept": "application/json"});
+    var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")), headers: {"Accept": "application/json",'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJuZXdzYXBwIiwiaWF0IjoxNzEwOTI3Mzk0LCJleHAiOjE4Njg2MDczOTR9.MX47pZmyuwPVDCKyrPWcM0-sU3xZATVFXmNnkOaiECY"});
     // fill our posts list with results and update state
     setState(() {
       var resBody = json.decode(res.body);
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               CustomAppBar(
                 logoimg: 'assets/images/logo.png',
                 clickonmenuicon: () {
-                  _scaffoldKey.currentState.openDrawer();
+                  _scaffoldKey.currentState!.openDrawer();
                 },
               ),
 
@@ -345,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * .5,
                 child: new ListView.builder(
-                    itemCount: posts == null ? 0 : posts.length,
+                    itemCount: posts == null ? 0 : posts!.length,
                     itemBuilder: (BuildContext ctxt, int index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -374,7 +374,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   topRight: Radius.circular(0.0), /*bottomRight: Radius.circular(50.0)*/
                                                 ),
                                                 image: DecorationImage(
-                                                  image: NetworkImage(posts[index]["_embedded"]["wp:featuredmedia"][0]["source_url"]),
+                                                  image: NetworkImage(posts![index]["_embedded"]["wp:featuredmedia"][0]["source_url"]),
                                                   fit: BoxFit.fill,
                                                 ),
                                               ),
@@ -387,7 +387,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 child: Column(
                                                   children: [
                                                     Text(
-                                                      posts[index]["title"]["rendered"],
+                                                      posts![index]["title"]["rendered"],
                                                       maxLines: 4,
                                                     ),
                                                     SizedBox(
@@ -395,10 +395,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     ),
                                                     Row(
                                                       children: [
-                                                        Customtextheader(bgcolor: staticBlack, titleclr: staticWhite, title: posts[index]["categories"].toString()),
+                                                        Customtextheader(bgcolor: staticBlack, titleclr: staticWhite, title: posts![index]["categories"].toString()),
                                                         Spacer(),
                                                         Text(
-                                                          posts[index]["date"].toString().split(' ')[0],
+                                                          posts![index]["date"].toString().split(' ')[0],
                                                           style: TextStyle(fontSize: 12),
                                                         )
                                                       ],

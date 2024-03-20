@@ -4,7 +4,7 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:share/share.dart';
 
 class CustomDrawer extends StatelessWidget {
-  VoidCallback refresh;
+  VoidCallback? refresh;
   CustomDrawer({this.refresh});
 
   @override
@@ -21,7 +21,7 @@ class CustomDrawer extends StatelessWidget {
                 onTap: () {
                   Global.currentPageIndex = 1;
 
-                  refresh();
+                  refresh!();
                 },
                 contentPadding:
                     EdgeInsets.only(left: 0, right: 0, bottom: 0, top: 0),

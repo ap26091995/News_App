@@ -6,11 +6,10 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Page.dart';
 
 getPrivacyPage() {
-  http
-      .get(
-    Uri.parse('$privacyPolicy'),
-  )
-      .then((res) {
+  http.get(Uri.parse('$privacyPolicy'), headers: {
+    'Authorization':
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJuZXdzYXBwIiwiaWF0IjoxNzEwOTI3Mzk0LCJleHAiOjE4Njg2MDczOTR9.MX47pZmyuwPVDCKyrPWcM0-sU3xZATVFXmNnkOaiECY"
+  }).then((res) {
     print(res.body);
     var Storedataoflist = jsonDecode(res.body);
     print(Storedataoflist);
@@ -19,11 +18,10 @@ getPrivacyPage() {
 }
 
 getAboutUs() {
-  http
-      .get(
-    Uri.parse('$aboutUs'),
-  )
-      .then((res) {
+  http.get(Uri.parse('$aboutUs'), headers: {
+    'Authorization':
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJuZXdzYXBwIiwiaWF0IjoxNzEwOTI3Mzk0LCJleHAiOjE4Njg2MDczOTR9.MX47pZmyuwPVDCKyrPWcM0-sU3xZATVFXmNnkOaiECY"
+  }).then((res) {
     print("ABOUT US");
     print(res.body);
     print("ABOUT US");
@@ -37,11 +35,10 @@ getAboutUs() {
 }
 
 getFaq() {
-  http
-      .get(
-    Uri.parse('$faq'),
-  )
-      .then((res) {
+  http.get(Uri.parse('$faq'), headers: {
+    'Authorization':
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJuZXdzYXBwIiwiaWF0IjoxNzEwOTI3Mzk0LCJleHAiOjE4Njg2MDczOTR9.MX47pZmyuwPVDCKyrPWcM0-sU3xZATVFXmNnkOaiECY"
+  }).then((res) {
     print(res.body);
     var Storedataoflist = jsonDecode(res.body);
     print(Storedataoflist);

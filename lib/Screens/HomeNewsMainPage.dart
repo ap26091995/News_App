@@ -31,19 +31,19 @@ class _NewsmainpageState extends State<Newsmainpage> {
               CustomAppBarWithHeart(
                 onFav: () {
                   if (Global.bookMarkPosts.contains(Global.activePost)) {
-                    removeBookMark(Global.activePost);
+                    removeBookMark(Global.activePost!);
                   } else {
-                    SaveBookMark(Global.activePost);
+                    SaveBookMark(Global.activePost!);
                   }
 
                   setState(() {});
                 },
                 logoimg: 'assets/images/logo.png',
                 clickonmenuicon: () {
-                  _scaffoldKey.currentState.openDrawer();
+                  _scaffoldKey.currentState!.openDrawer();
                 },
                 clickonsearchicon: () {
-                  Share.share("${Global.activePost.postTitle}\n${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
+                  Share.share("${Global.activePost!.postTitle}\n${Global.activePost!.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
                 },
               ),
               Padding(
@@ -59,7 +59,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             image: new DecorationImage(
-                              image: NetworkImage(Global.activePost.featuredMedia.medium),
+                              image: NetworkImage(Global.activePost!.featuredMedia!.medium!),
                               fit: BoxFit.cover,
                             )),
                         child: Column(
@@ -82,7 +82,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            Global.activePost.postTitle.replaceAll("&#8211", ""),
+                            Global.activePost!.postTitle!.replaceAll("&#8211", ""),
                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: staticBlack, fontFamily: 'Montserrat-Black'),
                           ),
                           SizedBox(
@@ -96,7 +96,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                               ),
                               Spacer(),
                               Text(
-                                MyDate(Global.activePost.postDate),
+                                MyDate(Global.activePost!.postDate!),
                                 style: TextStyle(
                                   fontSize: 12,
                                 ),
@@ -113,7 +113,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 new Html(
-                                  data: Global.activePost.postContent ??
+                                  data: Global.activePost!.postContent ??
                                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n \n and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                                   style: {
                                     "p": Style(textAlign: TextAlign.justify, fontSize: FontSize.large),

@@ -17,6 +17,7 @@ Getnewsdata(){
 //calling api
 
   http.get(Uri.parse('${BaseURL}wp-json/wp/v2/categories'),
+      headers:{'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJuZXdzYXBwIiwiaWF0IjoxNzEwOTI3Mzk0LCJleHAiOjE4Njg2MDczOTR9.MX47pZmyuwPVDCKyrPWcM0-sU3xZATVFXmNnkOaiECY"}
     ).then((res){
 
     print(res.body);
@@ -30,41 +31,42 @@ Getnewsdata(){
 
 }
 
-getMenu() async {
-
- await http.get(Uri.parse(urlForMenu),
-  ).then((res){
-
-    print(res.body);
-    var Storedataoflist = jsonDecode(res.body);
-    Global.menu = (Storedataoflist as List).map((data)=>Menu.fromJson(data)).toList();
-
-    Global.menu.removeAt(0);
-  });
-
-
-  Global.myTabs.clear();
-  Global.categoryContent.clear();
-  Global.subCategoryPosts.clear();
-
-  for(int i=0;i<Global.mainDataList.length;i++){
-    Global.myTabs.add(
-        Tab(
-          child: Text(Global.mainDataList[i].parentCatName,style: TextStyle(
-              color: Colors.red
-          ),),
-        )
-    );
-
-    Global.allData.add(null);
-
-   // Global.categoryPosts.add(await getPosts(url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&per_page=20&page=1&categories=${Global.menu[i].objectId}"));
-  }
-}
+// getMenu() async {
+//
+//  await http.get(Uri.parse(urlForMenu),
+//   ).then((res){
+//
+//     print(res.body);
+//     var Storedataoflist = jsonDecode(res.body);
+//     Global.menu = (Storedataoflist as List).map((data)=>Menu.fromJson(data)).toList();
+//
+//     Global.menu.removeAt(0);
+//   });
+//
+//
+//   Global.myTabs.clear();
+//   Global.categoryContent.clear();
+//   Global.subCategoryPosts.clear();
+//
+//   for(int i=0;i<Global.mainDataList.length;i++){
+//     Global.myTabs.add(
+//         Tab(
+//           child: Text(Global.mainDataList[i].parentCatName,style: TextStyle(
+//               color: Colors.red
+//           ),),
+//         )
+//     );
+//
+//     Global.allData.add();
+//
+//    // Global.categoryPosts.add(await getPosts(url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&per_page=20&page=1&categories=${Global.menu[i].objectId}"));
+//   }
+// }
 
 
 getCategories() async {
   await http.get(Uri.parse(urlForTopBarCategories),
+      headers:{'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJuZXdzYXBwIiwiaWF0IjoxNzEwOTI3Mzk0LCJleHAiOjE4Njg2MDczOTR9.MX47pZmyuwPVDCKyrPWcM0-sU3xZATVFXmNnkOaiECY"}
   ).then((res){
     //print(res.body);
     var Storedataoflist = jsonDecode(res.body);
@@ -75,12 +77,13 @@ getCategories() async {
   });
 }
 
-getCategoriesFromURL({String Url}) async {
+getCategoriesFromURL({String? Url}) async {
 
-  List<CategoryForMenu> CategoryList = new List();
+  List<CategoryForMenu>? CategoryList =  [];
 
 
-  await http.get(Uri.parse(Url),
+  await http.get(Uri.parse(Url!),
+      headers:{'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJuZXdzYXBwIiwiaWF0IjoxNzEwOTI3Mzk0LCJleHAiOjE4Njg2MDczOTR9.MX47pZmyuwPVDCKyrPWcM0-sU3xZATVFXmNnkOaiECY"}
   ).then((res){
     //print(res.body);
     var Storedataoflist = jsonDecode(res.body);

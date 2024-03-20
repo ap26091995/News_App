@@ -21,22 +21,12 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
 
-  List<Widget> myTabBars = new List();
+  List<Widget> myTabBars = [];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final String apiUrl = "https://thepressofindia.com/wp-json/wp/v2/";
   // Empty list for our posts
-  List posts;
+  List? posts;
   // Function to fetch list of posts
-  Future<String> getPosts() async {
-    var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")), headers: {"Accept": "application/json"});
-    // fill our posts list with results and update state
-    setState(() {
-      var resBody = json.decode(res.body);
-      posts = resBody;
-    });
-    return "Success!";
-  }
   @override
   void initState() {
     GetPageData();
@@ -47,7 +37,7 @@ class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: Global.mainDataList.length,
+        length: Global.mainDataList!.length,
         child: Scaffold(
           key: _scaffoldKey,
           drawer: CustomDrawer(),
@@ -57,7 +47,7 @@ class _homepageState extends State<homepage> {
 
                 clickonmenuicon: (){
 
-                  _scaffoldKey.currentState.openDrawer();
+                  _scaffoldKey.currentState!.openDrawer();
 
                 },),
               TabBar(
@@ -80,8 +70,11 @@ class _homepageState extends State<homepage> {
 
 
   GetPageData(){
-    for(int i =0;i<Global.mainDataList.length;i++){
-      myTabBars.add(Testing(id: int.parse(Global.mainDataList[i].parentCatId.toString()),index: i,catId: Global.mainDataList[i].parentCatId.toString(),));
+    print("DATA:${Global.mainDataList}");
+
+    print("Length:${Global.mainDataList!.length}");
+    for(int i =0;i<Global.mainDataList!.length;i++){
+      myTabBars.add(Testing(id: int.parse(Global.mainDataList![i].parentCatId.toString()),index: i,catId: Global.mainDataList![i].parentCatId.toString(),));
     }
     print("My Tab Bar Pages : ${myTabBars.length}");
   }

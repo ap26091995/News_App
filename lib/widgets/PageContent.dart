@@ -9,7 +9,7 @@ import 'package:morbimirror/widgets/MajorPost.dart';
 
 class CategoryContent extends StatefulWidget {
 
-  List<Posts> posts;
+  List<Posts>? posts;
   CategoryContent({this.posts});
 
   @override
@@ -23,9 +23,9 @@ class _CategoryContentState extends State<CategoryContent> {
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: widget.posts.length
+      itemCount: widget.posts!.length
     ,itemBuilder: (context,index){
-      return index==0?MajorPost(posts: widget.posts[index],):MinorPost(widget.posts[index]);
+      return index==0?MajorPost(posts: widget.posts![index],):MinorPost(widget.posts![index]);
     });
   }
 }

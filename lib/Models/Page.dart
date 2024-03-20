@@ -1,315 +1,375 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
-import 'dart:convert';
-
-PageData postsFromJson(String str) => PageData.fromJson(json.decode(str));
-
-String postsToJson(PageData data) => json.encode(data.toJson());
-
 class PageData {
-  PageData({
-    this.id,
-    this.date,
-    this.dateGmt,
-    this.guid,
-    this.modified,
-    this.modifiedGmt,
-    this.slug,
-    this.status,
-    this.type,
-    this.link,
-    this.title,
-    this.content,
-    this.excerpt,
-    this.author,
-    this.featuredMedia,
-    this.parent,
-    this.menuOrder,
-    this.commentStatus,
-    this.pingStatus,
-    this.template,
-    this.meta,
-    this.links,
-  });
+  int? id;
+  String? date;
+  String? dateGmt;
+  Guid? guid;
+  String? modified;
+  String? modifiedGmt;
+  String? slug;
+  String? status;
+  String? type;
+  String? link;
+  Guid? title;
+  Content? content;
+  Content? excerpt;
+  int? author;
+  int? featuredMedia;
+  int? parent;
+  int? menuOrder;
+  String? commentStatus;
+  String? pingStatus;
+  String? template;
+  Meta? meta;
+  Links? lLinks;
 
-  int id;
-  DateTime date;
-  DateTime dateGmt;
-  Guid guid;
-  DateTime modified;
-  DateTime modifiedGmt;
-  String slug;
-  String status;
-  String type;
-  String link;
-  Guid title;
-  Content content;
-  Content excerpt;
-  int author;
-  int featuredMedia;
-  int parent;
-  int menuOrder;
-  String commentStatus;
-  String pingStatus;
-  String template;
-  List<dynamic> meta;
-  Links links;
+  PageData(
+      {this.id,
+        this.date,
+        this.dateGmt,
+        this.guid,
+        this.modified,
+        this.modifiedGmt,
+        this.slug,
+        this.status,
+        this.type,
+        this.link,
+        this.title,
+        this.content,
+        this.excerpt,
+        this.author,
+        this.featuredMedia,
+        this.parent,
+        this.menuOrder,
+        this.commentStatus,
+        this.pingStatus,
+        this.template,
+        this.meta,
+        this.lLinks});
 
-  factory PageData.fromJson(Map<String, dynamic> json) => PageData(
-        id: json["id"] == null ? null : json["id"],
-        date: json["date"] == null ? null : DateTime.parse(json["date"]),
-        dateGmt:
-            json["date_gmt"] == null ? null : DateTime.parse(json["date_gmt"]),
-        guid: json["guid"] == null ? null : Guid.fromJson(json["guid"]),
-        modified:
-            json["modified"] == null ? null : DateTime.parse(json["modified"]),
-        modifiedGmt: json["modified_gmt"] == null
-            ? null
-            : DateTime.parse(json["modified_gmt"]),
-        slug: json["slug"] == null ? null : json["slug"],
-        status: json["status"] == null ? null : json["status"],
-        type: json["type"] == null ? null : json["type"],
-        link: json["link"] == null ? null : json["link"],
-        title: json["title"] == null ? null : Guid.fromJson(json["title"]),
-        content:
-            json["content"] == null ? null : Content.fromJson(json["content"]),
-        excerpt:
-            json["excerpt"] == null ? null : Content.fromJson(json["excerpt"]),
-        author: json["author"] == null ? null : json["author"],
-        featuredMedia:
-            json["featured_media"] == null ? null : json["featured_media"],
-        parent: json["parent"] == null ? null : json["parent"],
-        menuOrder: json["menu_order"] == null ? null : json["menu_order"],
-        commentStatus:
-            json["comment_status"] == null ? null : json["comment_status"],
-        pingStatus: json["ping_status"] == null ? null : json["ping_status"],
-        template: json["template"] == null ? null : json["template"],
-        meta: json["meta"] == null
-            ? null
-            : List<dynamic>.from(json["meta"].map((x) => x)),
-        links: json["_links"] == null ? null : Links.fromJson(json["_links"]),
-      );
+  PageData.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    date = json['date'];
+    dateGmt = json['date_gmt'];
+    guid = json['guid'] != null ? new Guid.fromJson(json['guid']) : null;
+    modified = json['modified'];
+    modifiedGmt = json['modified_gmt'];
+    slug = json['slug'];
+    status = json['status'];
+    type = json['type'];
+    link = json['link'];
+    title = json['title'] != null ? new Guid.fromJson(json['title']) : null;
+    content =
+    json['content'] != null ? new Content.fromJson(json['content']) : null;
+    excerpt =
+    json['excerpt'] != null ? new Content.fromJson(json['excerpt']) : null;
+    author = json['author'];
+    featuredMedia = json['featured_media'];
+    parent = json['parent'];
+    menuOrder = json['menu_order'];
+    commentStatus = json['comment_status'];
+    pingStatus = json['ping_status'];
+    template = json['template'];
+    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    lLinks = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+  }
 
-  Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "date": date == null ? null : date.toIso8601String(),
-        "date_gmt": dateGmt == null ? null : dateGmt.toIso8601String(),
-        "guid": guid == null ? null : guid.toJson(),
-        "modified": modified == null ? null : modified.toIso8601String(),
-        "modified_gmt":
-            modifiedGmt == null ? null : modifiedGmt.toIso8601String(),
-        "slug": slug == null ? null : slug,
-        "status": status == null ? null : status,
-        "type": type == null ? null : type,
-        "link": link == null ? null : link,
-        "title": title == null ? null : title.toJson(),
-        "content": content == null ? null : content.toJson(),
-        "excerpt": excerpt == null ? null : excerpt.toJson(),
-        "author": author == null ? null : author,
-        "featured_media": featuredMedia == null ? null : featuredMedia,
-        "parent": parent == null ? null : parent,
-        "menu_order": menuOrder == null ? null : menuOrder,
-        "comment_status": commentStatus == null ? null : commentStatus,
-        "ping_status": pingStatus == null ? null : pingStatus,
-        "template": template == null ? null : template,
-        "meta": meta == null ? null : List<dynamic>.from(meta.map((x) => x)),
-        "_links": links == null ? null : links.toJson(),
-      };
-}
-
-class Content {
-  Content({
-    this.rendered,
-    this.protected,
-  });
-
-  String rendered;
-  bool protected;
-
-  factory Content.fromJson(Map<String, dynamic> json) => Content(
-        rendered: json["rendered"] == null ? null : json["rendered"],
-        protected: json["protected"] == null ? null : json["protected"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "rendered": rendered == null ? null : rendered,
-        "protected": protected == null ? null : protected,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['date'] = this.date;
+    data['date_gmt'] = this.dateGmt;
+    if (this.guid != null) {
+      data['guid'] = this.guid!.toJson();
+    }
+    data['modified'] = this.modified;
+    data['modified_gmt'] = this.modifiedGmt;
+    data['slug'] = this.slug;
+    data['status'] = this.status;
+    data['type'] = this.type;
+    data['link'] = this.link;
+    if (this.title != null) {
+      data['title'] = this.title!.toJson();
+    }
+    if (this.content != null) {
+      data['content'] = this.content!.toJson();
+    }
+    if (this.excerpt != null) {
+      data['excerpt'] = this.excerpt!.toJson();
+    }
+    data['author'] = this.author;
+    data['featured_media'] = this.featuredMedia;
+    data['parent'] = this.parent;
+    data['menu_order'] = this.menuOrder;
+    data['comment_status'] = this.commentStatus;
+    data['ping_status'] = this.pingStatus;
+    data['template'] = this.template;
+    if (this.meta != null) {
+      data['meta'] = this.meta!.toJson();
+    }
+    if (this.lLinks != null) {
+      data['_links'] = this.lLinks!.toJson();
+    }
+    return data;
+  }
 }
 
 class Guid {
-  Guid({
-    this.rendered,
-  });
+  String? rendered;
 
-  String rendered;
+  Guid({this.rendered});
 
-  factory Guid.fromJson(Map<String, dynamic> json) => Guid(
-        rendered: json["rendered"] == null ? null : json["rendered"],
-      );
+  Guid.fromJson(Map<String, dynamic> json) {
+    rendered = json['rendered'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "rendered": rendered == null ? null : rendered,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['rendered'] = this.rendered;
+    return data;
+  }
+}
+
+class Content {
+  String? rendered;
+  bool? protected;
+
+  Content({this.rendered, this.protected});
+
+  Content.fromJson(Map<String, dynamic> json) {
+    rendered = json['rendered'];
+    protected = json['protected'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['rendered'] = this.rendered;
+    data['protected'] = this.protected;
+    return data;
+  }
+}
+
+class Meta {
+  String? footnotes;
+
+  Meta({this.footnotes});
+
+  Meta.fromJson(Map<String, dynamic> json) {
+    footnotes = json['footnotes'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['footnotes'] = this.footnotes;
+    return data;
+  }
 }
 
 class Links {
-  Links({
-    this.self,
-    this.collection,
-    this.about,
-    this.author,
-    this.replies,
-    this.versionHistory,
-    this.wpAttachment,
-    this.curies,
-  });
+  List<Self>? self;
+  List<Self>? collection;
+  List<Self>? about;
+  List<Author>? author;
+  List<Author>? replies;
+  List<VersionHistory>? versionHistory;
+  List<PredecessorVersion>? predecessorVersion;
+  List<Self>? wpAttachment;
+  List<Curies>? curies;
 
-  List<About> self;
-  List<About> collection;
-  List<About> about;
-  List<Author> author;
-  List<Author> replies;
-  List<VersionHistory> versionHistory;
-  List<About> wpAttachment;
-  List<Cury> curies;
+  Links(
+      {this.self,
+        this.collection,
+        this.about,
+        this.author,
+        this.replies,
+        this.versionHistory,
+        this.predecessorVersion,
+        this.wpAttachment,
+        this.curies});
 
-  factory Links.fromJson(Map<String, dynamic> json) => Links(
-        self: json["self"] == null
-            ? null
-            : List<About>.from(json["self"].map((x) => About.fromJson(x))),
-        collection: json["collection"] == null
-            ? null
-            : List<About>.from(
-                json["collection"].map((x) => About.fromJson(x))),
-        about: json["about"] == null
-            ? null
-            : List<About>.from(json["about"].map((x) => About.fromJson(x))),
-        author: json["author"] == null
-            ? null
-            : List<Author>.from(json["author"].map((x) => Author.fromJson(x))),
-        replies: json["replies"] == null
-            ? null
-            : List<Author>.from(json["replies"].map((x) => Author.fromJson(x))),
-        versionHistory: json["version-history"] == null
-            ? null
-            : List<VersionHistory>.from(
-                json["version-history"].map((x) => VersionHistory.fromJson(x))),
-        wpAttachment: json["wp:attachment"] == null
-            ? null
-            : List<About>.from(
-                json["wp:attachment"].map((x) => About.fromJson(x))),
-        curies: json["curies"] == null
-            ? null
-            : List<Cury>.from(json["curies"].map((x) => Cury.fromJson(x))),
-      );
+  Links.fromJson(Map<String, dynamic> json) {
+    if (json['self'] != null) {
+      self = <Self>[];
+      json['self'].forEach((v) {
+        self!.add(new Self.fromJson(v));
+      });
+    }
+    if (json['collection'] != null) {
+      collection = <Self>[];
+      json['collection'].forEach((v) {
+        collection!.add(new Self.fromJson(v));
+      });
+    }
+    if (json['about'] != null) {
+      about = <Self>[];
+      json['about'].forEach((v) {
+        about!.add(new Self.fromJson(v));
+      });
+    }
+    if (json['author'] != null) {
+      author = <Author>[];
+      json['author'].forEach((v) {
+        author!.add(new Author.fromJson(v));
+      });
+    }
+    if (json['replies'] != null) {
+      replies = <Author>[];
+      json['replies'].forEach((v) {
+        replies!.add(new Author.fromJson(v));
+      });
+    }
+    if (json['version-history'] != null) {
+      versionHistory = <VersionHistory>[];
+      json['version-history'].forEach((v) {
+        versionHistory!.add(new VersionHistory.fromJson(v));
+      });
+    }
+    if (json['predecessor-version'] != null) {
+      predecessorVersion = <PredecessorVersion>[];
+      json['predecessor-version'].forEach((v) {
+        predecessorVersion!.add(new PredecessorVersion.fromJson(v));
+      });
+    }
+    if (json['wp:attachment'] != null) {
+      wpAttachment = <Self>[];
+      json['wp:attachment'].forEach((v) {
+        wpAttachment!.add(new Self.fromJson(v));
+      });
+    }
+    if (json['curies'] != null) {
+      curies = <Curies>[];
+      json['curies'].forEach((v) {
+        curies!.add(new Curies.fromJson(v));
+      });
+    }
+  }
 
-  Map<String, dynamic> toJson() => {
-        "self": self == null
-            ? null
-            : List<dynamic>.from(self.map((x) => x.toJson())),
-        "collection": collection == null
-            ? null
-            : List<dynamic>.from(collection.map((x) => x.toJson())),
-        "about": about == null
-            ? null
-            : List<dynamic>.from(about.map((x) => x.toJson())),
-        "author": author == null
-            ? null
-            : List<dynamic>.from(author.map((x) => x.toJson())),
-        "replies": replies == null
-            ? null
-            : List<dynamic>.from(replies.map((x) => x.toJson())),
-        "version-history": versionHistory == null
-            ? null
-            : List<dynamic>.from(versionHistory.map((x) => x.toJson())),
-        "wp:attachment": wpAttachment == null
-            ? null
-            : List<dynamic>.from(wpAttachment.map((x) => x.toJson())),
-        "curies": curies == null
-            ? null
-            : List<dynamic>.from(curies.map((x) => x.toJson())),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.self != null) {
+      data['self'] = this.self!.map((v) => v.toJson()).toList();
+    }
+    if (this.collection != null) {
+      data['collection'] = this.collection!.map((v) => v.toJson()).toList();
+    }
+    if (this.about != null) {
+      data['about'] = this.about!.map((v) => v.toJson()).toList();
+    }
+    if (this.author != null) {
+      data['author'] = this.author!.map((v) => v.toJson()).toList();
+    }
+    if (this.replies != null) {
+      data['replies'] = this.replies!.map((v) => v.toJson()).toList();
+    }
+    if (this.versionHistory != null) {
+      data['version-history'] =
+          this.versionHistory!.map((v) => v.toJson()).toList();
+    }
+    if (this.predecessorVersion != null) {
+      data['predecessor-version'] =
+          this.predecessorVersion!.map((v) => v.toJson()).toList();
+    }
+    if (this.wpAttachment != null) {
+      data['wp:attachment'] =
+          this.wpAttachment!.map((v) => v.toJson()).toList();
+    }
+    if (this.curies != null) {
+      data['curies'] = this.curies!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-class About {
-  About({
-    this.href,
-  });
+class Self {
+  String? href;
 
-  String href;
+  Self({this.href});
 
-  factory About.fromJson(Map<String, dynamic> json) => About(
-        href: json["href"] == null ? null : json["href"],
-      );
+  Self.fromJson(Map<String, dynamic> json) {
+    href = json['href'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "href": href == null ? null : href,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['href'] = this.href;
+    return data;
+  }
 }
 
 class Author {
-  Author({
-    this.embeddable,
-    this.href,
-  });
+  bool? embeddable;
+  String? href;
 
-  bool embeddable;
-  String href;
+  Author({this.embeddable, this.href});
 
-  factory Author.fromJson(Map<String, dynamic> json) => Author(
-        embeddable: json["embeddable"] == null ? null : json["embeddable"],
-        href: json["href"] == null ? null : json["href"],
-      );
+  Author.fromJson(Map<String, dynamic> json) {
+    embeddable = json['embeddable'];
+    href = json['href'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "embeddable": embeddable == null ? null : embeddable,
-        "href": href == null ? null : href,
-      };
-}
-
-class Cury {
-  Cury({
-    this.name,
-    this.href,
-    this.templated,
-  });
-
-  String name;
-  String href;
-  bool templated;
-
-  factory Cury.fromJson(Map<String, dynamic> json) => Cury(
-        name: json["name"] == null ? null : json["name"],
-        href: json["href"] == null ? null : json["href"],
-        templated: json["templated"] == null ? null : json["templated"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "name": name == null ? null : name,
-        "href": href == null ? null : href,
-        "templated": templated == null ? null : templated,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['embeddable'] = this.embeddable;
+    data['href'] = this.href;
+    return data;
+  }
 }
 
 class VersionHistory {
-  VersionHistory({
-    this.count,
-    this.href,
-  });
+  int? count;
+  String? href;
 
-  int count;
-  String href;
+  VersionHistory({this.count, this.href});
 
-  factory VersionHistory.fromJson(Map<String, dynamic> json) => VersionHistory(
-        count: json["count"] == null ? null : json["count"],
-        href: json["href"] == null ? null : json["href"],
-      );
+  VersionHistory.fromJson(Map<String, dynamic> json) {
+    count = json['count'];
+    href = json['href'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "count": count == null ? null : count,
-        "href": href == null ? null : href,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['count'] = this.count;
+    data['href'] = this.href;
+    return data;
+  }
+}
+
+class PredecessorVersion {
+  int? id;
+  String? href;
+
+  PredecessorVersion({this.id, this.href});
+
+  PredecessorVersion.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    href = json['href'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['href'] = this.href;
+    return data;
+  }
+}
+
+class Curies {
+  String? name;
+  String? href;
+  bool? templated;
+
+  Curies({this.name, this.href, this.templated});
+
+  Curies.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    href = json['href'];
+    templated = json['templated'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['href'] = this.href;
+    data['templated'] = this.templated;
+    return data;
+  }
 }

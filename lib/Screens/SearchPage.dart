@@ -19,7 +19,7 @@ class _searchingState extends State<searching> {
 
   final String apiUrl = "${BaseURL}wp-json/wp/v2/";
   final String searchurl = "${BaseURL}wp-json/wp/v2/search_posts/?search=";
-  Posts post;
+  Posts? post;
 
   bool isLoaded = false;
   bool isSearched = false;
@@ -28,7 +28,7 @@ class _searchingState extends State<searching> {
 
   getPosts() async {
     var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")),
-        headers: {"Accept": "application/json"});
+        headers: {"Accept": "application/json",'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJuZXdzYXBwIiwiaWF0IjoxNzEwOTI3Mzk0LCJleHAiOjE4Njg2MDczOTR9.MX47pZmyuwPVDCKyrPWcM0-sU3xZATVFXmNnkOaiECY"});
     // fill our posts list with results and update state
     setState(() {
       var resBody = json.decode(res.body);
@@ -46,7 +46,7 @@ class _searchingState extends State<searching> {
       });
       var res = await http.get(
           Uri.parse(Uri.encodeFull(searchurl + _controller.text.trim())),
-          headers: {"Accept": "application/json"});
+          headers: {"Accept": "application/json",'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJuZXdzYXBwIiwiaWF0IjoxNzEwOTI3Mzk0LCJleHAiOjE4Njg2MDczOTR9.MX47pZmyuwPVDCKyrPWcM0-sU3xZATVFXmNnkOaiECY"});
       // fill our posts list with results and update state
 
       print(res.body);
@@ -181,8 +181,8 @@ class _searchingState extends State<searching> {
                                                             image: NetworkImage(
                                                                 searchResults[
                                                                         index]
-                                                                    .featuredMedia
-                                                                    .medium),
+                                                                    .featuredMedia!
+                                                                    .medium!),
                                                             fit: BoxFit.fill,
                                                           ),
                                                         ),
@@ -196,7 +196,7 @@ class _searchingState extends State<searching> {
                                                             children: [
                                                               Text(searchResults[
                                                                       index]
-                                                                  .postTitle),
+                                                                  .postTitle!),
                                                               SizedBox(
                                                                 height: 10,
                                                               ),
@@ -205,7 +205,7 @@ class _searchingState extends State<searching> {
                                                                   Text(
                                                                     MyDate(searchResults[
                                                                             index]
-                                                                        .postDate),
+                                                                        .postDate!),
                                                                   ),
                                                                 ],
                                                               ),

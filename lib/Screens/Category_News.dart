@@ -23,14 +23,14 @@ class _CategoryNewsState extends State<CategoryNews> {
   int CurrentPage=1;
 
 
-  List<Posts> myPostsList = new List();
+  List<Posts> myPostsList = [];
 
   getPost() async {
-    List<Posts> myPostsListAdd = new List();
+    List<Posts> myPostsListAdd = [];
     print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
 
-    myPostsListAdd = await getPosts(
-        url: "${BaseURL}wp-json/wp/v2/get_cat_posts/?category=${Global.selectedCategoryId}&page=$CurrentPage");
+    myPostsListAdd = (await getPosts(
+        url: "${BaseURL}wp-json/wp/v2/get_cat_posts/?category=${Global.selectedCategoryId}&page=$CurrentPage"))!;
 
     if(myPostsListAdd!=null) {
       myPostsList = myPostsList + myPostsListAdd;
@@ -59,7 +59,7 @@ class _CategoryNewsState extends State<CategoryNews> {
         children: [
           CustomAppBar(logoimg: 'assets/images/logo.png',
             clickonmenuicon: (){
-              _scaffoldKey.currentState.openDrawer();
+              _scaffoldKey.currentState!.openDrawer();
             },),
           Expanded(child:
 

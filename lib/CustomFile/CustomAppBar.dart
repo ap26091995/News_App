@@ -6,9 +6,9 @@ import '../testing.dart';
 import 'CustomColorsFile.dart';
 
 class CustomAppBar extends StatelessWidget {
-  final String logoimg;
-  final VoidCallback clickonmenuicon;
-  final VoidCallback clickonsearchicon;
+  final String? logoimg;
+  final VoidCallback? clickonmenuicon;
+  final VoidCallback? clickonsearchicon;
 
   CustomAppBar({
     this.clickonmenuicon,
@@ -18,14 +18,14 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> myTabBars = new List();
+    List<Widget> myTabBars = [];
 
     GetPageData() {
       for (int i = 0; i < Global.menu.length; i++) {
         myTabBars.add(Testing(
-          id: int.parse(Global.menu[i].objectId),
+          id: int.parse(Global.menu[i].objectId!),
           index: i,
-          catId: Global.menu[i].objectId,
+          catId: Global.menu[i].objectId!,
         ));
       }
     }
@@ -40,7 +40,7 @@ class CustomAppBar extends StatelessWidget {
             ),
             GestureDetector(
                 onTap: () {
-                  clickonmenuicon();
+                  clickonmenuicon!();
                 },
                 child: Icon(
                   Icons.menu,
@@ -68,7 +68,7 @@ class CustomAppBar extends StatelessWidget {
             Spacer(),
             Container(
               child: Image.asset(
-                logoimg,
+                logoimg!,
                 height: MediaQuery.of(context).size.width * 0.15,
                 width: MediaQuery.of(context).size.width * 0.3,
               ),
@@ -120,10 +120,10 @@ class CustomAppBar extends StatelessWidget {
 }
 
 class CustomAppBarWithHeart extends StatelessWidget {
-  final String logoimg;
-  final VoidCallback clickonmenuicon;
-  final VoidCallback clickonsearchicon;
-  final VoidCallback onFav;
+  final String? logoimg;
+  final VoidCallback? clickonmenuicon;
+  final VoidCallback? clickonsearchicon;
+  final VoidCallback? onFav;
 
   CustomAppBarWithHeart(
       {this.clickonmenuicon, this.clickonsearchicon, this.logoimg, this.onFav});
@@ -140,7 +140,7 @@ class CustomAppBarWithHeart extends StatelessWidget {
             ),
             GestureDetector(
                 onTap: () {
-                  clickonmenuicon();
+                  clickonmenuicon!();
                 },
                 child: Icon(
                   Icons.menu,
@@ -157,7 +157,7 @@ class CustomAppBarWithHeart extends StatelessWidget {
             Spacer(),
             Container(
               child: Image.asset(
-                logoimg,
+                logoimg!,
                 height: MediaQuery.of(context).size.width * 0.15,
                 width: MediaQuery.of(context).size.width * 0.3,
               ),

@@ -21,7 +21,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
 
   int CurrentPage=1;
 
-  List<Posts> myPostsList = new List();
+  List<Posts>? myPostsList = [];
 
 
 
@@ -45,13 +45,13 @@ class _BookmarkPageState extends State<BookmarkPage> {
         children: [
           CustomAppBar(logoimg: 'assets/images/logo.png',
             clickonmenuicon: (){
-              _scaffoldKey.currentState.openDrawer();
+              _scaffoldKey.currentState!.openDrawer();
             },),
-          Expanded(child:  myPostsList.isEmpty?Center(child: Text("No Post"),):ListView.builder(
+          Expanded(child:  myPostsList!.isEmpty?Center(child: Text("No Post"),):ListView.builder(
 
-          itemCount: myPostsList.length
+          itemCount: myPostsList!.length
           ,itemBuilder: (context,index){
-            return index==0?MajorPost(posts: myPostsList[index],):MinorPost(myPostsList[index]);
+            return index==0?MajorPost(posts: myPostsList![index],):MinorPost(myPostsList![index]);
           }))
         ],
       ),

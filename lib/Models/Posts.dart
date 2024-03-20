@@ -367,15 +367,15 @@ class Posts {
     this.link,
   });
 
-  int id;
-  String postAuthor;
-  DateTime postDate;
-  String postContent;
-  String postTitle;
-  String postName;
-  FeaturedMedia featuredMedia;
-  Author author;
-  String link;
+  int? id;
+  String? postAuthor;
+  DateTime? postDate;
+  String? postContent;
+  String? postTitle;
+  String? postName;
+  FeaturedMedia? featuredMedia;
+  Author? author;
+  String? link;
 
   factory Posts.fromJson(Map<String, dynamic> json) => Posts(
     id: json["ID"],
@@ -385,19 +385,19 @@ class Posts {
     postTitle: json["post_title"],
     postName: json["post_name"],
     featuredMedia: FeaturedMedia.fromJson(json["featured_media"]),
-    author: authorValues.map[json["author"]],
+    author: authorValues.map![json["author"]],
     link: json["link"],
   );
 
   Map<String, dynamic> toJson() => {
     "ID": id,
     "post_author": postAuthor,
-    "post_date": postDate.toIso8601String(),
+    "post_date": postDate!.toIso8601String(),
     "post_content": postContent,
     "post_title": postTitle,
     "post_name": postName,
-    "featured_media": featuredMedia.toJson(),
-    "author": authorValues.reverse[author],
+    "featured_media": featuredMedia!.toJson(),
+    "author": authorValues.reverse![author],
     "link": link,
   };
 }
@@ -420,8 +420,8 @@ class FeaturedMedia {
     this.large,
   });
 
-  String medium;
-  String large;
+  String? medium;
+  String? large;
 
   factory FeaturedMedia.fromJson(Map<String, dynamic> json) => FeaturedMedia(
     medium: json["medium"],
@@ -435,14 +435,14 @@ class FeaturedMedia {
 }
 
 class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<String, T>? map;
+  Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
-  Map<T, String> get reverse {
+  Map<T, String>? get reverse {
     if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
+      reverseMap = map!.map((k, v) => new MapEntry(v, k));
     }
     return reverseMap;
   }
