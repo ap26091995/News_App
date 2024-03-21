@@ -74,7 +74,7 @@ class _homepageState extends State<homepage> {
 
     print("Length:${Global.mainDataList!.length}");
     for(int i =0;i<Global.mainDataList!.length;i++){
-      myTabBars.add(Testing(id: int.parse(Global.mainDataList![i].parentCatId.toString()),index: i,catId: Global.mainDataList![i].parentCatId.toString(),));
+      myTabBars.add(Testing(id: Global.mainDataList![i].parentCatId,index: i,catId: Global.mainDataList![i].parentCatId.toString(),));
     }
     print("My Tab Bar Pages : ${myTabBars.length}");
   }

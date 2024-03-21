@@ -20,45 +20,65 @@ class MainCatModel {
 
   String? parentCatName;
   int? parentCatId;
-  List<Category>? category;
   List<Posts>? posts;
+  List<Category>? category;
 
-  factory MainCatModel.fromJson(Map<String, dynamic> json) => MainCatModel(
-    parentCatName: json["parent_cat_name"],
-    parentCatId: json["parent_cat_id"],
-    category:json["category"].toString()!=[]? List<Category>.from(json["category"].map((x) => Category.fromJson(x))):[],
-    posts: json["posts"] == null ? null : List<Posts>.from(json["posts"].map((x) => Posts.fromJson(x))),
-  );
+  MainCatModel.fromJson(Map<String, dynamic> json) {
+    parentCatName = json['parent_cat_name'];
+    parentCatId = json['parent_cat_id'];
+    if (json['posts'] != null) {
+      posts = <Posts>[];
+      json['posts'].forEach((v) {
+        posts!.add(new Posts.fromJson(v));
+      });
+    }
+    if (json['category'] != null) {
+      category = <Category>[];
+      json['category'].forEach((v) {
+        category!.add(new Category.fromJson(v));
+      });
+    }
+  }
 
-  Map<String, dynamic> toJson() => {
-    "parent_cat_name": parentCatName,
-    "parent_cat_id": parentCatId,
-    "category": List<dynamic>.from(category!.map((x) => x.toJson())),
-    "posts": posts == null ? null : List<dynamic>.from(posts!.map((x) => x.toJson())),
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['parent_cat_name'] = this.parentCatName;
+    data['parent_cat_id'] = this.parentCatId;
+    if (this.posts != null) {
+      data['posts'] = this.posts!.map((v) => v.toJson()).toList();
+    }
+    if (this.category != null) {
+      data['category'] = this.category!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 class Category {
-  Category({
-    this.catName,
-    this.catId,
-    this.posts,
-  });
-
   String? catName;
   int? catId;
   List<Posts>? posts;
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
-    catName: json["cat_name"],
-    catId: json["cat_id"],
-    posts: List<Posts>.from(json["posts"].map((x) => Posts.fromJson(x))),
-  );
+  Category({this.catName, this.catId, this.posts});
 
-  Map<String, dynamic> toJson() => {
-    "cat_name": catName,
-    "cat_id": catId,
-    "posts": List<dynamic>.from(posts!.map((x) => x.toJson())),
-  };
+  Category.fromJson(Map<String, dynamic> json) {
+    catName = json['cat_name'];
+    catId = json['cat_id'];
+    if (json['posts'] != null) {
+      posts = <Posts>[];
+      json['posts'].forEach((v) {
+        posts!.add(new Posts.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['cat_name'] = this.catName;
+    data['cat_id'] = this.catId;
+    if (this.posts != null) {
+      data['posts'] = this.posts!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
-

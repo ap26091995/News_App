@@ -39,7 +39,7 @@ class _TestingState extends State<Testing> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-          Global.mainDataList![widget.index!].category!.isEmpty
+          Global.mainDataList![widget.index!].category==null
               ? OnlyPosts(catId: Global.mainDataList![widget.index!].parentCatId.toString(), posts: Global.mainDataList![widget.index!].posts)
               : SingleChildScrollView(
                   child: Column(

@@ -45,7 +45,7 @@ class DatabaseHelper {
       for (int i = 0; i < Global.mainDataList!.length; i++) {
         Global.myTabs.add(Tab(
           child: Text(
-            Global.mainDataList![i].parentCatName!,
+            Global.mainDataList![i].parentCatName??"",
             style: TextStyle(color: Colors.red),
           ),
         ));

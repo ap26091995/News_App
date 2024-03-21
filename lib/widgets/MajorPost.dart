@@ -36,7 +36,7 @@ class MinorPost extends StatelessWidget {
                               topRight: Radius.circular(0.0),
                               /*bottomRight: Radius.circular(50.0)*/),
                               image: DecorationImage(
-                                image: NetworkImage(posts.featuredMedia!.medium!),
+                                image: NetworkImage(posts.featuredImageSrc!.medium!),
                                 fit: BoxFit.fill,
                               ),
 
@@ -51,7 +51,11 @@ class MinorPost extends StatelessWidget {
                               SizedBox(height: 10,),
                               Row(
                                 children: [
-                                  Text(MyDate(posts.postDate!),),
+                                  Text(
+                                    posts!.postDate!,
+
+                                  )
+                                  // Text(MyDate(posts.postDate!),),
 
                                 ],
                               ),
@@ -93,7 +97,7 @@ class MajorPost extends StatelessWidget {
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.all(Radius.circular(10)),
               image: new DecorationImage(
-                image: NetworkImage(posts!.featuredMedia!.medium!),
+                image: NetworkImage(posts!.featuredImageSrc!.medium!),
                 fit: BoxFit.cover,
               )),
           child: Column(
@@ -125,10 +129,16 @@ class MajorPost extends StatelessWidget {
                             customtext(title: posts!.postTitle,
                               titleclr: staticWhite,),
                             SizedBox(height: 5,),
-                            Text(MyDate(posts!.postDate!),
+                            Text(
+                              Global.activePost!.postDate!,
                               style: TextStyle(
-                                  color: staticWhite,fontSize: 10
-                              ),),
+                                fontSize: 12,
+                              ),
+                            )
+                            // Text(MyDate(posts!.postDate!),
+                            //   style: TextStyle(
+                            //       color: staticWhite,fontSize: 10
+                            //   ),),
                           ],
                         ),
                       ),
@@ -223,7 +233,7 @@ class MajorPostType2 extends StatelessWidget {
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(20),
                       image: new DecorationImage(
-                        image: NetworkImage(posts!.featuredMedia!.medium!),
+                        image: NetworkImage(posts!.featuredImageSrc!.medium!),
                         fit: BoxFit.cover,
                       ))
               ),
@@ -279,7 +289,7 @@ class MinorPostType2 extends StatelessWidget {
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(20),
                             image: new DecorationImage(
-                              image: NetworkImage(posts!.featuredMedia!.medium??""),
+                              image: NetworkImage(posts!.featuredImageSrc!.medium??""),
                               fit: BoxFit.cover,
                             ))
                     ),
