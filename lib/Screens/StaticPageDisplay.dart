@@ -47,6 +47,7 @@ class _StaticPageDisplayState extends State<StaticPageDisplay> {
           SizedBox(
             height: 10,
           ),
+
           Expanded(
             child: SingleChildScrollView(
               child: Padding(

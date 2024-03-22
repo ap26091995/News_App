@@ -21,7 +21,7 @@ class Global {
   static Posts? activePost;
   static List<Posts>? activeCategory;
   static List<AllData> allData = [];
-  static String? selectedCategoryId;
+  static int? selectedCategoryId;
   static PageData? privacyPolicPage;
   static PageData? faqPage;
   static PageData? aboutUsPage;

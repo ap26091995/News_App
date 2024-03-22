@@ -356,72 +356,55 @@ class WpTerm {
 
 class Posts {
   Posts({
-    this.iD,
+    this.id,
     this.postAuthor,
     this.postDate,
     this.postContent,
     this.postTitle,
     this.postName,
-    this.featuredImageSrc,
+    this.featuredMedia,
     this.authorName,
-    this.link
+    this.link,
   });
 
-  int? iD;
+  int? id;
   String? postAuthor;
-  String? postDate;
+  DateTime? postDate;
   String? postContent;
   String? postTitle;
   String? postName;
-  FeaturedImageSrc? featuredImageSrc;
+  FeaturedMedia? featuredMedia;
   String? authorName;
   String? link;
 
-  Posts.fromJson(Map<String, dynamic> json) {
-    iD = json['ID'];
-    postAuthor = json['post_author'];
-    postDate = json['post_date'];
-    postContent = json['post_content'];
-    postTitle = json['post_title'];
-    postName = json['post_name'];
-    featuredImageSrc = json['featured_image_src'] != null
-        ? new FeaturedImageSrc.fromJson(json['featured_image_src'])
-        : null;
-    authorName = json['author_name'];
-    link = json['link'];
-  }
+  factory Posts.fromJson(Map<String, dynamic> json) => Posts(
+    id: json["ID"],
+    postAuthor: json["post_author"],
+    postDate: DateTime.parse(json["post_date"]),
+    postContent: json["post_content"],
+    postTitle: json["post_title"],
+    postName: json["post_name"],
+    featuredMedia: FeaturedMedia.fromJson(json["featured_image_src"]),
+    authorName: json['author_name'],
+    link: json["link"],
+  );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['ID'] = this.iD;
-    data['post_author'] = this.postAuthor;
-    data['post_date'] = this.postDate;
-    data['post_content'] = this.postContent;
-    data['post_title'] = this.postTitle;
-    data['post_name'] = this.postName;
-    if (this.featuredImageSrc != null) {
-      data['featured_image_src'] = this.featuredImageSrc!.toJson();
-    }
-    data['author_name'] = this.authorName;
-    data['link'] = this.link;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+    "ID": id,
+    "post_author": postAuthor,
+    "post_date": postDate!.toIso8601String(),
+    "post_content": postContent,
+    "post_title": postTitle,
+    "post_name": postName,
+    "featured_image_src": featuredMedia!.toJson(),
+    "author_name": authorName,
+    "link": link,
+  };
 }
 
-enum Author { MORBI_MIRROR, JAYESH_BHATASHNA_TANKARA, BHASKAR_M_JOSHI, MAUYR_RAVAL_HALVAD, BALDEV_BHARWAD_HALVAD, ATUL_JOSHI, GEETA_MEHTA }
 
-final authorValues = EnumValues({
-  "ATUL JOSHI": Author.ATUL_JOSHI,
-  "Baldev Bharwad halvad": Author.BALDEV_BHARWAD_HALVAD,
-  "BHASKAR M JOSHI": Author.BHASKAR_M_JOSHI,
-  "Geeta Mehta": Author.GEETA_MEHTA,
-  "Jayesh Bhatashna Tankara": Author.JAYESH_BHATASHNA_TANKARA,
-  "Mauyr Raval Halvad": Author.MAUYR_RAVAL_HALVAD,
-  "Morbi Mirror": Author.MORBI_MIRROR
-});
-
-class FeaturedImageSrc {
-  FeaturedImageSrc({
+class FeaturedMedia {
+  FeaturedMedia({
     this.medium,
     this.large,
   });
@@ -429,7 +412,7 @@ class FeaturedImageSrc {
   String? medium;
   String? large;
 
-  factory FeaturedImageSrc.fromJson(Map<String, dynamic> json) => FeaturedImageSrc(
+  factory FeaturedMedia.fromJson(Map<String, dynamic> json) => FeaturedMedia(
     medium: json["medium"],
     large: json["large"],
   );

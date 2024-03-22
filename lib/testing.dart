@@ -53,7 +53,7 @@ class _TestingState extends State<Testing> {
                             return PostForCategory(
                               postsList: Global.mainDataList![widget.index!].category![index].posts,
                               categoryTitle: Global.mainDataList![widget.index!].category![index].catName,
-                              catId: Global.mainDataList![widget.index!].parentCatId.toString(),
+                              catId: Global.mainDataList![widget.index!].parentCatId,
                             );
                           }),
                     ],

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:morbimirror/ApiCall/All_URLS.dart';
 import 'package:morbimirror/ApiCall/Post_api.dart';
@@ -28,9 +30,10 @@ class _CategoryNewsState extends State<CategoryNews> {
   getPost() async {
     List<Posts> myPostsListAdd = [];
     print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
-
+    log("URL IS${BaseURL}wp-json/wp/v2/posts?categories=${Global.selectedCategoryId}&page=$CurrentPage");
     myPostsListAdd = (await getPosts(
-        url: "${BaseURL}wp-json/wp/v2/posts/?categories=${Global.selectedCategoryId}&page=$CurrentPage"))!;
+        url: "${BaseURL}wp-json/wp/v2/posts?categories=${Global.selectedCategoryId}&page=$CurrentPage"))!;
+
 
     if(myPostsListAdd!=null) {
       myPostsList = myPostsList + myPostsListAdd;
@@ -65,7 +68,7 @@ class _CategoryNewsState extends State<CategoryNews> {
 
           NotificationListener<ScrollEndNotification>(
               onNotification: (notification) {
-
+                print("category");
                 getPost();
 
             return false;
@@ -73,6 +76,7 @@ class _CategoryNewsState extends State<CategoryNews> {
 
               itemCount: myPostsList.length
               ,itemBuilder: (context,index){
+                print("INDESSSS:$index");
             return index==0?MajorPost(posts: myPostsList[index],):MinorPost(myPostsList[index]);
           })
 

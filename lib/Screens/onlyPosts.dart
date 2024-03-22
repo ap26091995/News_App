@@ -25,10 +25,10 @@ class _OnlyPostsState extends State<OnlyPosts> {
 
   getPost() async {
     List<Posts> myPostsListAdd = [];
-    print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
+    print("|||||||||| GETTING POSTS FOR ID///////   ${Global.selectedCategoryId}");
 
     myPostsListAdd = (await getPosts(
-        url: "${BaseURL}wp-json/wp/v2/get_cat_posts/?category=${widget.catId}&page=$CurrentPage"))!;
+        url: "${BaseURL}wp-json/wp/v2/get_cat_posts/?category_id=${widget.catId}&page=$CurrentPage"))!;
 
     if(myPostsListAdd!=null) {
       widget.posts = (widget.posts! + myPostsListAdd);

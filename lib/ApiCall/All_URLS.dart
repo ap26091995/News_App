@@ -8,7 +8,7 @@ import 'package:morbimirror/Models/main_cat_model.dart';
 const String BaseURL = "https://newsapp.innoventixsolutions.com/";
 
 /// Done
-const String mainContentURL = BaseURL + "wp-json/wp/v2/posts/";
+const String mainContentURL = BaseURL + "wp-json/wp/v2/subcat_posts/";
 
 /// Done
 const String urlForTopBarCategories = BaseURL + "wp-json/wp/v2/categories?per_page=100&hide_empty=true";

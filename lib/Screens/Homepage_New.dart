@@ -50,7 +50,7 @@ class _homepageState extends State<homepage> {
                   _scaffoldKey.currentState!.openDrawer();
 
                 },),
-              TabBar(
+              TabBar(tabAlignment: TabAlignment.start,
                   isScrollable: true,
                   unselectedLabelColor:  Colors.black,
                   indicatorColor:staticBlue,

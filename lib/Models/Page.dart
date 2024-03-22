@@ -20,6 +20,8 @@ class PageData {
   String? pingStatus;
   String? template;
   Meta? meta;
+  FeaturedImageSrc? featuredImageSrc;
+  String? authorName;
   Links? lLinks;
 
   PageData(
@@ -44,6 +46,8 @@ class PageData {
         this.pingStatus,
         this.template,
         this.meta,
+        this.featuredImageSrc,
+        this.authorName,
         this.lLinks});
 
   PageData.fromJson(Map<String, dynamic> json) {
@@ -70,6 +74,10 @@ class PageData {
     pingStatus = json['ping_status'];
     template = json['template'];
     meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    featuredImageSrc = json['featured_image_src'] != null
+        ? new FeaturedImageSrc.fromJson(json['featured_image_src'])
+        : null;
+    authorName = json['author_name'];
     lLinks = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
   }
 
@@ -106,6 +114,10 @@ class PageData {
     if (this.meta != null) {
       data['meta'] = this.meta!.toJson();
     }
+    if (this.featuredImageSrc != null) {
+      data['featured_image_src'] = this.featuredImageSrc!.toJson();
+    }
+    data['author_name'] = this.authorName;
     if (this.lLinks != null) {
       data['_links'] = this.lLinks!.toJson();
     }
@@ -163,6 +175,27 @@ class Meta {
     return data;
   }
 }
+
+
+class FeaturedImageSrc {
+  String? medium;
+  String? large;
+
+  FeaturedImageSrc({this.medium, this.large});
+
+  FeaturedImageSrc.fromJson(Map<String, dynamic> json) {
+    medium = json['medium'];
+    large = json['large'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['medium'] = this.medium;
+    data['large'] = this.large;
+    return data;
+  }
+}
+
 
 class Links {
   List<Self>? self;

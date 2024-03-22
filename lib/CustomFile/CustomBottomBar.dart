@@ -66,7 +66,7 @@ class customBottombar extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Text("© ${DateTime.now().year} Morbi Mirror . All rights reserved.")
+            Text("© ${DateTime.now().year} News 12 Paper . All rights reserved.")
           ],
         ),
       ),

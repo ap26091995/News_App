@@ -24,7 +24,7 @@ class _DatasearchedState extends State<Datasearched> {
   @override
   void initState() {
     // TODO: implement initState
-    Global.activePost!.iD;
+    Global.activePost!.id;
     super.initState();
   }
 
@@ -69,7 +69,7 @@ class _DatasearchedState extends State<Datasearched> {
                         shape: BoxShape.rectangle,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         image: new DecorationImage(
-                          image: NetworkImage(Global.activePost!.featuredImageSrc!.medium!),
+                          image: NetworkImage(Global.activePost!.featuredMedia!.medium!),
                           fit: BoxFit.cover,
                         )),
                     child: Column(
@@ -101,22 +101,22 @@ class _DatasearchedState extends State<Datasearched> {
                       Row(
                         children: [
                           Text(
-                            "Morbi Mirror ",
+                            "News 12 Paper ",
                             style: TextStyle(fontWeight: FontWeight.w600, color: staticBlue),
                           ),
                           Spacer(),
-                          Text(
-                            Global.activePost!.postDate!,
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
-                          )
                           // Text(
-                          //   MyDate(Global.activePost!.postDate!),
+                          //   Global.activePost!.postDate!,
                           //   style: TextStyle(
                           //     fontSize: 12,
                           //   ),
                           // )
+                          Text(
+                            MyDate(Global.activePost!.postDate!),
+                            style: TextStyle(
+                              fontSize: 12,
+                            ),
+                          )
                         ],
                       ),
                       SizedBox(

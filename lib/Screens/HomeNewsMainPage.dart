@@ -59,7 +59,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             image: new DecorationImage(
-                              image: NetworkImage(Global.activePost!.featuredImageSrc!.medium!),
+                              image: NetworkImage(Global.activePost!.featuredMedia!.medium!),
                               fit: BoxFit.cover,
                             )),
                         child: Column(
@@ -91,22 +91,22 @@ class _NewsmainpageState extends State<Newsmainpage> {
                           Row(
                             children: [
                               Text(
-                                "Morbi Mirror ",
+                                "News 12 Paper ",
                                 style: TextStyle(fontWeight: FontWeight.w600, color: staticBlue),
                               ),
                               Spacer(),
-                              Text(
-                                Global.activePost!.postDate!,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                ),
-                              )
                               // Text(
-                              //   MyDate(Global.activePost!.postDate!),
+                              //   Global.activePost!.postDate!,
                               //   style: TextStyle(
                               //     fontSize: 12,
                               //   ),
                               // )
+                              Text(
+                                MyDate(Global.activePost!.postDate!),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                ),
+                              )
                             ],
                           ),
                           SizedBox(

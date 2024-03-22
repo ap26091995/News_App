@@ -144,7 +144,7 @@ class _searchingState extends State<searching> {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (_) => Datasearched(
-                                                    searchResults[index].iD)));
+                                                    searchResults[index].id)));
                                       },
                                       child: Padding(
                                         padding: const EdgeInsets.fromLTRB(
@@ -181,7 +181,7 @@ class _searchingState extends State<searching> {
                                                             image: NetworkImage(
                                                                 searchResults[
                                                                         index]
-                                                                    .featuredImageSrc!
+                                                                    .featuredMedia!
                                                                     .medium!),
                                                             fit: BoxFit.fill,
                                                           ),
@@ -202,17 +202,17 @@ class _searchingState extends State<searching> {
                                                               ),
                                                               Row(
                                                                 children: [
+                                                              //     Text(
+                                                              // searchResults[index].postDate!,
+                                                              //       style: TextStyle(
+                                                              //         fontSize: 12,
+                                                              //       ),
+                                                              //     )
                                                                   Text(
-                                                              searchResults[index].postDate!,
-                                                                    style: TextStyle(
-                                                                      fontSize: 12,
-                                                                    ),
-                                                                  )
-                                                                  // Text(
-                                                                  //   MyDate(searchResults[
-                                                                  //           index]
-                                                                  //       .postDate!),
-                                                                  // ),
+                                                                    MyDate(searchResults[
+                                                                            index]
+                                                                        .postDate!),
+                                                                  ),
                                                                 ],
                                                               ),
                                                             ],

@@ -58,7 +58,7 @@ class _News_category_drawerState extends State<News_category_drawer> {
             child: Card(elevation: 7.7,color: staticDarkblue,
               child: InkWell(splashColor: staticBlack,onTap: (){
 
-                Global.selectedCategoryId=Global.CategoryList[index].id.toString();
+                Global.selectedCategoryId=Global.CategoryList[index].id;
                 Navigator.of(context).pushNamed('categorynews');
 
               },

@@ -128,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 5,
                                   ),
                                   Text(
-                                    "Morbi Mirror  - Sepetember 7,2020 8:09 pm",
+                                    "News 12 Paper  - Sepetember 7,2020 8:09 pm",
                                     style: TextStyle(color: staticWhite, fontSize: 10),
                                   ),
                                 ],
