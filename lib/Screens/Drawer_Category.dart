@@ -12,29 +12,7 @@ class News_category_drawer extends StatefulWidget {
 class _News_category_drawerState extends State<News_category_drawer> {
   final title = 'Grid List';
 
-  List<String> clist=[
 
-   "   Avsanondh & Besnu",
-   " Birthday",
-  "  Halvad",
-"    Maliya Miyana",
-    "Morbi",
-    "Promotional",
-    "Tankara",
-    "Wakaner",
-
-    "Ahmedabad",
-    "Amreli",
-    "Anand",
-    "Aravalli",
-    "Bharuch",
-    "Bhavnagar",
-    "Botad",
-   " Chhota Udaipur",
-    "Dahod",
-    "Dang"
-
-  ];
 
 
 
@@ -57,7 +35,7 @@ class _News_category_drawerState extends State<News_category_drawer> {
             padding: const EdgeInsets.all(4.0),
             child: Card(elevation: 7.7,color: staticDarkblue,
               child: InkWell(splashColor: staticBlack,onTap: (){
-
+                print("Category");
                 Global.selectedCategoryId=Global.CategoryList[index].id;
                 Navigator.of(context).pushNamed('categorynews');
 

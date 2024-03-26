@@ -30,9 +30,9 @@ class _CategoryNewsState extends State<CategoryNews> {
   getPost() async {
     List<Posts> myPostsListAdd = [];
     print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
-    log("URL IS${BaseURL}wp-json/wp/v2/posts?categories=${Global.selectedCategoryId}&page=$CurrentPage");
+    log("URL IS: ${BaseURL}wp-json/wp/v2/get_cat_posts?category_id=${Global.selectedCategoryId}&page=$CurrentPage");
     myPostsListAdd = (await getPosts(
-        url: "${BaseURL}wp-json/wp/v2/posts?categories=${Global.selectedCategoryId}&page=$CurrentPage"))!;
+        url: "${BaseURL}wp-json/wp/v2/get_cat_posts?category_id=${Global.selectedCategoryId}&page=$CurrentPage"))!;
 
 
     if(myPostsListAdd!=null) {
