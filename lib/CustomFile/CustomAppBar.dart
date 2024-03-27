@@ -124,9 +124,10 @@ class CustomAppBarWithHeart extends StatelessWidget {
   final VoidCallback? clickonmenuicon;
   final VoidCallback? clickonsearchicon;
   final VoidCallback? onFav;
+  final bool showIsMenu;
 
   CustomAppBarWithHeart(
-      {this.clickonmenuicon, this.clickonsearchicon, this.logoimg, this.onFav});
+      {this.clickonmenuicon, this.clickonsearchicon, this.logoimg, this.onFav, this.showIsMenu=true});
 
   @override
   Widget build(BuildContext context) {
@@ -138,6 +139,7 @@ class CustomAppBarWithHeart extends StatelessWidget {
             SizedBox(
               width: 20,
             ),
+            showIsMenu==true?
             GestureDetector(
                 onTap: () {
                   clickonmenuicon!();
@@ -145,14 +147,14 @@ class CustomAppBarWithHeart extends StatelessWidget {
                 child: Icon(
                   Icons.menu,
                   color: staticBlack,
-                )),
-            Opacity(
+                )):SizedBox(),
+            showIsMenu==true? Opacity(
               opacity: 0,
               child: Icon(
                 Icons.favorite_border,
                 color: staticBlack,
               ),
-            ),
+            ):SizedBox(),
             SizedBox(width: 10),
             Spacer(),
             Container(

@@ -23,29 +23,31 @@ class _NewsmainpageState extends State<Newsmainpage> {
       child: Scaffold(
         key: _scaffoldKey,
         drawer: CustomDrawer(),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CustomAppBarWithHeart(
-                onFav: () {
-                  if (Global.bookMarkPosts.contains(Global.activePost)) {
-                    removeBookMark(Global.activePost!);
-                  } else {
-                    SaveBookMark(Global.activePost!);
-                  }
+        appBar: AppBar(
+          title:CustomAppBarWithHeart(
+            showIsMenu: false,
+            onFav: () {
+              if (Global.bookMarkPosts.contains(Global.activePost)) {
+                removeBookMark(Global.activePost!);
+              } else {
+                SaveBookMark(Global.activePost!);
+              }
 
-                  setState(() {});
-                },
-                logoimg: 'assets/images/logo.png',
-                clickonmenuicon: () {
-                  _scaffoldKey.currentState!.openDrawer();
-                },
-                clickonsearchicon: () {
-                  Share.share("${Global.activePost!.postTitle}\n${Global.activePost!.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
-                },
-              ),
+              setState(() {});
+            },
+            logoimg: 'assets/images/logo.png',
+            clickonmenuicon: () {
+              _scaffoldKey.currentState!.openDrawer();
+            },
+            clickonsearchicon: () {
+              Share.share("${Global.activePost!.postTitle}\n${Global.activePost!.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
+            },
+          ) ,
+        ),
+        body: SingleChildScrollView(
+          physics: ScrollPhysics(),
+          child: Column(
+            children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 5),
                 child: Column(
@@ -137,7 +139,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
               customBottombar(
                 img: 'assets/images/logo.png',
                 title:
-                    "",
+                "",
               )
             ],
           ),

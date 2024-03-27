@@ -34,6 +34,27 @@ class _DatasearchedState extends State<Datasearched> {
       child: Scaffold(
         key: _scaffoldKey,
         drawer: CustomDrawer(),
+        appBar: AppBar(
+          title:CustomAppBarWithHeart(
+            showIsMenu: false,
+            onFav: () {
+              if (Global.bookMarkPosts.contains(Global.activePost)) {
+                removeBookMark(Global.activePost!);
+              } else {
+                SaveBookMark(Global.activePost!);
+              }
+
+              setState(() {});
+            },
+            logoimg: 'assets/images/logo.png',
+            clickonmenuicon: () {
+              _scaffoldKey.currentState!.openDrawer();
+            },
+            clickonsearchicon: () {
+              Share.share("${Global.activePost!.postTitle}\n${Global.activePost!.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
+            },
+          ) ,
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 5),
@@ -41,25 +62,7 @@ class _DatasearchedState extends State<Datasearched> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CustomAppBarWithHeart(
-                  onFav: () {
-                    if (Global.bookMarkPosts.contains(Global.activePost)) {
-                      removeBookMark(Global.activePost!);
-                    } else {
-                      SaveBookMark(Global.activePost!);
-                    }
 
-                    setState(() {});
-                  },
-                  logoimg: 'assets/images/logo.png',
-                  clickonmenuicon: () {
-                    _scaffoldKey.currentState!.openDrawer();
-                  },
-                  clickonsearchicon: () {
-                    Share.share(
-                        "${Global.activePost!.postContent!.substring(0, 50)}\n${Global.activePost!.link}\n\nhttps://play.google.com/store/apps/details?id=com.morbimirror ");
-                  },
-                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
