@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 5,
                                   ),
                                   customtext(
-                                    title: "મોરબીમાં કન્યા છાત્રાલય રોડ પર ભરાતા પાણીનો નિકાલ કરવા ચીફ ઓફિસરને રજુઆત",
+                                    title: "News 12",
                                     titleclr: staticWhite,
                                   ),
                                   SizedBox(
@@ -288,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 width: 200,
                                                 child: Column(
                                                   children: [
-                                                    Text("મોરબીમાં જુદા જુદા ચાર બનાવોમાં ચાર વ્યક્તિઓ સારવાર હેઠળ : બે ના અપમૃત્યુ"),
+                                                    Text("News 12"),
                                                     SizedBox(
                                                       height: 10,
                                                     ),
@@ -422,7 +422,7 @@ class _HomeScreenState extends State<HomeScreen> {
               customBottombar(
                 img: 'assets/images/logo.png',
                 title:
-                    "મોરબીવાસીઓ તમામ વિસ્તારોમની સચોટ અને તટસ્થ માહિતી હર પળ ઘરે બેઠા મળી રહે એ માટે મોરબીવાસીઓનું પોતાનું મોરબી મિરર શરૂ કરવાનો અમારો ધ્યેય છે જે ધ્યેય આપ સૌ મિત્રોના સાથ સહકારથી શ્રેષ્ઠતા સાથે કામયાબીના શિખરો સર કરશે જેના માટે મોરબી ગૌરવ અનુભવશે.",
+                    "",
               )
             ],
           ),
