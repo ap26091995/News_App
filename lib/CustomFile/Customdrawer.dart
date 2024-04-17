@@ -88,6 +88,13 @@ class CustomDrawer extends StatelessWidget {
                       },
                     ),
                     ListTile(
+                      leading: Icon(Icons.bookmark),
+                      title: Text("Coupons"),
+                      onTap: () {
+                        Navigator.of(context).pushNamed('coupons');
+                      },
+                    ),
+                    ListTile(
                       leading: Icon(Icons.share),
                       title: Text("Share This App"),
                       onTap: () {

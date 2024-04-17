@@ -10,6 +10,7 @@ import 'package:morbimirror/Screens/StaticPageDisplay.dart';
 
 import 'Screens/BookMarkPage.dart';
 import 'Screens/Category_News.dart';
+import 'Screens/CouponsScreen.dart';
 import 'Screens/Drawer_Category.dart';
 import 'Screens/HomeNewsMainPage.dart';
 import 'Screens/Homepage_New.dart';
@@ -49,7 +50,8 @@ class MyApp extends StatelessWidget {
         'drawer_category': (context) => News_category_drawer(),
         //'test':(context)=>testing(),
         'staticPage': (context) => StaticPageDisplay(),
-        'bookmark': (context) => BookmarkPage()
+        'bookmark': (context) => BookmarkPage(),
+        'coupons': (context) => CouponsScreen()
       },
     );
   }
