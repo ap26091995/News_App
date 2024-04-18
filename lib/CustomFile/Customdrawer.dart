@@ -62,6 +62,20 @@ class CustomDrawer extends StatelessWidget {
                       },
                     ),
                     ListTile(
+                      leading: Icon(Icons.bookmark),
+                      title: Text("Coupons"),
+                      onTap: () {
+                        Navigator.of(context).pushNamed('coupons');
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.list),
+                      title: Text("Listing"),
+                      onTap: () {
+                        Navigator.of(context).pushNamed('listing');
+                      },
+                    ),
+                    ListTile(
                       leading: Icon(Icons.outlined_flag),
                       title: Text("About Us"),
                       onTap: () {
@@ -87,13 +101,7 @@ class CustomDrawer extends StatelessWidget {
                         Navigator.of(context).pushNamed('staticPage');
                       },
                     ),
-                    ListTile(
-                      leading: Icon(Icons.bookmark),
-                      title: Text("Coupons"),
-                      onTap: () {
-                        Navigator.of(context).pushNamed('coupons');
-                      },
-                    ),
+
                     ListTile(
                       leading: Icon(Icons.share),
                       title: Text("Share This App"),

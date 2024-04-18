@@ -9,8 +9,8 @@ class CouponsModel {
   String? dateModifiedGmt;
   String? discountType;
   String? description;
-  Null? dateExpires;
-  Null? dateExpiresGmt;
+  String? dateExpires;
+  String? dateExpiresGmt;
   int? usageCount;
   bool? individualUse;
 

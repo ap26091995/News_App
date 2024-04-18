@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:morbimirror/ApiCall/All_URLS.dart';
+import 'package:morbimirror/Screens/Listing_Screen.dart';
 //import 'package:morbiupdate /Screens/BookMarkPage.dart';
 import 'package:morbimirror/Screens/SearchPage.dart';
 import 'package:morbimirror/Screens/Splash_Screen.dart';
@@ -51,7 +52,8 @@ class MyApp extends StatelessWidget {
         //'test':(context)=>testing(),
         'staticPage': (context) => StaticPageDisplay(),
         'bookmark': (context) => BookmarkPage(),
-        'coupons': (context) => CouponsScreen()
+        'coupons': (context) => CouponsScreen(),
+        'listing': (context) => ListingsScreen(),
       },
     );
   }
