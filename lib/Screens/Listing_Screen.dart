@@ -91,7 +91,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 itemCount: listingModel!.length,
                 itemBuilder: (BuildContext context, index) {
                   return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                       child:
                     GestureDetector(
                       onTap: (){
@@ -99,8 +99,8 @@ class _ListingsScreenState extends State<ListingsScreen> {
                         push(context: context, screen: OpenListing(url: listingModel![index].link,));
                       },
                       child: Container(
-                          height: 105,
-                          decoration: BoxDecoration(color: Colors.indigoAccent),
+                          decoration: BoxDecoration(color: Colors.indigoAccent.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(8)),
                           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                           child: Text(
                             "${listingModel![index].title!.rendered}",
@@ -159,6 +159,7 @@ class _OpenListingState extends State<OpenListing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -166,8 +167,11 @@ class _OpenListingState extends State<OpenListing> {
               controller: controller!,
             ),
             if (loadingPercentage < 100)
-              LinearProgressIndicator(
-                value: loadingPercentage / 100.0,
+              Center(
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  value: loadingPercentage / 100.0,
+                ),
               ),
           ],
         ),
