@@ -83,120 +83,125 @@ class _CouponsScreenState extends State<CouponsScreen> {
                   style: TextStyle(fontSize: 18),
                 )))
               : Expanded(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: couponsModel!.length,
-                      itemBuilder: (BuildContext context, index) {
-                        const Color primaryColor = Color(0xffcbf3f0);
-                        const Color secondaryColor = Color(0xff368f8b);
-                        DateTime? dateTime = DateTime.parse(couponsModel![index].dateExpires!);
-                        String formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                           child:CouponCard(
-                             height: 160,curvePosition: 135,
-                             backgroundColor: primaryColor,
-                             curveAxis: Axis.vertical,
-                             firstChild: Container(
-                               decoration: const BoxDecoration(
-                                 color: secondaryColor,
-                               ),
-                               child: Column(
-                                 mainAxisAlignment: MainAxisAlignment.center,
-                                 children: [
-                                   Expanded(
-                                     child: Center(
-                                       child: Column(
-                                         mainAxisSize: MainAxisSize.min,
-                                         children: [
-                                           Text(
-                                             'Coupon Code',
-                                             textAlign: TextAlign.center,
-                                             style: TextStyle(
-                                               fontSize: 13,
-                                               fontWeight: FontWeight.bold,
-                                               color: Colors.white,
+                  child: RefreshIndicator(
+                    onRefresh:()async{
+                      await  getCoupons();
+                    },
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: couponsModel!.length,
+                        itemBuilder: (BuildContext context, index) {
+                          const Color primaryColor = Color(0xffcbf3f0);
+                          const Color secondaryColor = Color(0xff368f8b);
+                          DateTime? dateTime = DateTime.parse(couponsModel![index].dateExpires!);
+                          String formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                             child:CouponCard(
+                               height: 160,curvePosition: 135,
+                               backgroundColor: primaryColor,
+                               curveAxis: Axis.vertical,
+                               firstChild: Container(
+                                 decoration: const BoxDecoration(
+                                   color: secondaryColor,
+                                 ),
+                                 child: Column(
+                                   mainAxisAlignment: MainAxisAlignment.center,
+                                   children: [
+                                     Expanded(
+                                       child: Center(
+                                         child: Column(
+                                           mainAxisSize: MainAxisSize.min,
+                                           children: [
+                                             Text(
+                                               'Coupon Code',
+                                               textAlign: TextAlign.center,
+                                               style: TextStyle(
+                                                 fontSize: 13,
+                                                 fontWeight: FontWeight.bold,
+                                                 color: Colors.white,
+                                               ),
                                              ),
-                                           ),
-                                           SizedBox(height: 4),
-                                           Text(
-                                             '${couponsModel![index].code!.toUpperCase()}',
-                                             textAlign: TextAlign.center,
-                                             style: TextStyle(
-                                               fontSize: 24,
-                                               color: Colors.white,
-                                               fontWeight: FontWeight.bold,
+                                             SizedBox(height: 4),
+                                             Text(
+                                               '${couponsModel![index].code!.toUpperCase()}',
+                                               textAlign: TextAlign.center,
+                                               style: TextStyle(
+                                                 fontSize: 24,
+                                                 color: Colors.white,
+                                                 fontWeight: FontWeight.bold,
+                                               ),
                                              ),
-                                           ),
-                                         ],
-                                       ),
-                                     ),
-                                   ),
-                                   Divider(color: Colors.white54, height: 0),
-                                   Expanded(
-                                     child: Center(
-                                       child: Text(
-                                         'REDEEM',
-                                         textAlign: TextAlign.center,
-                                         style: TextStyle(
-                                           color: Colors.white,
-                                           fontSize: 20,
-                                           fontWeight: FontWeight.bold,
+                                           ],
                                          ),
                                        ),
                                      ),
-                                   ),
-                                 ],
-                               ),
-                             ),
-                             secondChild: Container(
-                               width: double.maxFinite,
-                               padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 12),
-                               child: Column(
-                                 mainAxisSize: MainAxisSize.min,
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 children: [
-                                   Text(
-                                     'Description',
-                                     textAlign: TextAlign.center,
-                                     style: TextStyle(
-                                       fontSize: 14,
-                                       fontWeight: FontWeight.bold,
-                                       color: Colors.black54,
+                                     Divider(color: Colors.white54, height: 0),
+                                     Expanded(
+                                       child: Center(
+                                         child: Text(
+                                           'REDEEM',
+                                           textAlign: TextAlign.center,
+                                           style: TextStyle(
+                                             color: Colors.white,
+                                             fontSize: 20,
+                                             fontWeight: FontWeight.bold,
+                                           ),
+                                         ),
+                                       ),
                                      ),
-                                   ),
-                                   SizedBox(height: 4),
-                                   Text(
-                                     '${couponsModel![index].description}',
+                                   ],
+                                 ),
+                               ),
+                               secondChild: Container(
+                                 width: double.maxFinite,
+                                 padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 12),
+                                 child: Column(
+                                   mainAxisSize: MainAxisSize.min,
+                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: [
+                                     Text(
+                                       'Description',
+                                       textAlign: TextAlign.center,
+                                       style: TextStyle(
+                                         fontSize: 14,
+                                         fontWeight: FontWeight.bold,
+                                         color: Colors.black54,
+                                       ),
+                                     ),
+                                     SizedBox(height: 4),
+                                     Text(
+                                       '${couponsModel![index].description}',
 
-                                     style: TextStyle(
-                                       fontSize: 16,
-                                       color: secondaryColor,
-                                       fontWeight: FontWeight.bold,
+                                       style: TextStyle(
+                                         fontSize: 16,
+                                         color: secondaryColor,
+                                         fontWeight: FontWeight.bold,
+                                       ),
                                      ),
-                                   ),
-                                   Spacer(),
-                                   Text(
-                                     'Valid Till: $formattedDate',
-                                     textAlign: TextAlign.center,
-                                     style: TextStyle(
-                                       color: Colors.black45,
+                                     Spacer(),
+                                     Text(
+                                       'Valid Till: $formattedDate',
+                                       textAlign: TextAlign.center,
+                                       style: TextStyle(
+                                         color: Colors.black45,
+                                       ),
                                      ),
-                                   ),
-                                 ],
+                                   ],
+                                 ),
                                ),
-                             ),
-                           )
-                          // Container(
-                          //     height: 105,
-                          //     decoration: BoxDecoration(color: Colors.indigoAccent),
-                          //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                          //     child: Text(
-                          //       "Coupon Code:\n${couponsModel![index].code!.toUpperCase()} - ${couponsModel![index].description}",
-                          //       style: TextStyle(color: Colors.white, letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: 18),
-                          //     )),
-                        );
-                      }),
+                             )
+                            // Container(
+                            //     height: 105,
+                            //     decoration: BoxDecoration(color: Colors.indigoAccent),
+                            //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                            //     child: Text(
+                            //       "Coupon Code:\n${couponsModel![index].code!.toUpperCase()} - ${couponsModel![index].description}",
+                            //       style: TextStyle(color: Colors.white, letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: 18),
+                            //     )),
+                          );
+                        }),
+                  ),
                 )
         ],
       ),
