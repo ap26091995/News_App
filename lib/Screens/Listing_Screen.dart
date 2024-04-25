@@ -4,7 +4,9 @@ import 'package:coupon_uikit/coupon_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/listing_model.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../CustomFile/CustomColorsFile.dart';
 import '../Models/coupons_model.dart';
@@ -19,13 +21,13 @@ class ListingsScreen extends StatefulWidget {
 class _ListingsScreenState extends State<ListingsScreen> {
   List<ListingModel>? listingModel = [];
   bool? isLoading = false;
-  getListings({String? consumerKey, String? consumerSecret, String? searchProduct}) async {
+  getListings() async {
     isLoading = true;
     print("Listing");
     await http
         .get(
       Uri.parse(
-          "https://newsapp.innoventixsolutions.com/wp-json/wc/v3/products?consumer_key=$consumerKey&consumer_secret=$consumerSecret&search=$searchProduct"),
+          "https://newsapp.innoventixsolutions.com/wp-json/wp/v2/rtcl_listing"),
     )
         .then((res) {
       print(res.statusCode);
@@ -88,24 +90,88 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 shrinkWrap: true,
                 itemCount: listingModel!.length,
                 itemBuilder: (BuildContext context, index) {
-                  const Color primaryColor = Color(0xffcbf3f0);
-                  const Color secondaryColor = Color(0xff368f8b);
-
                   return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      child:
-                    Container(
-                        height: 105,
-                        decoration: BoxDecoration(color: Colors.indigoAccent),
-                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                        child: Text(
-                          "${listingModel![index].title!.rendered}",
-                          style: TextStyle(color: Colors.white, letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: 18),
-                        )),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child:
+                    GestureDetector(
+                      onTap: (){
+                        print("Link::${listingModel![index].link}");
+                        push(context: context, screen: OpenListing(url: listingModel![index].link,));
+                      },
+                      child: Container(
+                          height: 105,
+                          decoration: BoxDecoration(color: Colors.indigoAccent),
+                          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                          child: Text(
+                            "${listingModel![index].title!.rendered}",
+                            style: TextStyle(color: Colors.white, letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: 18),
+                          )),
+                    ),
                   );
                 }),
           )
         ],
+      ),
+    );
+  }
+}
+
+
+class OpenListing extends StatefulWidget {
+  final String? url;
+  const OpenListing({Key? key, this.url}) : super(key: key);
+
+  @override
+  _OpenListingState createState() => _OpenListingState();
+}
+
+class _OpenListingState extends State<OpenListing> {
+  WebViewController? controller;
+  var loadingPercentage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(NavigationDelegate(
+        onPageStarted: (url) {
+          setState(() {
+            loadingPercentage = 0;
+          });
+        },
+        onProgress: (progress) {
+          setState(() {
+            loadingPercentage = progress;
+          });
+        },
+        onPageFinished: (url) {
+          setState(() {
+            loadingPercentage = 100;
+          });
+        },
+      ))
+      ..loadRequest(
+        Uri.parse('${widget.url}'),
+      );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            WebViewWidget(
+              controller: controller!,
+            ),
+            if (loadingPercentage < 100)
+              LinearProgressIndicator(
+                value: loadingPercentage / 100.0,
+              ),
+          ],
+        ),
+
       ),
     );
   }
