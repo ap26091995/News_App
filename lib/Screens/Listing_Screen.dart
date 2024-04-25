@@ -1,14 +1,10 @@
 import 'dart:convert';
 
 import 'package:coupon_uikit/coupon_uikit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/listing_model.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import '../CustomFile/CustomColorsFile.dart';
 import '../Models/coupons_model.dart';
@@ -23,12 +19,13 @@ class ListingsScreen extends StatefulWidget {
 class _ListingsScreenState extends State<ListingsScreen> {
   List<ListingModel>? listingModel = [];
   bool? isLoading = false;
-  getListings() async {
+  getListings({String? consumerKey, String? consumerSecret, String? searchProduct}) async {
     isLoading = true;
     print("Listing");
     await http
         .get(
-      Uri.parse("https://newsapp.innoventixsolutions.com/wp-json/wp/v2/rtcl_listing"),
+      Uri.parse(
+          "https://newsapp.innoventixsolutions.com/wp-json/wc/v3/products?consumer_key=$consumerKey&consumer_secret=$consumerSecret&search=$searchProduct"),
     )
         .then((res) {
       print(res.statusCode);
@@ -81,127 +78,34 @@ class _ListingsScreenState extends State<ListingsScreen> {
         children: [
           isLoading == true
               ? Expanded(
-                  child: Center(
-                      child: Text(
-                  "Fetching Listing",
-                  style: TextStyle(fontSize: 18),
-                )))
+              child: Center(
+                  child: Text(
+                    "Fetching Listing",
+                    style: TextStyle(fontSize: 18),
+                  )))
               : Expanded(
-                  child: RefreshIndicator(
-                    onRefresh:()async{
-                      await  getListings();
-                    },
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: listingModel!.length,
-                        itemBuilder: (BuildContext context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                            child: GestureDetector(
-                              onTap: () {
-                                print("Link::${listingModel![index].link}");
-                                push(
-                                    context: context,
-                                    screen: OpenListing(
-                                      url: listingModel![index].link,
-                                    ));
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(color: Colors.indigoAccent.withOpacity(0.8), borderRadius: BorderRadius.circular(8)),
-                                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "${listingModel![index].title!.rendered}",
-                                        style: TextStyle(color: Colors.white, letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: 18),
-                                      ),
-                                      Html(
-                                        data: "${listingModel![index].content!.rendered}",
-                                        style: {
-                                          "p": Style(textAlign: TextAlign.justify, fontSize: FontSize.large, maxLines: 4, color: Colors.white,textOverflow: TextOverflow.ellipsis),
-                                        },
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                              padding: EdgeInsets.all(8),
-                                              decoration: BoxDecoration(border: Border.all(color: Colors.white)),
-                                              child: Text("View More",style: TextStyle(color: Colors.white,fontSize: 16, fontWeight: FontWeight.w500),)),
-                                        ],
-                                      )
-                                    ],
-                                  )),
-                            ),
-                          );
-                        }),
-                  ),
-                )
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: listingModel!.length,
+                itemBuilder: (BuildContext context, index) {
+                  const Color primaryColor = Color(0xffcbf3f0);
+                  const Color secondaryColor = Color(0xff368f8b);
+
+                  return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      child:
+                    Container(
+                        height: 105,
+                        decoration: BoxDecoration(color: Colors.indigoAccent),
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        child: Text(
+                          "${listingModel![index].title!.rendered}",
+                          style: TextStyle(color: Colors.white, letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: 18),
+                        )),
+                  );
+                }),
+          )
         ],
-      ),
-    );
-  }
-}
-
-class OpenListing extends StatefulWidget {
-  final String? url;
-  const OpenListing({Key? key, this.url}) : super(key: key);
-
-  @override
-  _OpenListingState createState() => _OpenListingState();
-}
-
-class _OpenListingState extends State<OpenListing> {
-  WebViewController? controller;
-  var loadingPercentage = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(NavigationDelegate(
-        onPageStarted: (url) {
-          setState(() {
-            loadingPercentage = 0;
-          });
-        },
-        onProgress: (progress) {
-          setState(() {
-            loadingPercentage = progress;
-          });
-        },
-        onPageFinished: (url) {
-          setState(() {
-            loadingPercentage = 100;
-          });
-        },
-      ))
-      ..loadRequest(
-        Uri.parse('${widget.url}'),
-      );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            WebViewWidget(
-              controller: controller!,
-            ),
-            if (loadingPercentage < 100)
-              Center(
-                child: CircularProgressIndicator(
-                  color: Colors.white,
-                  value: loadingPercentage / 100.0,
-                ),
-              ),
-          ],
-        ),
       ),
     );
   }
