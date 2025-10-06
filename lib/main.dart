@@ -55,7 +55,6 @@ class MyApp extends StatelessWidget {
         'coupons': (context) => CouponsScreen(),
         'listing': (context) => ListingsScreen(),
         'openListing': (context) => OpenListing(),
-
       },
     );
   }
